@@ -1,0 +1,5 @@
+/* id="woocommerce-inline-inline-css" */
+
+.woocommerce form .form-row .required {
+    visibility: visible;
+  }
