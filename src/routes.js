@@ -5,6 +5,7 @@ import Books from "./pages/Books";
 import Cart from "pages/Cart";
 import BookDetail from "pages/BookDetail";
 import Login from "pages/Login";
+import Register from "pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ],
   },

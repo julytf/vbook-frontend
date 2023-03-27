@@ -48,7 +48,7 @@ function Login() {
                                   style={{ textAlign: "center" }}
                                 >
                                   Login
-                                </h2>
+                                </h2>{" "}
                               </div>
                             </div>
                             <div
@@ -72,7 +72,10 @@ function Login() {
                                     data-token="fc592cceb07689e0cd23c489d1b82b6d"
                                     noValidate="novalidate"
                                   >
-                                    
+                                    <noscript className="wpforms-error-noscript">
+                                      Please enable JavaScript in your browser
+                                      to complete this form.
+                                    </noscript>
                                     <div className="wpforms-field-container">
                                       <div
                                         id="wpforms-1377-field_0-container"
@@ -83,7 +86,7 @@ function Login() {
                                           className="wpforms-field-label wpforms-label-hide"
                                           htmlFor="wpforms-1377-field_0"
                                         >
-                                          Name
+                                          Name{" "}
                                           <span className="wpforms-required-label">
                                             *
                                           </span>
@@ -97,7 +100,30 @@ function Login() {
                                           required
                                         />
                                       </div>
-                                      
+                                      <div
+                                        id="wpforms-1377-field_3-container"
+                                        className="wpforms-field wpforms-field-number"
+                                        data-field-id={3}
+                                      >
+                                        <label
+                                          className="wpforms-field-label wpforms-label-hide"
+                                          htmlFor="wpforms-1377-field_3"
+                                        >
+                                          Phone Number{" "}
+                                          <span className="wpforms-required-label">
+                                            *
+                                          </span>
+                                        </label>
+                                        <input
+                                          type="number"
+                                          pattern="\d*"
+                                          id="wpforms-1377-field_3"
+                                          className="wpforms-field-large wpforms-field-required"
+                                          name="wpforms[fields][3]"
+                                          placeholder="Phone Number"
+                                          required
+                                        />
+                                      </div>
                                       <div
                                         id="wpforms-1377-field_1-container"
                                         className="wpforms-field wpforms-field-email"
@@ -107,7 +133,7 @@ function Login() {
                                           className="wpforms-field-label wpforms-label-hide"
                                           htmlFor="wpforms-1377-field_1"
                                         >
-                                          Password
+                                          Email{" "}
                                           <span className="wpforms-required-label">
                                             *
                                           </span>
@@ -121,7 +147,29 @@ function Login() {
                                           required
                                         />
                                       </div>
-                                      
+                                      <div
+                                        id="wpforms-1377-field_2-container"
+                                        className="wpforms-field wpforms-field-textarea"
+                                        data-field-id={2}
+                                      >
+                                        <label
+                                          className="wpforms-field-label wpforms-label-hide"
+                                          htmlFor="wpforms-1377-field_2"
+                                        >
+                                          Message{" "}
+                                          <span className="wpforms-required-label">
+                                            *
+                                          </span>
+                                        </label>
+                                        <textarea
+                                          id="wpforms-1377-field_2"
+                                          className="wpforms-field-medium wpforms-field-required"
+                                          name="wpforms[fields][2]"
+                                          placeholder="Message"
+                                          required
+                                          defaultValue={""}
+                                        />
+                                      </div>
                                     </div>
                                     <div className="wpforms-submit-container">
                                       <input
@@ -144,12 +192,13 @@ function Login() {
                                         name="wpforms[submit]"
                                         id="wpforms-submit-1377"
                                         className="wpforms-submit"
-                                        data-submit-text="Login"
+                                        data-alt-text="Sending..."
+                                        data-submit-text="Send Now"
                                         aria-live="assertive"
                                         value="wpforms-submit"
                                         style={{ float: "right" }}
                                       >
-                                        Login
+                                        Send Now
                                       </button>
                                       <img
                                         decoding="async"

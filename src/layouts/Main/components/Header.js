@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
+import logo from 'assets/img/logo.png'
+
 function Header() {
   return (
     <header
       className="site-header header-main-layout-1 ast-primary-menu-enabled ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline"
       id="masthead"
-      itemType="https://schema.org/WPHeader"
       itemScope="itemscope"
       itemID="#masthead"
     >
@@ -40,15 +41,11 @@ function Header() {
                           <img
                             width={200}
                             height={35}
-                            src="./Home - Planet Earth Store_files/EARTH-STORE-200x35.png"
+                            src={logo}
                             className="custom-logo"
                             alt="Planet Earth Store"
                             decoding="async"
-                            srcSet="
-                                https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/EARTH-STORE-200x35.png 200w,
-                                https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/EARTH-STORE-300x53.png 300w,
-                                https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/EARTH-STORE.png        400w
-                              "
+                            
                             sizes="(max-width: 200px) 100vw, 200px"
                           />
                         </a>
