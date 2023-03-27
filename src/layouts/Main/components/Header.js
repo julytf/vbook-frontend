@@ -80,13 +80,14 @@ function Header() {
                                 id="menu-item-1343"
                                 className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-25 current_page_item menu-item-1343"
                               >
-                                <a
+                                <Link
                                   href="https://websitedemos.net/earth-store-02/"
                                   aria-current="page"
                                   className="menu-link"
+                                  to={"/"}
                                 >
                                   Home
-                                </a>
+                                </Link>
                               </li>
                               <li
                                 id="menu-item-1341"
@@ -106,7 +107,7 @@ function Header() {
                                 <Link
                                   href="https://websitedemos.net/earth-store-02/shop/"
                                   className="menu-link"
-                                  to={'/books'}
+                                  to={"/books"}
                                 >
                                   Shop
                                 </Link>
@@ -137,8 +138,8 @@ function Header() {
                       className="ast-site-header-cart ast-menu-cart-with-border ast-desktop-cart-flyout ast-menu-cart-outline"
                     >
                       <div className="ast-site-header-cart-li">
-                        <a
-                          href="https://websitedemos.net/earth-store-02/cart/"
+                        <Link
+                          to={"/cart"}
                           className="cart-container ast-cart-desktop-position- ast-cart-mobile-position- ast-cart-tablet-position-"
                         >
                           <div className="ast-addon-cart-wrap ast-desktop-cart-position- ast-cart-mobile-position- ast-cart-tablet-position-">
@@ -165,7 +166,7 @@ function Header() {
                               </span>
                             </i>
                           </div>
-                        </a>
+                        </Link>
                       </div>
                       <div className="ast-site-header-cart-data">
                         <div className="widget woocommerce widget_shopping_cart">

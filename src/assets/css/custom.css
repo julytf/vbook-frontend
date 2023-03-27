@@ -1,0 +1,5 @@
+.ast-plain-container.ast-no-sidebar #primary,
+.ast-plain-container.ast-no-sidebar #secondary {
+    margin-top: 100px !important ;
+    margin-bottom: 50px;
+}

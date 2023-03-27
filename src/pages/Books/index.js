@@ -1,8 +1,12 @@
+import { useLayoutEffect } from 'react';
 import './style.css'
 
-function Books() {
+function Books() {useLayoutEffect(() => {
+  document.querySelector("body").classList =
+    "archive post-type-archive post-type-archive-product wp-custom-logo theme-astra woocommerce-shop woocommerce woocommerce-page woocommerce-js ast-desktop ast-plain-container ast-left-sidebar astra-4.0.2 columns-3 tablet-columns-3 mobile-columns-1 ast-woo-shop-archive ast-inherit-site-logo-transparent ast-hfb-header elementor-default elementor-kit-1345";
+}, []);
   return (
-    <div id="content" className="site-content">
+    <div id="content" className="site-content shop-content">
       <div className="ast-container">
         <div
           className="widget-area secondary"
@@ -34,14 +38,12 @@ function Books() {
                       id="wp-block-search__input-1"
                       className="wp-block-search__input wp-block-search__input"
                       name="s"
-                      defaultValue
                       placeholder="Search products…"
                       required
                     />
                     <input
                       type="hidden"
                       name="post_type"
-                      defaultValue="product"
                     />
                     <button
                       type="submit"

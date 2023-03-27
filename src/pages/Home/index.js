@@ -1,8 +1,33 @@
+import "assets/css/1.css";
+import "assets/css/astra-theme-css-inline-css.2.css";
+import "assets/css/astra-google-fonts-css.3.css";
+import "assets/css/woocommerce-general-inline-css.4.css";
+import "assets/css/woocommerce-inline-inline-css.5.css";
+import "assets/css/google-fonts-1-css.6.css";
+import "assets/css/global-styles-inline-css.7.css";
+import "assets/css/wp-custom-css.8.css";
+import "assets/css/9.css";
+import "assets/css/10.css";
+import "assets/css/11.css";
+import { useLayoutEffect } from "react";
+
 function Home() {
+
+  useLayoutEffect(() => {
+    document.querySelector('body').classList = 'home page-template-default page page-id-25 wp-custom-logo theme-astra woocommerce-js ast-desktop ast-page-builder-template ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-kit-1345 elementor-page elementor-page-25 e--ua-blink e--ua-chrome e--ua-webkit'
+  }, [])
+
   return (
     <div id="content" class="site-content">
-      <div class="ast-container">
-        <div id="primary" class="content-area primary">
+      <div
+        class="ast-container"
+        style={{width: '100%', 'max-width': '100%'}}
+      >
+        <div
+          id="primary"
+          class="content-area primary"
+          style={{width: '100%', padding: 0}}
+        >
           <main id="main" class="site-main">
             <article
               class="post-25 page type-page status-publish ast-article-single"
