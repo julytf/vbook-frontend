@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import logo from 'assets/img/logo.png'
+import logo from "assets/img/logo.png";
 
 function Header() {
   return (
@@ -32,12 +32,7 @@ function Header() {
                       itemScope="itemscope"
                     >
                       <span className="site-logo-img">
-                        <a
-                          href="https://websitedemos.net/earth-store-02/"
-                          className="custom-logo-link"
-                          rel="home"
-                          aria-current="page"
-                        >
+                        <Link to={"/"} className="custom-logo-link" rel="home" aria-current="page">
                           <img
                             width={200}
                             height={35}
@@ -45,10 +40,9 @@ function Header() {
                             className="custom-logo"
                             alt="Planet Earth Store"
                             decoding="async"
-                            
                             sizes="(max-width: 200px) 100vw, 200px"
                           />
-                        </a>
+                        </Link>
                       </span>
                     </div>
                   </div>
@@ -73,7 +67,7 @@ function Header() {
                               className="main-header-menu ast-menu-shadow ast-nav-menu ast-flex submenu-with-border stack-on-mobile"
                               aria-expanded="false"
                             >
-                              <li
+                              {/* <li
                                 id="menu-item-1343"
                                 className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-25 current_page_item menu-item-1343"
                               >
@@ -85,18 +79,16 @@ function Header() {
                                 >
                                   Home
                                 </Link>
-                              </li>
-                              <li
+                              </li> */}
+                              {/* <li
                                 id="menu-item-1341"
                                 className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1341"
                               >
-                                <a
-                                  href="https://websitedemos.net/earth-store-02/about/"
-                                  className="menu-link"
-                                >
+                                TODO:
+                                <Link to={'/'} className="menu-link">
                                   About
-                                </a>
-                              </li>
+                                </Link>
+                              </li> */}
                               <li
                                 id="menu-item-1344"
                                 className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1344"
@@ -106,20 +98,17 @@ function Header() {
                                   className="menu-link"
                                   to={"/books"}
                                 >
-                                  Shop
+                                  Sách
                                 </Link>
                               </li>
-                              <li
+                              {/* <li
                                 id="menu-item-1342"
                                 className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1342"
                               >
-                                <a
-                                  href="https://websitedemos.net/earth-store-02/contact/"
-                                  className="menu-link"
-                                >
+                                <Link to={'/'} className="menu-link">
                                   Contact
-                                </a>
-                              </li>
+                                </Link>
+                              </li> */}
                             </ul>
                           </div>
                         </nav>
@@ -140,10 +129,7 @@ function Header() {
                           className="cart-container ast-cart-desktop-position- ast-cart-mobile-position- ast-cart-tablet-position-"
                         >
                           <div className="ast-addon-cart-wrap ast-desktop-cart-position- ast-cart-mobile-position- ast-cart-tablet-position-">
-                            <i
-                              className="astra-icon ast-icon-shopping-bag"
-                              data-cart-total={0}
-                            >
+                            <i className="astra-icon ast-icon-shopping-bag" data-cart-total={0}>
                               <span className="ast-icon icon-bag">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
@@ -196,10 +182,10 @@ function Header() {
                     data-section="section-header-account"
                   >
                     <div className="ast-header-account-wrap">
-                      <a
+                      <Link
                         className="ast-header-account-link ast-header-account-type-icon ast-account-action-link"
                         aria-label="Account icon link"
-                        href="https://websitedemos.net/earth-store-02/"
+                        to={'/account'}
                       >
                         <span className="ahfb-svg-iconset ast-inline-flex svg-baseline">
                           <svg
@@ -217,7 +203,7 @@ function Header() {
                             <circle cx={60} cy="33.8" r={30} />
                           </svg>
                         </span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -225,10 +211,7 @@ function Header() {
             </div>
           </div>
         </div>
-        <div
-          className="ast-desktop-header-content content-align-flex-start"
-          style={{ display: "none" }}
-        />
+        <div className="ast-desktop-header-content content-align-flex-start" style={{ display: "none" }} />
       </div>
       {/* <div
           id="ast-mobile-header"

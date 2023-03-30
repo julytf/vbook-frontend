@@ -2,6 +2,13 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 
+import './style.css'
+
+import 'assets/css/custom.css'
+
+import 'assets/css/post-1345.css'
+import 'assets/css/post-25.css'
+
 function Main() {
   return (
     <>

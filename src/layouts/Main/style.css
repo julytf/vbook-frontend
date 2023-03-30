@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&display=swap');
+
+h2, .entry-content h2 {
+    font-family: "Roboto Slab", sans-serif !important;
+}
+
+ul.paginate {
+    display: flex;
+    justify-content: flex-end;
+}
+
+ul.paginate li {
+    list-style-type: none;
+    padding: 10px;
+}
+
+ul.paginate li button {
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+}
+
+ul.paginate li button.active {
+    background-color: #3f5e26;
+}
+
+ul.paginate li + li {
+    margin-left: 5px;
+}
+
+.image_wrapper {
+    max-width: 353px;
+    max-height: 353px;
+}
+
+.image_wrapper img {
+    max-width: 353px;
+    max-height: 353px;
+    object-fit: contain;
+}

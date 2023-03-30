@@ -1,3 +1,5 @@
+import logo from 'assets/img/logo.png'
+
 function Footer() {
   return (
     <footer
@@ -26,7 +28,8 @@ function Footer() {
                     itemType="https://schema.org/SiteNavigationElement"
                     itemScope="itemscope"
                   >
-                    <div className="footer-nav-wrap">
+                    {/* TODO: */}
+                    {/* <div className="footer-nav-wrap">
                       <ul
                         id="astra-footer-menu"
                         className="ast-nav-menu ast-flex astra-footer-horizontal-menu astra-footer-tablet-horizontal-menu astra-footer-mobile-vertical-menu"
@@ -65,7 +68,7 @@ function Footer() {
                           </a>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                   </nav>
                 </div>
               </div>
@@ -84,16 +87,12 @@ function Footer() {
                     <img
                       decoding="async"
                       loading="lazy"
-                      src="./Home - Planet Earth Store_files/EARTH-STORE.png"
+                      src={logo}
                       alt=""
                       className="wp-image-1290"
                       width={200}
                       height={35}
-                      srcSet="
-                          https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/EARTH-STORE.png        400w,
-                          https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/EARTH-STORE-300x53.png 300w,
-                          https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/11/EARTH-STORE-200x35.png 200w
-                        "
+                      
                       sizes="(max-width: 200px) 100vw, 200px"
                     />
                   </figure>
@@ -106,7 +105,7 @@ function Footer() {
                 data-section="section-footer-builder"
               >
                 <div className="ast-footer-copyright">
-                  <p>Copyright © 2023 Planet Earth Store</p>
+                  <p>2023</p>
                 </div>
               </div>
             </div>
