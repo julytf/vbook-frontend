@@ -1,7 +1,10 @@
+import { useContext } from "react"
+import AuthContext from "utils/AuthContext"
 import "./style.css"
 
-function Login() {
-  return <></>
+function Account() {
+  const { user } = useContext(AuthContext)
+  return <p>{JSON.stringify(user)}</p>
 }
 
-export default Login
+export default Account
