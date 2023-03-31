@@ -1,21 +1,21 @@
-import { useContext, useRef } from 'react'
-import CartContext from 'utils/CartContext'
-import Cart from '..'
+import { useContext, useRef, useState } from "react"
+import CartContext from "utils/CartContext"
+import Cart from ".."
 
-function CartItem({ CartItem }) {
-  console.log('CartItem rerender')
+function CartItem({ cartItem }) {
+  console.log("cartItem rerender")
   const { updateItem } = useContext(CartContext)
 
-  const quantityRef = useRef()
-
   function handleIncrease() {
-    updateItem({ book: CartItem.book, quantity: 1 })
+    console.log('increase');
+    updateItem({ book: cartItem.book._id, quantity: cartItem.quantity + 1 })
   }
   function handleDecrease() {
-    updateItem({ book: CartItem.book, quantity: -1 })
+    console.log('decrease');
+    updateItem({ book: cartItem.book._id, quantity: cartItem.quantity - 1 })
   }
-  function handleChange() {
-    updateItem({ book: CartItem.book, quantity: quantityRef.current.value }, { replace: true })
+  function handleChange(e) {
+    updateItem({ book: cartItem.book._id, quantity: e.target.value })
   }
   return (
     <tr className='woocommerce-cart-form__cart-item cart_item'>
@@ -47,7 +47,7 @@ function CartItem({ CartItem }) {
           <img
             width={1000}
             height={1000}
-            src={CartItem.book?.images?.[0].file}
+            src={cartItem.book?.images?.[0].file}
             className='attachment-woocommerce_thumbnail size-woocommerce_thumbnail'
             alt=''
             decoding='async'
@@ -57,13 +57,13 @@ function CartItem({ CartItem }) {
         </a>
       </td>
       <td className='product-name' data-title='Product'>
-        <a href='https://websitedemos.net/earth-store-02/product/poster-v2/'>{CartItem.book.name}</a>
+        <a href='https://websitedemos.net/earth-store-02/product/poster-v2/'>{cartItem.book.name}</a>
       </td>
       <td className='product-price' data-title='Price'>
         <span className='woocommerce-Price-amount amount'>
           <bdi>
             {/* <span className='woocommerce-Price-currencySymbol'>$</span> */}
-            {CartItem.book.price.toLocaleString()}
+            {cartItem.book.price.toLocaleString()}
           </bdi>
         </span>
       </td>
@@ -86,10 +86,8 @@ function CartItem({ CartItem }) {
             min={0}
             max
             step={1}
-            placeholder
-            value={CartItem.quantity}
+            value={cartItem.quantity}
             onChange={handleChange}
-            ref={quantityRef}
           />
           <label className='screen-reader-text' htmlFor='plus_qty'>
             Plus Quantity
@@ -103,7 +101,7 @@ function CartItem({ CartItem }) {
         <span className='woocommerce-Price-amount amount'>
           <bdi>
             {/* <span className='woocommerce-Price-currencySymbol'>$</span> */}
-            {(CartItem.quantity * CartItem.book.price).toLocaleString()}
+            {(cartItem.quantity * cartItem.book.price).toLocaleString()}
           </bdi>
         </span>
       </td>

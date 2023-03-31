@@ -1,84 +1,87 @@
-import "assets/css/1.css";
-import "assets/css/astra-theme-css-inline-css.2.css";
-import "assets/css/astra-google-fonts-css.3.css";
-import "assets/css/woocommerce-general-inline-css.4.css";
-import "assets/css/woocommerce-inline-inline-css.5.css";
-import "assets/css/google-fonts-1-css.6.css";
-import "assets/css/global-styles-inline-css.7.css";
-import "assets/css/wp-custom-css.8.css";
-import "assets/css/9.css";
-import "assets/css/10.css";
-import "assets/css/11.css";
-import { useLayoutEffect, useState } from "react";
-import axiosClient from "utils/axiosClient";
-import BookItem from "./components/BookItem";
-import Responses from "./components/Responses";
-import BottomBanner from "./components/BottomBanner";
-import Promises from "./components/Promises";
-import Paginate from "./components/Paginate";
+import 'assets/css/1.css'
+import 'assets/css/astra-theme-css-inline-css.2.css'
+import 'assets/css/astra-google-fonts-css.3.css'
+import 'assets/css/woocommerce-general-inline-css.4.css'
+import 'assets/css/woocommerce-inline-inline-css.5.css'
+import 'assets/css/google-fonts-1-css.6.css'
+import 'assets/css/global-styles-inline-css.7.css'
+import 'assets/css/wp-custom-css.8.css'
+import 'assets/css/9.css'
+import 'assets/css/10.css'
+import 'assets/css/11.css'
+
+import './style.css'
+
+import { useLayoutEffect, useState } from 'react'
+import axiosClient from 'utils/axiosClient'
+import BookItem from './components/BookItem'
+import Responses from './components/Responses'
+import BottomBanner from './components/BottomBanner'
+import Promises from './components/Promises'
+import Paginate from './components/Paginate'
 
 function Home() {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([])
   // console.log(books);
-  const [page, setPage] = useState(1);
-  console.log(page);
-  const [noPage, setnoPage] = useState(0);
+  const [page, setPage] = useState(1)
+  // console.log(page)
+  const [noPage, setnoPage] = useState(0)
 
   useLayoutEffect(() => {
-    axiosClient.get("/books", { params: { page } }).then((rs) => {
+    axiosClient.get('/books', { params: { page } }).then((rs) => {
       // console.log(rs);
-      setBooks(rs.data.data.docs);
-      setnoPage(rs.data.data.noPage);
-    });
-  }, [page]);
+      setBooks(rs.data.data.docs)
+      setnoPage(rs.data.data.noPage)
+    })
+  }, [page])
 
   return (
-    <div className="home page-template-default page page-id-25 wp-custom-logo theme-astra woocommerce-js ast-desktop ast-page-builder-template ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-kit-1345 elementor-page elementor-page-25 e--ua-blink e--ua-chrome e--ua-webkit">
-      <div id="content" class="site-content">
-        <div class="ast-container" style={{ width: "100%", "max-width": "100%" }}>
-          <div id="primary" class="content-area primary" style={{ width: "100%", padding: 0 }}>
-            <main id="main" class="site-main">
+    <div className='home page-template-default page page-id-25 wp-custom-logo theme-astra woocommerce-js ast-desktop ast-page-builder-template ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-kit-1345 elementor-page elementor-page-25 e--ua-blink e--ua-chrome e--ua-webkit'>
+      <div id='content' class='site-content'>
+        <div class='ast-container' style={{ width: '100%', 'max-width': '100%' }}>
+          <div id='primary' class='content-area primary' style={{ width: '100%', padding: 0 }}>
+            <main id='main' class='site-main'>
               <article
-                class="post-25 page type-page status-publish ast-article-single"
-                id="post-25"
-                itemtype="https://schema.org/CreativeWork"
-                itemscope="itemscope"
+                class='post-25 page type-page status-publish ast-article-single'
+                id='post-25'
+                itemtype='https://schema.org/CreativeWork'
+                itemscope='itemscope'
               >
-                <header class="entry-header ast-no-thumbnail ast-no-title ast-header-without-markup"></header>
-                <div class="entry-content clear" itemprop="text">
-                  <div data-elementor-type="wp-page" data-elementor-id="25" class="elementor elementor-25">
+                <header class='entry-header ast-no-thumbnail ast-no-title ast-header-without-markup'></header>
+                <div class='entry-content clear' itemprop='text'>
+                  <div data-elementor-type='wp-page' data-elementor-id='25' class='elementor elementor-25'>
                     <section
-                      class="elementor-section elementor-top-section elementor-element elementor-element-ea83c2f elementor-section-height-min-height elementor-section-items-top elementor-section-boxed elementor-section-height-default"
-                      data-id="ea83c2f"
-                      data-element_type="section"
+                      class='elementor-section elementor-top-section elementor-element elementor-element-ea83c2f elementor-section-height-min-height elementor-section-items-top elementor-section-boxed elementor-section-height-default'
+                      data-id='ea83c2f'
+                      data-element_type='section'
                       data-settings='{"background_background":"classic"}'
                     >
-                      <div class="elementor-background-overlay"></div>
-                      <div class="elementor-container elementor-column-gap-default">
+                      <div class='elementor-background-overlay'></div>
+                      <div class='elementor-container elementor-column-gap-default'>
                         <div
-                          class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-62c99715"
-                          data-id="62c99715"
-                          data-element_type="column"
+                          class='elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-62c99715'
+                          data-id='62c99715'
+                          data-element_type='column'
                         >
-                          <div class="elementor-widget-wrap elementor-element-populated">
+                          <div class='elementor-widget-wrap elementor-element-populated'>
                             <div
-                              class="elementor-element elementor-element-28fa1df0 elementor-widget elementor-widget-heading"
-                              data-id="28fa1df0"
-                              data-element_type="widget"
-                              data-widget_type="heading.default"
+                              class='elementor-element elementor-element-28fa1df0 elementor-widget elementor-widget-heading'
+                              data-id='28fa1df0'
+                              data-element_type='widget'
+                              data-widget_type='heading.default'
                             >
-                              <div class="elementor-widget-container">
-                                <h1 class="elementor-heading-title elementor-size-default">Vbook</h1>
+                              <div class='elementor-widget-container'>
+                                <h1 class='elementor-heading-title elementor-size-default'>Vbook</h1>
                               </div>
                             </div>
                             <div
-                              class="elementor-element elementor-element-6238991a elementor-widget elementor-widget-heading"
-                              data-id="6238991a"
-                              data-element_type="widget"
-                              data-widget_type="heading.default"
+                              class='elementor-element elementor-element-6238991a elementor-widget elementor-widget-heading'
+                              data-id='6238991a'
+                              data-element_type='widget'
+                              data-widget_type='heading.default'
                             >
-                              <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">
+                              <div class='elementor-widget-container'>
+                                <h2 class='elementor-heading-title elementor-size-default'>
                                   "Để cho con một hòm vàng không bằng dạy cho con một quyển sách hay."
                                 </h2>
                               </div>
@@ -108,27 +111,27 @@ function Home() {
                       </div>
                     </section>
                     <section
-                      class="elementor-section elementor-top-section elementor-element elementor-element-77e79a24 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-                      data-id="77e79a24"
-                      data-element_type="section"
+                      class='elementor-section elementor-top-section elementor-element elementor-element-77e79a24 elementor-section-boxed elementor-section-height-default elementor-section-height-default'
+                      data-id='77e79a24'
+                      data-element_type='section'
                     >
-                      <div class="elementor-container elementor-column-gap-wide" style={{ flexDirection: "column" }}>
+                      <div class='elementor-container elementor-column-gap-wide' style={{ flexDirection: 'column' }}>
                         <div
-                          class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-77d92fb"
-                          data-id="77d92fb"
-                          data-element_type="column"
+                          class='elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-77d92fb'
+                          data-id='77d92fb'
+                          data-element_type='column'
                         >
-                          <div class="elementor-widget-wrap elementor-element-populated">
+                          <div class='elementor-widget-wrap elementor-element-populated'>
                             <div
-                              class="elementor-element elementor-element-3dfcf11 elementor-widget elementor-widget-shortcode"
-                              data-id="3dfcf11"
-                              data-element_type="widget"
-                              data-widget_type="shortcode.default"
+                              class='elementor-element elementor-element-3dfcf11 elementor-widget elementor-widget-shortcode'
+                              data-id='3dfcf11'
+                              data-element_type='widget'
+                              data-widget_type='shortcode.default'
                             >
-                              <div class="elementor-widget-container">
-                                <div class="elementor-shortcode">
-                                  <div class="woocommerce columns-3">
-                                    <ul class="products columns-3">
+                              <div class='elementor-widget-container'>
+                                <div class='elementor-shortcode'>
+                                  <div class='woocommerce columns-3'>
+                                    <ul class='products columns-3'>
                                       {books.map((book) => (
                                         <BookItem book={book} />
                                       ))}
@@ -311,7 +314,7 @@ function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

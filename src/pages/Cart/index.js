@@ -4,8 +4,14 @@ import CartItem from './components/CartItem'
 import './style.css'
 
 function Cart() {
-  const { cart } = useContext(CartContext)
+  const { cart, totalCost, sync } = useContext(CartContext)
   console.log('Cart rerender')
+
+  async function handleUpdate() {
+    await sync()
+    // TODO:
+    console.log('update success')
+  }
 
   return (
     <div className='page-template-default page page-id-998 wp-custom-logo theme-astra woocommerce-cart woocommerce-page woocommerce-js ast-desktop ast-plain-container ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled elementor-default elementor-kit-1345'>
@@ -49,7 +55,7 @@ function Cart() {
                         </thead>
                         <tbody>
                           {cart.map((item) => (
-                            <CartItem CartItem={item} />
+                            <CartItem cartItem={item} />
                           ))}
                           {/* <tr className="woocommerce-cart-form__cart-item cart_item">
                             <td className="product-remove">
@@ -190,12 +196,7 @@ function Cart() {
                                   id='coupon_code'
                                   placeholder='Coupon code'
                                 />
-                                <button
-                                  type='submit'
-                                  className='button wp-element-button'
-                                  name='apply_coupon'
-                                  value='Apply coupon'
-                                >
+                                <button type='submit' className='button wp-element-button' name='apply_coupon'>
                                   Apply coupon
                                 </button>
                               </div>
@@ -204,8 +205,8 @@ function Cart() {
                                 className='button wp-element-button'
                                 name='update_cart'
                                 value='Update cart'
-                                disabled
                                 aria-disabled='true'
+                                onClick={handleUpdate}
                               >
                                 Update cart
                               </button>
@@ -231,8 +232,8 @@ function Cart() {
                               <td data-title='Subtotal'>
                                 <span className='woocommerce-Price-amount amount'>
                                   <bdi>
-                                    <span className='woocommerce-Price-currencySymbol'>$</span>
-                                    32.98
+                                    {/* <span className='woocommerce-Price-currencySymbol'>$</span> */}
+                                    {totalCost.toLocaleString()}
                                   </bdi>
                                 </span>
                               </td>
@@ -243,8 +244,8 @@ function Cart() {
                                 <strong>
                                   <span className='woocommerce-Price-amount amount'>
                                     <bdi>
-                                      <span className='woocommerce-Price-currencySymbol'>$</span>
-                                      32.98
+                                      {/* <span className='woocommerce-Price-currencySymbol'>$</span> */}
+                                      {totalCost.toLocaleString()}
                                     </bdi>
                                   </span>
                                 </strong>

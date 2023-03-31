@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 
 import logo from "assets/img/logo.png";
+import { useContext, useState } from "react";
+import CartContext from "utils/CartContext";
 
 function Header() {
+  let { totalQuantity } = useContext(CartContext)
+console.log(totalQuantity)
+  if(totalQuantity > 99) totalQuantity = '99+'
+
   return (
     <header
       className="site-header header-main-layout-1 ast-primary-menu-enabled ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline"
@@ -129,7 +135,7 @@ function Header() {
                           className="cart-container ast-cart-desktop-position- ast-cart-mobile-position- ast-cart-tablet-position-"
                         >
                           <div className="ast-addon-cart-wrap ast-desktop-cart-position- ast-cart-mobile-position- ast-cart-tablet-position-">
-                            <i className="astra-icon ast-icon-shopping-bag" data-cart-total={0}>
+                            <i className="astra-icon ast-icon-shopping-bag" data-cart-total={totalQuantity}>
                               <span className="ast-icon icon-bag">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"

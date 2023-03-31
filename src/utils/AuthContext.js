@@ -8,19 +8,18 @@ export function AuthContextProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true)
   const [token, setToken] = useState(null)
   const [user, setUser] = useState({})
-  
-  console.log('user', user);
+
+  console.log("user", user)
 
   useLayoutEffect(() => {
     ;(async () => {
       const token = localStorage.getItem("jwt")
       if (token) {
         await getMe(token)
-        setIsLoading(false)
       }
+        setIsLoading(false)
     })()
   }, [])
-
 
   async function getMe(token) {
     await axiosClient
@@ -35,6 +34,7 @@ export function AuthContextProvider({ children }) {
         setApiToken(token)
         localStorage.setItem("jwt", token)
       })
+      .catch((err) => console.log(err))
   }
 
   async function register() {}
@@ -47,8 +47,8 @@ export function AuthContextProvider({ children }) {
       .then((rs) => {
         setUser(rs.data.data.user)
         setToken(rs.data.token)
-        setApiToken(token)
-        localStorage.setItem("jwt", token)
+        setApiToken(rs.data.token)
+        localStorage.setItem("jwt", rs.data.token)
       })
   }
   async function logout() {}
@@ -63,7 +63,7 @@ export function AuthContextProvider({ children }) {
     logout,
   }
 
-  if(isLoading) return <p>Loading...</p>
+  if (isLoading) return <p>Loading...</p>
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
 }

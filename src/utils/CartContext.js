@@ -15,28 +15,58 @@ export function CartContextProvider({ children }) {
     axiosClient.get('/cart').then((rs) => setCart(rs.data.data.cart))
   }, [user])
 
-  function updateItem(CartItem, options) {
-    const replace = options?.replace || false
-    const index = cart.findIndex((item) => item.book._id === CartItem.book._id)
-    console.log(CartItem, index);
-    if (index != null) {
-      if (replace) {
-        cart[index].quantity = CartItem.quantity
-      } else {
-        cart[index].quantity += CartItem.quantity
-      }
-    } else {
-      cart.push(CartItem)
+  async function addItem(cartItem) {
+    const bookId = cartItem.book._id || cartItem.book
+    const index = cart.findIndex((item) => item.book._id === bookId)
+    // console.log(cartItem, index)
+
+    if (index != -1) {
+      // TODO:
+      return console.log('error: dup item!')
     }
-    console.log("here");
-    setCart(cart)
+    cart.push(cartItem)
+    setCart([...cart])
   }
-  function deleteItem() {}
+
+  async function updateItem(cartItem) {
+    const bookId = cartItem.book._id || cartItem.book
+    const index = cart.findIndex((item) => item.book._id === bookId)
+    // console.log(cartItem, index)
+
+    if (index == -1) {
+      return
+    }
+    cart[index].quantity = cartItem.quantity
+    setCart([...cart])
+  }
+
+  async function deleteItem(bookId) {
+    const index = cart.findIndex((item) => item.book._id === bookId)
+    if (index == -1) return
+    cart[index].splice(index, 1)
+    setCart([...cart])
+  }
+
+  async function sync() {
+    let minimizedCart = cart.map((item) => ({
+      quantity: item.quantity,
+      book: item.book._id,
+    }))
+    return axiosClient.patch('/cart', { cart: minimizedCart })
+  }
+
+  const totalCost = cart.reduce((prev, cur) => prev + ((+cur.quantity) * (+cur.book.price)), 0)
+
+  const totalQuantity = cart.reduce((prev, cur) => prev + (+cur.quantity), 0)
 
   const contextValue = {
     cart,
+    totalQuantity,
+    totalCost,
+    addItem,
     updateItem,
     deleteItem,
+    sync,
   }
 
   return <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
