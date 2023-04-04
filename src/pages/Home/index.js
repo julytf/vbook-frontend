@@ -12,7 +12,7 @@ import 'assets/css/11.css'
 
 import './style.css'
 
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axiosClient from 'utils/axiosClient'
 import BookItem from './components/BookItem'
 import Responses from './components/Responses'
@@ -27,6 +27,15 @@ function Home() {
   // console.log(page)
   const [noPage, setnoPage] = useState(0)
 
+  const mainContentRef = useRef()
+
+  const firstRenderRef = useRef(true)
+
+  useEffect(() => {
+    if (firstRenderRef.current) return
+    mainContentRef.current.scrollIntoView()
+  }, [page])
+
   useLayoutEffect(() => {
     axiosClient.get('/books', { params: { page } }).then((rs) => {
       // console.log(rs);
@@ -35,6 +44,9 @@ function Home() {
     })
   }, [page])
 
+  useEffect(() => {
+    firstRenderRef.current = false
+  }, [])
   return (
     <div className='home page-template-default page page-id-25 wp-custom-logo theme-astra woocommerce-js ast-desktop ast-page-builder-template ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-kit-1345 elementor-page elementor-page-25 e--ua-blink e--ua-chrome e--ua-webkit'>
       <div id='content' class='site-content'>
@@ -114,6 +126,8 @@ function Home() {
                       class='elementor-section elementor-top-section elementor-element elementor-element-77e79a24 elementor-section-boxed elementor-section-height-default elementor-section-height-default'
                       data-id='77e79a24'
                       data-element_type='section'
+                      id='main_content'
+                      ref={mainContentRef}
                     >
                       <div class='elementor-container elementor-column-gap-wide' style={{ flexDirection: 'column' }}>
                         <div

@@ -7,7 +7,7 @@ const CartContext = createContext({})
 
 export function CartContextProvider({ children }) {
   const [cart, setCart] = useState([])
-  console.log('cart', cart)
+  // console.log('cart', cart)
 
   const { user } = useContext(AuthContext)
 
