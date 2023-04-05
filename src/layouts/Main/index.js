@@ -9,6 +9,17 @@ import 'assets/css/custom.css'
 import 'assets/css/post-1345.css'
 import 'assets/css/post-25.css'
 
+import 'assets/css/1.css'
+import 'assets/css/astra-theme-css-inline-css.2.css'
+import 'assets/css/astra-google-fonts-css.3.css'
+import 'assets/css/woocommerce-general-inline-css.4.css'
+import 'assets/css/woocommerce-inline-inline-css.5.css'
+import 'assets/css/google-fonts-1-css.6.css'
+import 'assets/css/global-styles-inline-css.7.css'
+import 'assets/css/wp-custom-css.8.css'
+import 'assets/css/9.css'
+import 'assets/css/10.css'
+import 'assets/css/11.css'
 function Main() {
   return (
     <>

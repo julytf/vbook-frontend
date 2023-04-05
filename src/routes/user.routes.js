@@ -1,24 +1,30 @@
-import MainLayout from 'layouts/Main'
-import Home from 'pages/Home'
-import Books from 'pages/Books'
-import Cart from 'pages/Cart'
-import BookDetail from 'pages/BookDetail'
-import Login from 'pages/Login'
-import Register from 'pages/Register'
-import Account from 'pages/Account'
-import AuthMiddleware from 'middlewares/Auth'
-import Checkout from 'pages/Checkout'
+import { lazy, Suspense } from 'react'
 import { AuthContextProvider } from 'utils/AuthContext'
 import { CartContextProvider } from 'utils/CartContext'
+
+const MainLayout = lazy(() => import('layouts/Main'))
+const MainCssProvider = lazy(() => import('layouts/Main/components/CssProvider'))
+const AuthMiddleware = lazy(() => import('middlewares/Auth'))
+const Home = lazy(() => import('pages/Home'))
+const Books = lazy(() => import('pages/Books'))
+const Cart = lazy(() => import('pages/Cart'))
+const BookDetail = lazy(() => import('pages/BookDetail'))
+const Login = lazy(() => import('pages/Login'))
+const Register = lazy(() => import('pages/Register'))
+const Account = lazy(() => import('pages/Account'))
+const Checkout = lazy(() => import('pages/Checkout'))
 
 const router = {
   path: '',
   element: (
-    <AuthContextProvider>
-      <CartContextProvider>
-        <MainLayout />
-      </CartContextProvider>
-    </AuthContextProvider>
+    <Suspense fallback={'Loading...'}>
+      <AuthContextProvider>
+        <CartContextProvider>
+          <MainLayout />
+          <MainCssProvider />
+        </CartContextProvider>
+      </AuthContextProvider>
+    </Suspense>
   ),
   children: [
     // {

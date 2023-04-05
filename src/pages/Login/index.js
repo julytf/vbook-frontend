@@ -40,7 +40,7 @@ function Login() {
                       data-id='6dbeafe4'
                       data-element_type='section'
                     >
-                      <div className='elementor-container elementor-column-gap-default'>
+                      <div className='elementor-container elementor-column-gap-default' style={{justifyContent: 'center'}}>
                         <div
                           className='elementor-column elementor-top-column elementor-element elementor-element-69db5fe'
                           data-id='69db5fe'
