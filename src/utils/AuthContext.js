@@ -1,6 +1,6 @@
-import axiosClient, { clearApiToken, setApiToken } from "./axiosClient"
+import axiosClient, { clearApiToken, setApiToken } from './axiosClient'
 
-const { createContext, useState, useEffect, useLayoutEffect } = require("react")
+const { createContext, useState, useEffect, useLayoutEffect } = require('react')
 
 const AuthContext = createContext({})
 
@@ -9,21 +9,21 @@ export function AuthContextProvider({ children }) {
   const [token, setToken] = useState(null)
   const [user, setUser] = useState({})
 
-  console.log("user", user)
+  console.log('user', user)
 
   useLayoutEffect(() => {
     ;(async () => {
-      const token = localStorage.getItem("jwt")
+      const token = localStorage.getItem('jwt')
       if (token) {
         await getMe(token)
       }
-        setIsLoading(false)
+      setIsLoading(false)
     })()
   }, [])
 
   async function getMe(token) {
     await axiosClient
-      .get("/auth/me", {
+      .get('/auth/me', {
         headers: {
           Authorization: token,
         },
@@ -32,7 +32,7 @@ export function AuthContextProvider({ children }) {
         setToken(token)
         setUser(rs.data.data.user)
         setApiToken(token)
-        localStorage.setItem("jwt", token)
+        localStorage.setItem('jwt', token)
       })
       .catch((err) => console.log(err))
   }
@@ -40,7 +40,7 @@ export function AuthContextProvider({ children }) {
   async function register() {}
   async function login(username, password) {
     await axiosClient
-      .post("/auth/login", {
+      .post('/auth/login', {
         username,
         password,
       })
@@ -48,7 +48,7 @@ export function AuthContextProvider({ children }) {
         setUser(rs.data.data.user)
         setToken(rs.data.token)
         setApiToken(rs.data.token)
-        localStorage.setItem("jwt", rs.data.token)
+        localStorage.setItem('jwt', rs.data.token)
       })
   }
   async function logout() {}
@@ -57,6 +57,7 @@ export function AuthContextProvider({ children }) {
     token,
     user,
     isLoggedIn: !!token,
+    isAdmin: user?.role === 'ADMIN',
     isLoading,
     register,
     login,

@@ -2,6 +2,7 @@ import { useContext, useLayoutEffect } from 'react'
 import CartContext from 'utils/CartContext'
 import CartItem from './components/CartItem'
 import './style.css'
+import { Link } from 'react-router-dom'
 
 function Cart() {
   const { cart, totalCost, sync } = useContext(CartContext)
@@ -254,12 +255,9 @@ function Cart() {
                           </tbody>
                         </table>
                         <div className='wc-proceed-to-checkout'>
-                          <a
-                            href='https://websitedemos.net/earth-store-02/checkout/'
-                            className='checkout-button button alt wc-forward wp-element-button'
-                          >
+                          <Link to={'/checkout'} className='checkout-button button alt wc-forward wp-element-button'>
                             Proceed to checkout
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
