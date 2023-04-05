@@ -1,24 +1,30 @@
-import {lazy, Suspense} from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { createBrowserRouter, Outlet } from 'react-router-dom'
 
 import 'assets/css/all.min.css'
+import 'assets/css/adminlte.min.css'
+import Login from 'pages/admin/Login'
+import Home from 'pages/admin/Home'
 
 const AdminLayout = lazy(() => import('layouts/Admin'))
 
 const router = {
   path: 'admin',
-  element: 
-  <Suspense fallback={'Loading...'}>
-      <AdminLayout></AdminLayout>
-  </Suspense>,
+  element: <Suspense fallback={'Loading...'}><Outlet/></Suspense>,
   children: [
-    // {
-    //   path: "test",
-    //   element: <h1>test</h1>,
-    // },
     {
       path: '',
-      element: <div>admin</div>,
+      element: <AdminLayout></AdminLayout>,
+      children: [
+        {
+          path: '',
+          element: <Home/>,
+        },
+      ],
+    },
+    {
+      path: 'login',
+      element: <Login />,
     },
   ],
 }
