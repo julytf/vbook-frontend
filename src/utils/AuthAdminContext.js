@@ -2,18 +2,18 @@ import axiosClient, { clearApiToken, setApiToken } from './axiosClient'
 
 const { createContext, useState, useEffect, useLayoutEffect } = require('react')
 
-const AuthContext = createContext({})
+const AuthAdminContext = createContext({})
 
-export function AuthContextProvider({ children }) {
+export function AuthAdminContextProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true)
   const [token, setToken] = useState(null)
-  const [user, setUser] = useState({})
+  const [admin, setAdmin] = useState({})
 
-  console.log('user', user)
+  console.log('admin', admin)
 
   useLayoutEffect(() => {
     ;(async () => {
-      const token = localStorage.getItem('jwt')
+      const token = localStorage.getItem('jwt-admin')
       if (token) {
         await getMe(token)
       }
@@ -30,14 +30,15 @@ export function AuthContextProvider({ children }) {
       })
       .then((rs) => {
         setToken(token)
-        setUser(rs.data.data.user)
+        setAdmin(rs.data.data.user)
         setApiToken(token)
-        localStorage.setItem('jwt', token)
+        localStorage.setItem('jwt-admin', token)
       })
       .catch((err) => console.log(err))
   }
 
-  async function register() {}
+  // async function register() {}
+
   async function login(username, password) {
     await axiosClient
       .post('/auth/login', {
@@ -45,27 +46,28 @@ export function AuthContextProvider({ children }) {
         password,
       })
       .then((rs) => {
-        setUser(rs.data.data.user)
+        setAdmin(rs.data.data.user)
         setToken(rs.data.token)
         setApiToken(rs.data.token)
-        localStorage.setItem('jwt', rs.data.token)
+        localStorage.setItem('jwt-admin', rs.data.token)
       })
   }
   async function logout() {}
 
   const contextValue = {
     token,
-    user,
+    admin,
     isLoggedIn: !!token,
+    isAdmin: admin?.role === 'ADMIN',
     isLoading,
-    register,
+    // register,
     login,
     logout,
   }
 
   if (isLoading) return <p>Loading...</p>
 
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
+  return <AuthAdminContext.Provider value={contextValue}>{children}</AuthAdminContext.Provider>
 }
 
-export default AuthContext
+export default AuthAdminContext

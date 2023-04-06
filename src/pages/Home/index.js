@@ -15,7 +15,7 @@ function Home() {
   // console.log(books);
   const [page, setPage] = useState(1)
   // console.log(page)
-  const [noPage, setnoPage] = useState(0)
+  const [noPage, setNoPage] = useState(0)
 
   const mainContentRef = useRef()
 
@@ -30,7 +30,7 @@ function Home() {
     axiosClient.get('/books', { params: { page } }).then((rs) => {
       // console.log(rs);
       setBooks(rs.data.data.docs)
-      setnoPage(rs.data.data.noPage)
+      setNoPage(rs.data.data.noPage)
     })
   }, [page])
 

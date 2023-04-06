@@ -1,7 +1,11 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
-import { AuthContextProvider } from 'utils/AuthContext'
+import { AuthAdminContextProvider } from 'utils/AuthAdminContext'
 import { CartContextProvider } from 'utils/CartContext'
+import AuthAdminMiddleware from 'middlewares/AuthAdmin'
+
+import 'assets/css/all.min.css'
+import 'assets/css/adminlte.min.css'
 
 const AdminLayout = lazy(() => import('layouts/Admin'))
 const Login = lazy(() => import('pages/admin/Login'))
@@ -11,17 +15,19 @@ const router = {
   path: 'admin',
   element: (
     <Suspense fallback={'Loading...'}>
-      <AuthContextProvider>
-        <CartContextProvider>
-          <Outlet />
-        </CartContextProvider>
-      </AuthContextProvider>
+      <AuthAdminContextProvider>
+        <Outlet />
+      </AuthAdminContextProvider>
     </Suspense>
   ),
   children: [
     {
       path: '',
-      element: <AdminLayout></AdminLayout>,
+      element: (
+        <AuthAdminMiddleware>
+          <AdminLayout></AdminLayout>
+        </AuthAdminMiddleware>
+      ),
       children: [
         {
           path: '',
@@ -31,6 +37,7 @@ const router = {
     },
     {
       path: 'login',
+      // element: <p>tét</p>,
       element: <Login />,
     },
   ],
