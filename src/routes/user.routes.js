@@ -20,7 +20,7 @@ const router = {
     <Suspense fallback={'Loading...'}>
       <AuthContextProvider>
         <CartContextProvider>
-          {/* <MainCssProvider /> */}
+          <MainCssProvider />
           <MainLayout />
         </CartContextProvider>
       </AuthContextProvider>

@@ -1,9 +1,10 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import './style.css'
 import BookItem from './components/BookItem'
 import axiosClient from 'utils/axiosClient'
 import Paginate from './components/Paginate'
 import { useNavigate } from 'react-router-dom'
+
+import './style.css'
 
 function Books() {
   const navigate = useNavigate()
@@ -50,7 +51,7 @@ function Books() {
   }
 
   return (
-    <div className='archive post-type-archive post-type-archive-product wp-custom-logo theme-astra woocommerce-shop woocommerce woocommerce-page woocommerce-js ast-desktop ast-plain-container ast-left-sidebar astra-4.0.2 columns-3 tablet-columns-3 mobile-columns-1 ast-woo-shop-archive ast-inherit-site-logo-transparent ast-hfb-header elementor-default elementor-kit-1345'>
+    <div className='books archive post-type-archive post-type-archive-product wp-custom-logo theme-astra woocommerce-shop woocommerce woocommerce-page woocommerce-js ast-desktop ast-plain-container ast-left-sidebar astra-4.0.2 columns-3 tablet-columns-3 mobile-columns-1 ast-woo-shop-archive ast-inherit-site-logo-transparent ast-hfb-header elementor-default elementor-kit-1345'>
       <div id='content' className='site-content shop-content'>
         <div className='ast-container'>
           <div

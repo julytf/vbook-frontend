@@ -15,7 +15,7 @@ function Cart() {
   }
 
   return (
-    <div className='page-template-default page page-id-998 wp-custom-logo theme-astra woocommerce-cart woocommerce-page woocommerce-js ast-desktop ast-plain-container ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled elementor-default elementor-kit-1345'>
+    <div className='cart page-template-default page page-id-998 wp-custom-logo theme-astra woocommerce-cart woocommerce-page woocommerce-js ast-desktop ast-plain-container ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled elementor-default elementor-kit-1345'>
       <div id='content' className='site-content'>
         <div className='ast-container'>
           <div id='primary' className='content-area primary'>

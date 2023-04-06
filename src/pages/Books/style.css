@@ -1,8 +1,14 @@
 @media (min-width: 993px) {
-  .ast-left-sidebar .shop-content #primary {
+  .books.ast-left-sidebar .shop-content #primary {
     padding-left: 60px !important;
   }
 }
+
+@media (min-width: 922px){
+.books #secondary {
+    width: 27% !important;
+}}
+
 
 img.wp-smiley,
 img.emoji {

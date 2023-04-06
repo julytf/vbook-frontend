@@ -1,7 +1,3 @@
-
-
-import './style.css'
-
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axiosClient from 'utils/axiosClient'
 import BookItem from './components/BookItem'
@@ -9,6 +5,10 @@ import Responses from './components/Responses'
 import BottomBanner from './components/BottomBanner'
 import Promises from './components/Promises'
 import Paginate from './components/Paginate'
+
+import banner from 'assets/img/library-book-bookshelf-read.jpg'
+
+// import './style.css'
 
 function Home() {
   const [books, setBooks] = useState([])
@@ -57,16 +57,17 @@ function Home() {
                       data-id='ea83c2f'
                       data-element_type='section'
                       data-settings='{"background_background":"classic"}'
+                      style={{height: '300px'}}
                     >
-                      <div class='elementor-background-overlay'></div>
-                      <div class='elementor-container elementor-column-gap-default'>
+                      <div class='elementor-background-overlay' style={{backgroundImage: `url(${banner})`}}></div>
+                      <div class='elementor-container elementor-column-gap-default' style={{bottom: '60px', right: 0}}>
                         <div
                           class='elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-62c99715'
                           data-id='62c99715'
                           data-element_type='column'
                         >
                           <div class='elementor-widget-wrap elementor-element-populated'>
-                            <div
+                            {/* <div
                               class='elementor-element elementor-element-28fa1df0 elementor-widget elementor-widget-heading'
                               data-id='28fa1df0'
                               data-element_type='widget'
@@ -75,7 +76,7 @@ function Home() {
                               <div class='elementor-widget-container'>
                                 <h1 class='elementor-heading-title elementor-size-default'>Vbook</h1>
                               </div>
-                            </div>
+                            </div> */}
                             <div
                               class='elementor-element elementor-element-6238991a elementor-widget elementor-widget-heading'
                               data-id='6238991a'
@@ -83,7 +84,7 @@ function Home() {
                               data-widget_type='heading.default'
                             >
                               <div class='elementor-widget-container'>
-                                <h2 class='elementor-heading-title elementor-size-default'>
+                                <h2 class='elementor-heading-title elementor-size-default' style={{color: 'white'}}>
                                   "Để cho con một hòm vàng không bằng dạy cho con một quyển sách hay."
                                 </h2>
                               </div>
