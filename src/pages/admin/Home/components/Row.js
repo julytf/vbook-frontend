@@ -1,13 +1,20 @@
 import { truncate } from "helper"
+import { redirect, useNavigate } from "react-router-dom"
 
 function Row({ book, deleteBook }) {
+  const navigate = useNavigate()
 
   function handleDelete() {
     if(window.confirm(`Bạn có chắc là bạn muốn xóa "${book.name}"?`))
       deleteBook()
   }
+
+  function handleNavigate() {
+    console.log(book._id);
+    navigate(`/admin/books/${book._id}`)
+  }
   return (
-    <tr>
+    <tr onClick={handleNavigate}>
       <td>{book._id}</td>
       <td>{truncate(book.name, 40)}</td>
       <td>{book.language}</td>
@@ -15,7 +22,7 @@ function Row({ book, deleteBook }) {
       <td>{book.quantity}</td>
       <td>{book.status}</td>
       <td>{book.price.toLocaleString()}</td>
-      <td><button onClick={handleDelete}><i class="fa-regular fa-x"></i></button></td>
+      <td><button onClick={handleDelete}><i className="fa-regular fa-x"></i></button></td>
     </tr>
   )
 }

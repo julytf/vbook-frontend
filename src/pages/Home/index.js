@@ -12,7 +12,7 @@ import banner from 'assets/img/library-book-bookshelf-read.jpg'
 
 function Home() {
   const [books, setBooks] = useState([])
-  // console.log(books);
+  console.log(books);
   const [page, setPage] = useState(1)
   // console.log(page)
   const [noPage, setNoPage] = useState(0)
@@ -37,6 +37,7 @@ function Home() {
   useEffect(() => {
     firstRenderRef.current = false
   }, [])
+
   return (
     <div className='home page-template-default page page-id-25 wp-custom-logo theme-astra woocommerce-js ast-desktop ast-page-builder-template ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-kit-1345 elementor-page elementor-page-25 e--ua-blink e--ua-chrome e--ua-webkit'>
       <div id='content' class='site-content'>
