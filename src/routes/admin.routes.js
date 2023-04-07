@@ -6,7 +6,8 @@ import AuthAdminMiddleware from 'middlewares/AuthAdmin'
 
 import 'assets/css/all.min.css'
 import 'assets/css/adminlte.min.css'
-import BookDetail from 'pages/admin/Books/Details'
+import BookDetails from 'pages/admin/Books/Details'
+import BookEdit from 'pages/admin/Books/Edit'
 
 const AdminLayout = lazy(() => import('layouts/Admin'))
 const Login = lazy(() => import('pages/admin/Login'))
@@ -36,7 +37,17 @@ const router = {
         },
         {
           path: 'books/:id',
-          element: <BookDetail/>,
+          children: [
+            
+        {
+          path: '',
+          element: <BookDetails/>,
+        },
+        {
+          path: 'edit',
+          element: <BookEdit/>,
+        },
+          ]
         },
       ],
     },

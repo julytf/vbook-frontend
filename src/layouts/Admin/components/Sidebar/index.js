@@ -1,26 +1,38 @@
+import logo from 'assets/img/logo.png'
+import './style.css'
+import { useContext } from 'react'
+import AuthAdminContext from 'utils/AuthAdminContext'
+import { Link } from 'react-router-dom'
+
 function Sidebar() {
-    return (<aside className='main-sidebar sidebar-dark-primary elevation-4'>
-    <a href='../../index3.html' className='brand-link'>
-      {/* <img
+  const { admin } = useContext(AuthAdminContext)
+
+  return (
+    <aside className='main-sidebar sidebar-dark-primary elevation-4 position-fixed vh-100' >
+      <a href='../../index3.html' className='brand-link'>
+        {/* <img
         src='../../dist/img/AdminLTELogo.png'
         alt='AdminLTE Logo'
         className='brand-image img-circle elevation-3'
         style={{ opacity: '.8' }}
       /> */}
-      <span className='brand-text font-weight-light'>AdminLTE 3</span>
-    </a>
-    <div className='sidebar'>
-      <div className='user-panel mt-3 pb-3 mb-3 d-flex'>
-        <div className='image'>
-          {/* <img src='../../dist/img/user2-160x160.jpg' className='img-circle elevation-2' alt='User Image' /> */}
+        <span className='brand-text font-weight-light'>
+          <img className='logo' src={logo} />
+          Admin
+        </span>
+      </a>
+      <div className='sidebar'>
+        <div className='user-panel mt-3 pb-3 mb-3 d-flex'>
+          <div className='image'>
+            {/* <img src='../../dist/img/user2-160x160.jpg' className='img-circle elevation-2' alt='User Image' /> */}
+          </div>
+          <div className='info'>
+            <a href='#' className='d-block'>
+              {`${admin.lastName} ${admin.firstName}`}
+            </a>
+          </div>
         </div>
-        <div className='info'>
-          <a href='#' className='d-block'>
-            Alexander Pierce
-          </a>
-        </div>
-      </div>
-      {/* <div className='form-inline'>
+        {/* <div className='form-inline'>
         <div className='input-group' data-widget='sidebar-search'>
           <input
             className='form-control form-control-sidebar'
@@ -53,19 +65,45 @@ function Sidebar() {
           </div>
         </div>
       </div> */}
-      <nav className='mt-2'>
-        <ul
-          className='nav nav-pills nav-sidebar flex-column'
-          data-widget='treeview'
-          role='menu'
-          data-accordion='false'
-        >
-          <li className='nav-item'>
+        <nav className='mt-2'>
+          <ul
+            className='nav nav-pills nav-sidebar flex-column'
+            data-widget='treeview'
+            role='menu'
+            data-accordion='false'
+          >
+            <li className='nav-item'>
+              <Link to={'/admin'} className='nav-link'>
+                <p>Dashboard</p>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to={'/admin/books'} className='nav-link'>
+                <p>Books</p>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to={'/admin/users'} className='nav-link'>
+                <p>Users</p>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to={'/admin/publisher'} className='nav-link'>
+                <p>Publisher</p>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link to={'/admin/authors'} className='nav-link'>
+                <p>Authors</p>
+              </Link>
+            </li>
+
+            {/* <li className='nav-item'>
             <a href='#' className='nav-link'>
               <i className='nav-icon fas fa-tachometer-alt' />
               <p>
                 Dashboard
-                {/* <i className='right fas fa-angle-left' /> */}
+                <i className='right fas fa-angle-left' />
               </p>
             </a>
             <ul className='nav nav-treeview'>
@@ -88,8 +126,8 @@ function Sidebar() {
                 </a>
               </li>
             </ul>
-          </li>
-          {/* <li className='nav-item'>
+          </li> */}
+            {/* <li className='nav-item'>
             <a href='../widgets.html' className='nav-link'>
               <i className='nav-icon fas fa-th' />
               <p>
@@ -689,10 +727,11 @@ function Sidebar() {
               <p>Informational</p>
             </a>
           </li> */}
-        </ul>
-      </nav>
-    </div>
-  </aside>)
+          </ul>
+        </nav>
+      </div>
+    </aside>
+  )
 }
 
 export default Sidebar

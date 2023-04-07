@@ -1,0 +1,9 @@
+.main-sidebar .logo {
+    width: 70px;
+}
+
+.brand-text {
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+}
