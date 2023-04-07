@@ -1,5 +1,5 @@
 function Header() {
-    return (<nav className='main-header navbar navbar-expand navbar-white navbar-light'>
+    return (<nav className='main-header navbar navbar-expand navbar-white navbar-light vw-100 top-0 position-fixed '>
     <ul className='navbar-nav'>
       <li className='nav-item'>
         <a className='nav-link' data-widget='pushmenu' href='#' role='button'>

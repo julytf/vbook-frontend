@@ -17,7 +17,7 @@ function BookDetail() {
       <div className='card-header'>
         <h3 className='card-title'>Book detail</h3>
         <span className='ml-5'>ID: {id}</span>
-        <Link to={`edit`} className='btn btn-primary float-right'>
+        <Link to={`/admin/books/${id}/edit`} className='btn btn-primary float-right'>
           Edit
         </Link>
       </div>
@@ -65,11 +65,11 @@ function BookDetail() {
           <div className='row'>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>author</label>
-              <input type='text' className='form-control' placeholder='' defaultValue={book.author} disabled />
+              <input type='text' className='form-control' placeholder='' defaultValue={book.author?.name} disabled />
             </div>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>publisher</label>
-              <input type='text' className='form-control' placeholder='' defaultValue={book.publisher} disabled />
+              <input type='text' className='form-control' placeholder='' defaultValue={book.publisher?.name} disabled />
             </div>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>translator</label>

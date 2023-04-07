@@ -9,7 +9,7 @@ export function AuthAdminContextProvider({ children }) {
   const [token, setToken] = useState(null)
   const [admin, setAdmin] = useState({})
 
-  console.log('admin', admin)
+  // console.log('admin', admin)
 
   useLayoutEffect(() => {
     ;(async () => {
