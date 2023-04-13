@@ -4,19 +4,16 @@ import { AuthAdminContextProvider } from 'utils/AuthAdminContext'
 import { CartContextProvider } from 'utils/CartContext'
 import AuthAdminMiddleware from 'middlewares/AuthAdmin'
 
-import 'assets/css/all.min.css'
-import 'assets/css/adminlte.min.css'
-
-import Books from 'pages/admin/Books'
-import BookDetails from 'pages/admin/Books/Details'
-import BookEdit from 'pages/admin/Books/Edit'
-import Users from 'pages/admin/Users'
-import UserDetail from 'pages/admin/Users/Details'
-import UserEdit from 'pages/admin/Users/Edit'
-
 const AdminLayout = lazy(() => import('layouts/Admin'))
 const Login = lazy(() => import('pages/admin/Login'))
 const Home = lazy(() => import('pages/admin/Home'))
+const Books = lazy(() => import('pages/admin/Books'))
+const BookDetails = lazy(() => import('pages/admin/Books/Details'))
+const BookEdit = lazy(() => import('pages/admin/Books/Edit'))
+const Users = lazy(() => import('pages/admin/Users'))
+const UserDetail = lazy(() => import('pages/admin/Users/Details'))
+const UserEdit = lazy(() => import('pages/admin/Users/Edit'))
+
 
 const router = {
   path: 'admin',
@@ -45,7 +42,7 @@ const router = {
           children: [
             {
               path: '',
-              element: <Books/>,
+              element: <Books />,
             },
             {
               path: ':id',
@@ -67,7 +64,7 @@ const router = {
           children: [
             {
               path: '',
-              element: <Users/>,
+              element: <Users />,
             },
             {
               path: ':id',

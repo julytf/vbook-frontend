@@ -3,7 +3,6 @@ import { AuthContextProvider } from 'utils/AuthContext'
 import { CartContextProvider } from 'utils/CartContext'
 
 const MainLayout = lazy(() => import('layouts/Main'))
-const MainCssProvider = lazy(() => import('layouts/Main/components/CssProvider'))
 const AuthMiddleware = lazy(() => import('middlewares/Auth'))
 const Home = lazy(() => import('pages/Home'))
 const Books = lazy(() => import('pages/Books'))
@@ -20,7 +19,6 @@ const router = {
     <Suspense fallback={'Loading...'}>
       <AuthContextProvider>
         <CartContextProvider>
-          <MainCssProvider />
           <MainLayout />
         </CartContextProvider>
       </AuthContextProvider>
