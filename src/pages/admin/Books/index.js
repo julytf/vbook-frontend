@@ -2,24 +2,26 @@ import { useLayoutEffect, useState } from 'react'
 import axiosClient from 'utils/axiosClient'
 
 import Row from './components/Row'
-import Paginate from './components/Paginate'
+import Paginate from '../components/Paginate'
 
 function Books() {
   const [books, setBooks] = useState([])
   const [page, setPage] = useState(1)
+  console.log(page)
   const [noPage, setNoPage] = useState(0)
   console.log(books)
+  const perPage = 10
 
   useLayoutEffect(() => {
     loadBooks()
-  }, [])
+  }, [page])
 
   function deleteBook(bookId) {
     axiosClient.delete(`/books/${bookId}`).then((rs) => loadBooks())
   }
 
   function loadBooks() {
-    axiosClient.get('/books').then((rs) => {
+    axiosClient.get(`/books?page=${page}&perPage=${perPage}`).then((rs) => {
       setBooks(rs.data.data.docs)
       setNoPage(rs.data.data.noPage)
     })

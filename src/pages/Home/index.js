@@ -8,7 +8,7 @@ import Paginate from './components/Paginate'
 
 import banner from 'assets/img/library-book-bookshelf-read.jpg'
 
-// import './style.css'
+import './style.css'
 
 function Home() {
   const [books, setBooks] = useState([])
@@ -16,6 +16,8 @@ function Home() {
   const [page, setPage] = useState(1)
   // console.log(page)
   const [noPage, setNoPage] = useState(0)
+
+  const perPage = 25
 
   const mainContentRef = useRef()
 
@@ -27,7 +29,7 @@ function Home() {
   }, [page])
 
   useLayoutEffect(() => {
-    axiosClient.get('/books', { params: { page } }).then((rs) => {
+    axiosClient.get(`/books?perPage=${perPage}`, { params: { page } }).then((rs) => {
       // console.log(rs);
       setBooks(rs.data.data.docs)
       setNoPage(rs.data.data.noPage)

@@ -1,3 +1,4 @@
+import { truncate } from 'helper'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import CartContext from 'utils/CartContext'
@@ -57,7 +58,7 @@ function BookItem({ book }) {
       <div class='astra-shop-summary-wrap'>
         {/* <span class="ast-woo-product-category">Posters</span> */}
         <Link to={`/books/${book._id}`} class='ast-loop-product__link'>
-          <h2 class='woocommerce-loop-product__title'>{book.name}</h2>
+          <h2 class='woocommerce-loop-product__title'>{truncate(book.name, 35)}</h2>
         </Link>
         <span class='price'>
           <span class='woocommerce-Price-amount amount'>

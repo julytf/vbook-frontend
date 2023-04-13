@@ -29,12 +29,12 @@ function UserDetail() {
           </div> */}
           <div className='row'>
             <div className='form-group col-6'>
-              <label htmlFor='exampleInputPassword1'>FirstName</label>
-              <input type='text' className='form-control' placeholder='' defaultValue={user.firstName} disabled />
-            </div>
-            <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>LastName</label>
               <input type='text' className='form-control' placeholder='' defaultValue={user.lastName} disabled />
+            </div>
+            <div className='form-group col-6'>
+              <label htmlFor='exampleInputPassword1'>FirstName</label>
+              <input type='text' className='form-control' placeholder='' defaultValue={user.firstName} disabled />
             </div>
           </div>
           <div className='form-group col-6'>

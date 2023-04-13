@@ -1,3 +1,8 @@
 .content-wrapper {
     margin-top: 57px;
 }
+
+td {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+}

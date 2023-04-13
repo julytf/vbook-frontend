@@ -17,7 +17,7 @@ function Row({ book, deleteBook }) {
   return (
     <tr onClick={handleNavigate}>
       <td>{book._id}</td>
-      <td>{truncate(book.name, 40)}</td>
+      <td>{truncate(book.name, 30)}</td>
       <td>{book.language}</td>
       <td>{truncate(book.description, 20)}</td>
       <td>{book.quantity}</td>

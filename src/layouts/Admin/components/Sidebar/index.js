@@ -5,10 +5,14 @@ import AuthAdminContext from 'utils/AuthAdminContext'
 import { Link } from 'react-router-dom'
 
 function Sidebar() {
-  const { admin } = useContext(AuthAdminContext)
+  const { admin, logout } = useContext(AuthAdminContext)
+
+  function handleLogout() {
+    logout()
+  }
 
   return (
-    <aside className='main-sidebar sidebar-dark-primary elevation-4 position-fixed vh-100' >
+    <aside className='main-sidebar sidebar-dark-primary elevation-4 position-fixed vh-100'>
       <a href='../../index3.html' className='brand-link'>
         {/* <img
         src='../../dist/img/AdminLTELogo.png'
@@ -30,6 +34,9 @@ function Sidebar() {
             <a href='#' className='d-block'>
               {`${admin.lastName} ${admin.firstName}`}
             </a>
+            <button className='btn btn-primary' onClick={handleLogout}>
+              Logout
+            </button>
           </div>
         </div>
         {/* <div className='form-inline'>
@@ -88,13 +95,13 @@ function Sidebar() {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link to={'/admin/publisher'} className='nav-link'>
-                <p>Publisher</p>
+              <Link to={'/admin/authors'} className='nav-link'>
+                <p>Authors</p>
               </Link>
             </li>
             <li className='nav-item'>
-              <Link to={'/admin/authors'} className='nav-link'>
-                <p>Authors</p>
+              <Link to={'/admin/publishers'} className='nav-link'>
+                <p>Publishers</p>
               </Link>
             </li>
 

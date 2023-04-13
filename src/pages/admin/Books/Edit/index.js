@@ -1,10 +1,10 @@
-import { languageEnum as BookLanguageEnum, formEnum as BookformEnum } from 'enums/Book'
+import { languageEnum as bookLanguageEnum, formEnum as bookformEnum } from 'enums/Book'
 import { isEmptyObject } from 'helper'
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
-function BookDetail() {
+function BookEdit() {
   const { id } = useParams()
 
   const [book, setBook] = useState({})
@@ -13,6 +13,8 @@ function BookDetail() {
   // console.log(authors)
   const [publishers, setPublishers] = useState([])
   // console.log(publishers)
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     axiosClient.get(`/books/${id}`).then((rs) => setBook(rs.data.data.doc))
@@ -31,12 +33,11 @@ function BookDetail() {
     const formData = new FormData(e.target)
     // console.log(formData.get('name'));
 
-    axiosClient({
-      method: "patch",
-      url: `/books/${id}`,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
+    axiosClient
+      .patch(`/books/${id}`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+      .then(navigate(`/admin/books/${id}`))
   }
 
   return (
@@ -62,8 +63,10 @@ function BookDetail() {
             <div className='form-group col-2'>
               <label htmlFor='exampleInputPassword1'>language</label>
               <select name='language' class='form-control'>
-                {Object.keys(BookLanguageEnum).map((language) => (
-                  <option selected={language == book.language} value={language}>{language}</option>
+                {Object.keys(bookLanguageEnum).map((language) => (
+                  <option selected={language == book.language} value={language}>
+                    {language}
+                  </option>
                 ))}
               </select>
             </div>
@@ -71,7 +74,13 @@ function BookDetail() {
 
           <div className='form-group'>
             <label htmlFor='exampleInputPassword1'>description</label>
-            <textarea type='text' name='description' className='form-control' placeholder='' defaultValue={book.description} />
+            <textarea
+              type='text'
+              name='description'
+              className='form-control'
+              placeholder=''
+              defaultValue={book.description}
+            />
           </div>
           <div className='row'>
             <div className='form-group col-6'>
@@ -90,7 +99,13 @@ function BookDetail() {
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>discountPercent</label>
-              <input type='text'name='discountPercent' className='form-control' placeholder='' defaultValue={book.discountPercent} />
+              <input
+                type='text'
+                name='discountPercent'
+                className='form-control'
+                placeholder=''
+                defaultValue={book.discountPercent}
+              />
             </div>
           </div>
           <div className='row'>
@@ -98,7 +113,9 @@ function BookDetail() {
               <label htmlFor='exampleInputPassword1'>author</label>
               <select name='author' class='form-control'>
                 {authors.map((author) => (
-                  <option selected={author._id == book.author._id} value={author._id}>{author.name}</option>
+                  <option selected={author._id == book.author._id} value={author._id}>
+                    {author.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -106,13 +123,21 @@ function BookDetail() {
               <label htmlFor='exampleInputPassword1'>publisher</label>
               <select name='publisher' class='form-control'>
                 {publishers.map((publisher) => (
-                  <option selected={publisher._id == book.publisher._id}  value={publisher._id}>{publisher.name}</option>
+                  <option selected={publisher._id == book.publisher._id} value={publisher._id}>
+                    {publisher.name}
+                  </option>
                 ))}
               </select>
             </div>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>translator</label>
-              <input type='text' name='translator' className='form-control' placeholder='' defaultValue={book.translator} />
+              <input
+                type='text'
+                name='translator'
+                className='form-control'
+                placeholder=''
+                defaultValue={book.translator}
+              />
             </div>
           </div>
           <div className='row'>
@@ -161,8 +186,10 @@ function BookDetail() {
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>form</label>
               <select name='form' class='form-control'>
-                {Object.keys(BookformEnum).map((form) => (
-                  <option selected={form == book.form}   value={form}>{form}</option>
+                {Object.keys(bookformEnum).map((form) => (
+                  <option selected={form == book.form} value={form}>
+                    {form}
+                  </option>
                 ))}
               </select>
             </div>
@@ -184,4 +211,4 @@ function BookDetail() {
   )
 }
 
-export default BookDetail
+export default BookEdit

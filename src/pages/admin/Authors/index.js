@@ -4,25 +4,25 @@ import axiosClient from 'utils/axiosClient'
 import Row from './components/Row'
 import Paginate from '../components/Paginate'
 
-function Users() {
-  const [users, setUsers] = useState([])
+function Authors() {
+  const [authors, setAuthors] = useState([])
   const [page, setPage] = useState(1)
   const [noPage, setNoPage] = useState(0)
-  console.log(users)
+  console.log(authors)
 
   const perPage = 10
 
   useLayoutEffect(() => {
-    loadUsers()
+    loadAuthors()
   }, [page])
 
-  function deleteUser(userId) {
-    axiosClient.delete(`/users/${userId}`).then((rs) => loadUsers())
+  function deleteAuthor(authorId) {
+    axiosClient.delete(`/authors/${authorId}`).then((rs) => loadAuthors())
   }
 
-  function loadUsers() {
-    axiosClient.get(`/users?page=${page}&perPage=${perPage}`).then((rs) => {
-      setUsers(rs.data.data.docs)
+  function loadAuthors() {
+    axiosClient.get(`/authors?page=${page}&perPage=${perPage}`).then((rs) => {
+      setAuthors(rs.data.data.docs)
       setNoPage(rs.data.data.noPage)
     })
   }
@@ -48,19 +48,13 @@ function Users() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Username</th>
-                <th>FullName</th>
-                <th>Gender</th>
-                <th>PhoneNumber</th>
-                <th>Email</th>
-                <th>Status</th>
-                <th>Role</th>
-                <th>Edit</th>
+                <th>Name</th>
+                <th>Description</th>
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <Row user={user} deleteUser={() => deleteUser(user._id)} />
+              {authors.map((author) => (
+                <Row author={author} deleteAuthor={() => deleteAuthor(author._id)} />
               ))}
             </tbody>
           </table>
@@ -71,4 +65,4 @@ function Users() {
   )
 }
 
-export default Users
+export default Authors

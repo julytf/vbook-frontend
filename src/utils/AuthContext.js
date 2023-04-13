@@ -51,7 +51,12 @@ export function AuthContextProvider({ children }) {
         localStorage.setItem('jwt', rs.data.token)
       })
   }
-  async function logout() {}
+  async function logout() {
+    setUser({})
+    setToken(null)
+    setApiToken('')
+    localStorage.removeItem('jwt')
+  }
 
   const contextValue = {
     token,

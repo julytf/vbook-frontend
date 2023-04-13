@@ -6,10 +6,6 @@ function Paginate({ page, noPage, setPage, range }) {
   console.log(page, noPage, from, to)
   const pages = new Array(to - from + 1).fill().map((e, i) => from + i)
 
-  function handleChangePage(page) {
-    setPage(page)
-  }
-
   return (
     <div className='row' style={{ margin: 0 }}>
       <div className='col-sm-12 col-md-5'>
@@ -29,7 +25,7 @@ function Paginate({ page, noPage, setPage, range }) {
             )}
             {pages.map((e) => (
               <li className={'paginate_button page-item' + (e == page ? ' active' : '')}>
-                <button onClick={handleChangePage} aria-controls='example2' data-dt-idx='1' tabindex='0' className='page-link'>
+                <button onClick={() => setPage(e)} aria-controls='example2' data-dt-idx='1' tabindex='0' className='page-link'>
                   {e}
                 </button>
               </li>

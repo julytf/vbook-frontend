@@ -81,6 +81,50 @@ const router = {
             },
           ],
         },
+        {
+          path: 'authors',
+          children: [
+            {
+              path: '',
+              element: <Authors/>,
+            },
+            {
+              path: ':id',
+              children: [
+                {
+                  path: '',
+                  element: <AuthorDetail />,
+                },
+                {
+                  path: 'edit',
+                  element: <AuthorEdit />,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          path: 'publishers',
+          children: [
+            {
+              path: '',
+              element: <Publishers/>,
+            },
+            {
+              path: ':id',
+              children: [
+                {
+                  path: '',
+                  element: <PublisherDetail />,
+                },
+                {
+                  path: 'edit',
+                  element: <PublisherEdit />,
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     {

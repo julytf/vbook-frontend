@@ -52,7 +52,11 @@ export function AuthAdminContextProvider({ children }) {
         localStorage.setItem('jwt-admin', rs.data.token)
       })
   }
-  async function logout() {}
+  async function logout() {
+    setAdmin({})
+    setToken(null)
+    setApiToken('')
+    localStorage.removeItem('jwt-admin')}
 
   const contextValue = {
     token,
