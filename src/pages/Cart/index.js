@@ -1,8 +1,8 @@
 import { useContext, useLayoutEffect } from 'react'
-import CartContext from 'utils/CartContext'
-import CartItem from './components/CartItem'
-import './style.css'
 import { Link } from 'react-router-dom'
+import CartContext from 'utils/CartContext'
+
+import './style.css'
 
 function Cart() {
   const { cart, totalCost, sync } = useContext(CartContext)
@@ -15,265 +15,197 @@ function Cart() {
   }
 
   return (
-    <div className='cart page-template-default page page-id-998 wp-custom-logo theme-astra woocommerce-cart woocommerce-page woocommerce-js ast-desktop ast-plain-container ast-no-sidebar astra-4.0.2 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled elementor-default elementor-kit-1345'>
-      <div id='content' className='site-content'>
-        <div className='ast-container'>
-          <div id='primary' className='content-area primary'>
-            <main id='main' className='site-main'>
-              <article
-                className='post-998 page type-page status-publish ast-article-single'
-                id='post-998'
-                itemType='https://schema.org/CreativeWork'
-                itemScope='itemscope'
-              >
-                <header className='entry-header ast-no-thumbnail'>
-                  <h1 className='entry-title' itemProp='headline'>
-                    Cart
-                  </h1>
-                </header>
-                {/* .entry-header */}
-                <div className='entry-content clear' itemProp='text'>
-                  <div className='woocommerce'>
-                    <div className='woocommerce-notices-wrapper' />
-                    <div className='woocommerce-cart-form'>
-                      <table
-                        className='shop_table shop_table_responsive cart woocommerce-cart-form__contents'
-                        cellSpacing={0}
-                      >
-                        <thead>
-                          <tr>
-                            <th className='product-remove'>
-                              <span className='screen-reader-text'>Remove item</span>
-                            </th>
-                            <th className='product-thumbnail'>
-                              <span className='screen-reader-text'>Thumbnail image</span>
-                            </th>
-                            <th className='product-name'>Product</th>
-                            <th className='product-price'>Price</th>
-                            <th className='product-quantity'>Quantity</th>
-                            <th className='product-subtotal'>Subtotal</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {cart.map((item) => (
-                            <CartItem cartItem={item} />
-                          ))}
-                          {/* <tr className="woocommerce-cart-form__cart-item cart_item">
-                            <td className="product-remove">
-                              <a
-                                href="https://websitedemos.net/earth-store-02/cart/?remove_item=47a658229eb2368a99f1d032c8848542&_wpnonce=472053c994"
-                                className="remove"
-                                aria-label="Remove this item"
-                                data-product_id={1136}
-                                data-product_sku
-                              >
-                                <span className="ahfb-svg-iconset ast-inline-flex">
-                                  <svg
-                                    className="ast-mobile-svg ast-close-svg"
-                                    fill="currentColor"
-                                    version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width={24}
-                                    height={24}
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z" />
-                                  </svg>
-                                </span>
-                              </a>
-                            </td>
-                            <td className="product-thumbnail">
-                              <a href="https://websitedemos.net/earth-store-02/product/poster-v3/">
-                                <img
-                                  width={1000}
-                                  height={1000}
-                                  src="./Cart - Planet Earth Store_files/Poster4-1000x1000.jpg"
-                                  className="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                  alt=""
-                                  decoding="async"
-                                  loading="lazy"
-                                  srcSet="
-                                      https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster4-1000x1000.jpg 1000w,
-                                      https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster4-100x100.jpg    100w,
-                                      https://websitedemos.net/earth-store-02/wp-content/uploads/sites/1171/2022/10/Poster4-150x150.jpg    150w
-                                    "
-                                  sizes="(max-width: 1000px) 100vw, 1000px"
-                                />
-                              </a>
-                            </td>
-                            <td className="product-name" data-title="Product">
-                              <a href="https://websitedemos.net/earth-store-02/product/poster-v3/">
-                                Poster V3
-                              </a>
-                            </td>
-                            <td className="product-price" data-title="Price">
-                              <span className="woocommerce-Price-amount amount">
-                                <bdi>
-                                  <span className="woocommerce-Price-currencySymbol">
-                                    $
-                                  </span>
-                                  14.99
-                                </bdi>
-                              </span>
-                            </td>
-                            <td
-                              className="product-quantity"
-                              data-title="Quantity"
-                            >
-                              <div className="quantity buttons_added">
-                                <label
-                                  className="screen-reader-text"
-                                  htmlFor="minus_qty"
-                                >
-                                  Minus Quantity
-                                </label>
-                                <a
-                                  href="javascript:void(0)"
-                                  id="minus_qty"
-                                  className="minus"
-                                >
-                                  -
-                                </a>
-                                <label
-                                  className="screen-reader-text"
-                                  htmlFor="quantity_642048807a762"
-                                >
-                                  Poster V3 quantity
-                                </label>
-                                <input
-                                  type="number"
-                                  id="quantity_642048807a762"
-                                  className="input-text qty text"
-                                  name="cart[47a658229eb2368a99f1d032c8848542][qty]"
-                                  defaultValue={1}
-                                  title="Qty"
-                                  size={4}
-                                  min={0}
-                                  max
-                                  step={1}
-                                  placeholder
-                                  inputMode="numeric"
-                                  autoComplete="off"
-                                />
-                                <label
-                                  className="screen-reader-text"
-                                  htmlFor="plus_qty"
-                                >
-                                  Plus Quantity
-                                </label>
-                                <a
-                                  href="javascript:void(0)"
-                                  id="plus_qty"
-                                  className="plus"
-                                >
-                                  +
-                                </a>
-                              </div>
-                            </td>
-                            <td
-                              className="product-subtotal"
-                              data-title="Subtotal"
-                            >
-                              <span className="woocommerce-Price-amount amount">
-                                <bdi>
-                                  <span className="woocommerce-Price-currencySymbol">
-                                    $
-                                  </span>
-                                  14.99
-                                </bdi>
-                              </span>
-                            </td>
-                          </tr> */}
-                          <tr>
-                            <td colSpan={6} className='actions'>
-                              <div className='coupon'>
-                                <label htmlFor='coupon_code' className='screen-reader-text'>
-                                  Coupon:
-                                </label>
-                                <input
-                                  type='text'
-                                  name='coupon_code'
-                                  className='input-text'
-                                  id='coupon_code'
-                                  placeholder='Coupon code'
-                                />
-                                <button type='submit' className='button wp-element-button' name='apply_coupon'>
-                                  Apply coupon
-                                </button>
-                              </div>
-                              <button
-                                type='submit'
-                                className='button wp-element-button'
-                                name='update_cart'
-                                value='Update cart'
-                                aria-disabled='true'
-                                onClick={handleUpdate}
-                              >
-                                Update cart
-                              </button>
-                              <input
-                                type='hidden'
-                                id='woocommerce-cart-nonce'
-                                name='woocommerce-cart-nonce'
-                                defaultValue='472053c994'
-                              />
-                              <input type='hidden' name='_wp_http_referer' defaultValue='/earth-store-02/cart/' />
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div className='cart-collaterals'>
-                      <div className='cart_totals'>
-                        <h2>Cart totals</h2>
-                        <table cellSpacing={0} className='shop_table shop_table_responsive'>
-                          <tbody>
-                            <tr className='cart-subtotal'>
-                              <th>Subtotal</th>
-                              <td data-title='Subtotal'>
-                                <span className='woocommerce-Price-amount amount'>
-                                  <bdi>
-                                    {/* <span className='woocommerce-Price-currencySymbol'>$</span> */}
-                                    {totalCost.toLocaleString()}
-                                  </bdi>
-                                </span>
-                              </td>
-                            </tr>
-                            <tr className='order-total'>
-                              <th>Total</th>
-                              <td data-title='Total'>
-                                <strong>
-                                  <span className='woocommerce-Price-amount amount'>
-                                    <bdi>
-                                      {/* <span className='woocommerce-Price-currencySymbol'>$</span> */}
-                                      {totalCost.toLocaleString()}
-                                    </bdi>
-                                  </span>
-                                </strong>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <div className='wc-proceed-to-checkout'>
-                          <Link to={'/checkout'} className='checkout-button button alt wc-forward wp-element-button'>
-                            Proceed to checkout
-                          </Link>
-                        </div>
+    <section className='cart_area section_padding'>
+      <div className='container'>
+        <div className='cart_inner'>
+          <div className='table-responsive'>
+            <table className='table'>
+              <thead>
+                <tr>
+                  <th scope='col'>Product</th>
+                  <th scope='col'>Price</th>
+                  <th scope='col'>Quantity</th>
+                  <th scope='col'>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div className='media'>
+                      <div className='d-flex'>
+                        <img src='assets/img/arrivel/arrivel_1.png' alt='' />
+                      </div>
+                      <div className='media-body'>
+                        <p>Minimalistic shop for multipurpose use</p>
                       </div>
                     </div>
-                  </div>
-                </div>
-                {/* .entry-content .clear */}
-              </article>
-              {/* #post-## */}
-            </main>
-            {/* #main */}
+                  </td>
+                  <td>
+                    <h5>$360.00</h5>
+                  </td>
+                  <td>
+                    <div className='product_count'>
+                      <span className='input-number-decrement'>
+                        {' '}
+                        <i className='ti-minus' />
+                      </span>
+                      <input className='input-number' type='text' defaultValue={1} min={0} max={10} />
+                      <span className='input-number-increment'>
+                        {' '}
+                        <i className='ti-plus' />
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$720.00</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div className='media'>
+                      <div className='d-flex'>
+                        <img src='assets/img/arrivel/arrivel_2.png' alt='' />
+                      </div>
+                      <div className='media-body'>
+                        <p>Minimalistic shop for multipurpose use</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$360.00</h5>
+                  </td>
+                  <td>
+                    <div className='product_count'>
+                      <span className='input-number-decrement'>
+                        {' '}
+                        <i className='ti-minus' />
+                      </span>
+                      <input className='input-number' type='text' defaultValue={1} min={0} max={10} />
+                      <span className='input-number-increment'>
+                        {' '}
+                        <i className='ti-plus' />
+                      </span>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>$720.00</h5>
+                  </td>
+                </tr>
+                <tr className='bottom_button'>
+                  <td>
+                    <a className='btn_1' href='#'>
+                      Update Cart
+                    </a>
+                  </td>
+                  <td />
+                  <td />
+                  <td>
+                    <div className='cupon_text float-right'>
+                      <a className='btn_1' href='#'>
+                        Close Coupon
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td />
+                  <td />
+                  <td>
+                    <h5>Subtotal</h5>
+                  </td>
+                  <td>
+                    <h5>$2160.00</h5>
+                  </td>
+                </tr>
+                <tr className='shipping_area'>
+                  <td />
+                  <td />
+                  <td>
+                    <h5>Shipping</h5>
+                  </td>
+                  <td>
+                    <div className='shipping_box'>
+                      <ul className='list'>
+                        <li>
+                          Flat Rate: $5.00
+                          <input type='radio' aria-label='Radio button for following text input' />
+                        </li>
+                        <li>
+                          Free Shipping
+                          <input type='radio' aria-label='Radio button for following text input' />
+                        </li>
+                        <li>
+                          Flat Rate: $10.00
+                          <input type='radio' aria-label='Radio button for following text input' />
+                        </li>
+                        <li className='active'>
+                          Local Delivery: $2.00
+                          <input type='radio' aria-label='Radio button for following text input' />
+                        </li>
+                      </ul>
+                      <h6>
+                        Calculate Shipping
+                        <i className='fa fa-caret-down' aria-hidden='true' />
+                      </h6>
+                      <select className='shipping_select' style={{ display: 'none' }}>
+                        <option value={1}>Bangladesh</option>
+                        <option value={2}>India</option>
+                        <option value={4}>Pakistan</option>
+                      </select>
+                      <div className='nice-select shipping_select' tabIndex={0}>
+                        <span className='current'>Bangladesh</span>
+                        <ul className='list'>
+                          <li data-value={1} className='option selected'>
+                            Bangladesh
+                          </li>
+                          <li data-value={2} className='option'>
+                            India
+                          </li>
+                          <li data-value={4} className='option'>
+                            Pakistan
+                          </li>
+                        </ul>
+                      </div>
+                      <select className='shipping_select section_bg' style={{ display: 'none' }}>
+                        <option value={1}>Select a State</option>
+                        <option value={2}>Select a State</option>
+                        <option value={4}>Select a State</option>
+                      </select>
+                      <div className='nice-select shipping_select section_bg' tabIndex={0}>
+                        <span className='current'>Select a State</span>
+                        <ul className='list'>
+                          <li data-value={1} className='option selected'>
+                            Select a State
+                          </li>
+                          <li data-value={2} className='option'>
+                            Select a State
+                          </li>
+                          <li data-value={4} className='option'>
+                            Select a State
+                          </li>
+                        </ul>
+                      </div>
+                      <input className='post_code' type='text' placeholder='Postcode/Zipcode' />
+                      <a className='btn_1' href='#'>
+                        Update Details
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div className='checkout_btn_inner float-right'>
+              <a className='btn_1' href='#'>
+                Continue Shopping
+              </a>
+              <a className='btn_1 checkout_btn_1' href='#'>
+                Proceed to checkout
+              </a>
+            </div>
           </div>
-          {/* #primary */}
         </div>
-        {/* ast-container */}
       </div>
-    </div>
+    </section>
   )
 }
 

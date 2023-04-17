@@ -13,10 +13,16 @@ const Register = lazy(() => import('pages/Register'))
 const Account = lazy(() => import('pages/Account'))
 const Checkout = lazy(() => import('pages/Checkout'))
 
+function FallbackLoading() {
+  return (
+    <p>Loading...</p>
+  )
+}
+
 const router = {
   path: '',
   element: (
-    <Suspense fallback={'Loading...'}>
+    <Suspense fallback={<FallbackLoading/>}>
       <AuthContextProvider>
         <CartContextProvider>
           <MainLayout />

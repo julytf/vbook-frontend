@@ -1,8 +1,0 @@
-button.add_to_cart_button {
-  background-color: transparent !important;
-}
-
-.home .woocommerce ul.products:not(.elementor-grid).columns-3,
-.home .woocommerce-page ul.products:not(.elementor-grid).columns-3 {
-  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
-}
