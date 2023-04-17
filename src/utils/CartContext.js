@@ -8,7 +8,6 @@ const CartContext = createContext({})
 export function CartContextProvider({ children }) {
   const [cart, setCart] = useState([])
   // console.log('cart', cart)
-
   const { user } = useContext(AuthContext)
 
   useEffect(() => {
@@ -18,7 +17,7 @@ export function CartContextProvider({ children }) {
   async function addItem(cartItem) {
     const bookId = cartItem.book._id || cartItem.book
     const index = cart.findIndex((item) => item.book._id === bookId)
-    // console.log(cartItem, index)
+    console.log(cartItem, index)
 
     if (index != -1) {
       // TODO:
@@ -29,6 +28,7 @@ export function CartContextProvider({ children }) {
   }
 
   async function updateItem(cartItem) {
+    console.log(cartItem);
     const bookId = cartItem.book._id || cartItem.book
     const index = cart.findIndex((item) => item.book._id === bookId)
     // console.log(cartItem, index)
