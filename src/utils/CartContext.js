@@ -21,7 +21,11 @@ export function CartContextProvider({ children }) {
 
     if (index != -1) {
       // TODO:
-      return console.log('error: dup item!')
+      // return console.log('error: dup item!')
+
+      cart[index].quantity += cartItem.quantity
+      setCart([...cart])
+      return
     }
     cart.push(cartItem)
     setCart([...cart])
@@ -55,9 +59,9 @@ export function CartContextProvider({ children }) {
     return axiosClient.patch('/cart', { cart: minimizedCart })
   }
 
-  const totalCost = cart.reduce((prev, cur) => prev + ((+cur.quantity) * (+cur.book.price)), 0)
+  const totalCost = cart.reduce((prev, cur) => prev + +cur.quantity * +cur.book.price, 0)
 
-  const totalQuantity = cart.reduce((prev, cur) => prev + (+cur.quantity), 0)
+  const totalQuantity = cart.reduce((prev, cur) => prev + +cur.quantity, 0)
 
   const contextValue = {
     cart,

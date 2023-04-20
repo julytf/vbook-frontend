@@ -12,15 +12,15 @@ function BookDetail() {
   const [quantity, setQuantity] = useState(1)
   const maxQuantity = 100
 
-  const { addItem,sync } = useContext(CartContext)
+  const { addItem, sync } = useContext(CartContext)
 
   function handleQuantityChange(e) {
     setQuantity(e.target.value)
   }
 
-  function handleAddToCart() {
-    addItem({ book, quantity })
-    sync()
+  async function handleAddItem() {
+    await addItem({ book, quantity })
+    await sync()
   }
 
   useLayoutEffect(() => {
@@ -61,33 +61,35 @@ function BookDetail() {
               <div className='card_area'>
                 <div className='product_count_area'>
                   <p>Quantity</p>
-                  <div className='product_count d-inline-block'>
-                    <div class='input-group input-group-sm'>
-                      <button
-                        onClick={() => setQuantity((cur) => cur - 1)}
-                        class='input-group-text'
-                      >
-                        -
-                      </button>
-                      <input
-                        type='text'
-                        class='form-control text-center'
-                        value={quantity}
-                        onChange={handleQuantityChange}
-                        style={{ width: '75px' }}
-                      />
-                      <button
-                        onClick={() => setQuantity((cur) => cur + 1)}
-                        class='input-group-text'
-                      >
-                        +
-                      </button>
-                    </div>
+                  {/* <div className='product_count d-inline-block'>
+                    <span className='product_count_item inumber-decrement'>
+                      
+                      <i className='ti-minus' />
+                    </span>
+                    <input className='product_count_item input-number' type='text' defaultValue={1} min={0} max={10} />
+                    <span className='product_count_item number-increment'>
+                      
+                      <i className='ti-plus' />
+                    </span>
+                  </div> */}
+                  <div class='input-group mx-3 mb-3 w-25'>
+                    <button onClick={() => setQuantity((cur) => cur - 1)} class='input-group-text'>
+                      -
+                    </button>
+                    <input
+                      type='text'
+                      class='form-control text-center'
+                      value={quantity}
+                      onChange={handleQuantityChange}
+                    />
+                    <button onClick={() => setQuantity((cur) => cur + 1)} class='input-group-text'>
+                      +
+                    </button>
                   </div>
                   <p>{book.price?.toLocaleString()}</p>
                 </div>
                 <div className='add_to_cart'>
-                  <button onClick={handleAddToCart} className='btn_3'>
+                  <button onClick={handleAddItem} className='btn_3'>
                     add to cart
                   </button>
                 </div>
