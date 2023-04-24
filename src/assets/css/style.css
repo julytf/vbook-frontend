@@ -7870,9 +7870,9 @@ input:focus {
 }
 
 /* line 1400, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.checkout_area .form-control {
+/* .checkout_area .form-control {
   border: 1px solid #eee;
-}
+} */
 
 /* line 1403, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .checkout_area .form-control :focus {
@@ -8049,16 +8049,16 @@ input:focus {
 }
 
 /* line 1537, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.p_star .placeholder::before {
+/* .p_star .placeholder::before {
   content: attr(data-placeholder);
   color: #777;
-}
+} */
 
 /* line 1542, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.p_star .placeholder::after {
+/* .p_star .placeholder::after {
   content: " *";
   color: tomato;
-}
+} */
 
 /* line 1547, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .cupon_area {
@@ -8240,14 +8240,14 @@ input:focus {
   width: 50px;
   text-align: right;
   display: inline-block;
-  margin-left: 30px;
+  /* margin-left: 30px; */
   color: #415094;
 }
 
 /* line 1696, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
-.order_box .list li:nth-child(4) a .middle {
+/* .order_box .list li:nth-child(4) a .middle {
   margin-left: 48px;
-}
+} */
 
 /* line 1706, ../../SAIFUL/Running_project/250 eCommerce_HTML/250 eCommerce_HTML/250 eCommerce_HTML/assets/scss/_product.scss */
 .order_box .list_2 li a {

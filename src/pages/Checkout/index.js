@@ -2,8 +2,10 @@ import { useContext, useState } from 'react'
 import CartContext from 'utils/CartContext'
 
 import './style.css'
+import { truncate } from 'helper'
 
 function Checkout() {
+  const shippingFree = 20000
   const [anotherAddress, setAnotherAddress] = useState(false)
 
   const { cart, totalCost } = useContext(CartContext)
@@ -11,7 +13,7 @@ function Checkout() {
   return (
     <section className='checkout_area section_padding'>
       <div className='container'>
-        <div className='returning_customer'>
+        {/* <div className='returning_customer'>
           <div className='check_title'>
             <h2>
               Returning Customer?
@@ -25,7 +27,6 @@ function Checkout() {
           <form className='row contact_form' action='#' method='post' noValidate='novalidate'>
             <div className='col-md-6 form-group p_star'>
               <input type='text' className='form-control' id='name' name='name' defaultValue=' ' />
-              <span className='placeholder' data-placeholder='Username or Email' />
             </div>
             <div className='col-md-6 form-group p_star'>
               <input type='password' className='form-control' id='password' name='password' defaultValue />
@@ -44,8 +45,8 @@ function Checkout() {
               </a>
             </div>
           </form>
-        </div>
-        <div className='cupon_area'>
+        </div> */}
+        {/* <div className='cupon_area'>
           <div className='check_title'>
             <h2>
               Have a coupon?
@@ -56,30 +57,26 @@ function Checkout() {
           <a className='tp_btn' href='#'>
             Apply Coupon
           </a>
-        </div>
+        </div> */}
         <div className='billing_details'>
           <div className='row'>
             <div className='col-lg-8'>
-              <h3>Billing Details</h3>
+              <h3>Thông tin giao hàng</h3>
               <form className='row contact_form' action='#' method='post' noValidate='novalidate'>
                 <div className='col-md-6 form-group p_star'>
-                  <input type='text' className='form-control' id='first' name='name' />
-                  <span className='placeholder' data-placeholder='First name' />
+                  <input type='text' className='form-control' id='first' name='name' placeholder='First name' />
                 </div>
                 <div className='col-md-6 form-group p_star'>
-                  <input type='text' className='form-control' id='last' name='name' />
-                  <span className='placeholder' data-placeholder='Last name' />
+                  <input type='text' className='form-control' id='last' name='name' placeholder='Last name' />
                 </div>
                 <div className='col-md-12 form-group'>
                   <input type='text' className='form-control' id='company' name='company' placeholder='Company name' />
                 </div>
                 <div className='col-md-6 form-group p_star'>
                   <input type='text' className='form-control' id='number' name='number' />
-                  <span className='placeholder' data-placeholder='Phone number' />
                 </div>
                 <div className='col-md-6 form-group p_star'>
                   <input type='text' className='form-control' id='email' name='compemailany' />
-                  <span className='placeholder' data-placeholder='Email Address' />
                 </div>
                 <div className='col-md-12 form-group p_star'>
                   <select className='country_select' style={{ display: 'none' }}>
@@ -104,15 +101,12 @@ function Checkout() {
                 </div>
                 <div className='col-md-12 form-group p_star'>
                   <input type='text' className='form-control' id='add1' name='add1' />
-                  <span className='placeholder' data-placeholder='Address line 01' />
                 </div>
                 <div className='col-md-12 form-group p_star'>
                   <input type='text' className='form-control' id='add2' name='add2' />
-                  <span className='placeholder' data-placeholder='Address line 02' />
                 </div>
                 <div className='col-md-12 form-group p_star'>
                   <input type='text' className='form-control' id='city' name='city' />
-                  <span className='placeholder' data-placeholder='Town/City' />
                 </div>
                 <div className='col-md-12 form-group p_star'>
                   <select className='country_select' style={{ display: 'none' }}>
@@ -171,45 +165,33 @@ function Checkout() {
                       <span>Total</span>
                     </a>
                   </li>
-                  <li>
-                    <a href='#'>
-                      Fresh Blackberry
-                      <span className='middle'>x 02</span>
-                      <span className='last'>$720.00</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href='#'>
-                      Fresh Tomatoes
-                      <span className='middle'>x 02</span>
-                      <span className='last'>$720.00</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href='#'>
-                      Fresh Brocoli
-                      <span className='middle'>x 02</span>
-                      <span className='last'>$720.00</span>
-                    </a>
-                  </li>
+                  {cart.map((item) => (
+                    <li>
+                      <a href='#'>
+                        {truncate(item.book.name, 25)}
+                        <span className='middle'>x {item.quantity}</span>
+                        <span className='last'>{item.book.price.toLocaleString()}</span>
+                      </a>
+                    </li>
+                  ))}
                 </ul>
                 <ul className='list list_2'>
                   <li>
                     <a href='#'>
-                      Subtotal
-                      <span>$2160.00</span>
+                      Tổng tiền hàng
+                      <span>{totalCost.toLocaleString()}</span>
                     </a>
                   </li>
                   <li>
                     <a href='#'>
-                      Shipping
-                      <span>Flat rate: $50.00</span>
+                      Phí ship
+                      <span>{shippingFree.toLocaleString()}</span>
                     </a>
                   </li>
                   <li>
                     <a href='#'>
-                      Total
-                      <span>$2210.00</span>
+                      Tổng
+                      <span>{(totalCost + shippingFree).toLocaleString()}</span>
                     </a>
                   </li>
                 </ul>
@@ -220,6 +202,7 @@ function Checkout() {
                     <div className='check' />
                   </div>
                   <p>
+                    {/* TODO: */}
                     Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
                   </p>
                 </div>

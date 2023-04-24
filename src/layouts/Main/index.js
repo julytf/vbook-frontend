@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import "assets/css/slick.css"
 // import "assets/css/nice-select.css"
 import 'assets/css/style.css'
+import 'assets/css/style2.css'
 
 import './style.css'
 
