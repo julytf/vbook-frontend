@@ -1,156 +1,139 @@
 import { useContext, useState } from 'react'
 import CartContext from 'utils/CartContext'
+import { truncate } from 'helper'
+import AuthContext from 'utils/AuthContext'
+
+import dvhcvn from 'assets/json/dvhcvn.json'
 
 import './style.css'
-import { truncate } from 'helper'
+import axiosClient from 'utils/axiosClient'
 
 function Checkout() {
   const shippingFree = 20000
-  const [anotherAddress, setAnotherAddress] = useState(false)
 
   const { cart, totalCost } = useContext(CartContext)
+  const { user } = useContext(AuthContext)
+
+  const [citys, setCitys] = useState(dvhcvn.data)
+  const [provines, setProvines] = useState(citys.find((city) => city.id === user.address?.city)?.sub || [])
+  const [districts, setDistricts] = useState(
+    provines.find((provine) => provine.id === user.address?.provine)?.sub || []
+  )
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    const formData = new FormData(e.target)
+
+    axiosClient.post(`/orders/buy_from_cart`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+  }
+
+  function handleCityChange(e) {
+    // console.log(e.target.value);
+    const provines = citys.find((city) => city.id === e.target.value)?.sub || []
+    setProvines(provines)
+  }
+
+  function handleProvineChange(e) {
+    // console.log(e.target.value);
+    const districts = provines.find((city) => city.id === e.target.value)?.sub || []
+    setDistricts(districts)
+  }
 
   return (
     <section className='checkout_area section_padding'>
       <div className='container'>
-        {/* <div className='returning_customer'>
-          <div className='check_title'>
-            <h2>
-              Returning Customer?
-              <a href='#'>Click here to login</a>
-            </h2>
-          </div>
-          <p>
-            If you have shopped with us before, please enter your details in the boxes below. If you are a new customer,
-            please proceed to the Billing &amp; Shipping section.
-          </p>
-          <form className='row contact_form' action='#' method='post' noValidate='novalidate'>
-            <div className='col-md-6 form-group p_star'>
-              <input type='text' className='form-control' id='name' name='name' defaultValue=' ' />
-            </div>
-            <div className='col-md-6 form-group p_star'>
-              <input type='password' className='form-control' id='password' name='password' defaultValue />
-              <span className='placeholder' data-placeholder='Password' />
-            </div>
-            <div className='col-md-12 form-group'>
-              <button type='submit' value='submit' className='btn_3'>
-                log in
-              </button>
-              <div className='creat_account'>
-                <input type='checkbox' id='f-option' name='selector' />
-                <label htmlFor='f-option'>Remember me</label>
-              </div>
-              <a className='lost_pass' href='#'>
-                Lost your password?
-              </a>
-            </div>
-          </form>
-        </div> */}
-        {/* <div className='cupon_area'>
-          <div className='check_title'>
-            <h2>
-              Have a coupon?
-              <a href='#'>Click here to enter your code</a>
-            </h2>
-          </div>
-          <input type='text' placeholder='Enter coupon code' />
-          <a className='tp_btn' href='#'>
-            Apply Coupon
-          </a>
-        </div> */}
         <div className='billing_details'>
           <div className='row'>
             <div className='col-lg-8'>
               <h3>Thông tin giao hàng</h3>
-              <form className='row contact_form' action='#' method='post' noValidate='novalidate'>
-                <div className='col-md-6 form-group p_star'>
-                  <input type='text' className='form-control' id='first' name='name' placeholder='First name' />
+              <form className='row contact_form' id='checkout_form' onSubmit={handleSubmit} noValidate='novalidate'>
+                <div className='col-md-6 form-group'>
+                  <input
+                    type='text'
+                    name='address[fullName]'
+                    defaultValue={user.address.fullName}
+                    className='form-control'
+                    placeholder='Họ và Tên'
+                  />
                 </div>
-                <div className='col-md-6 form-group p_star'>
-                  <input type='text' className='form-control' id='last' name='name' placeholder='Last name' />
+                <div className='col-md-6 form-group'>
+                  <input
+                    type='text'
+                    name='address[phoneNumber]'
+                    defaultValue={user.address.phoneNumber}
+                    className='form-control'
+                    placeholder='Số Điện thoại'
+                  />
                 </div>
-                <div className='col-md-12 form-group'>
-                  <input type='text' className='form-control' id='company' name='company' placeholder='Company name' />
-                </div>
-                <div className='col-md-6 form-group p_star'>
-                  <input type='text' className='form-control' id='number' name='number' />
-                </div>
-                <div className='col-md-6 form-group p_star'>
-                  <input type='text' className='form-control' id='email' name='compemailany' />
-                </div>
-                <div className='col-md-12 form-group p_star'>
-                  <select className='country_select' style={{ display: 'none' }}>
-                    <option value={1}>Country</option>
-                    <option value={2}>Country</option>
-                    <option value={4}>Country</option>
+                <div className='col-md-4 form-group'>
+                  <select
+                    defaultValue={user.address.city}
+                    name='address[city]'
+                    onChange={handleCityChange}
+                    className='country_select form-control'
+                  >
+                    <option value={''}>Chọn Thành phố</option>
+                    {citys.map((city) => (
+                      <option value={city.id} key={city.id}>
+                        {city.name}
+                      </option>
+                    ))}
                   </select>
-                  <div className='nice-select country_select' tabIndex={0}>
-                    <span className='current'>Country</span>
-                    <ul className='list'>
-                      <li data-value={1} className='option selected'>
-                        Country
-                      </li>
-                      <li data-value={2} className='option'>
-                        Country
-                      </li>
-                      <li data-value={4} className='option'>
-                        Country
-                      </li>
-                    </ul>
-                  </div>
                 </div>
-                <div className='col-md-12 form-group p_star'>
-                  <input type='text' className='form-control' id='add1' name='add1' />
-                </div>
-                <div className='col-md-12 form-group p_star'>
-                  <input type='text' className='form-control' id='add2' name='add2' />
-                </div>
-                <div className='col-md-12 form-group p_star'>
-                  <input type='text' className='form-control' id='city' name='city' />
-                </div>
-                <div className='col-md-12 form-group p_star'>
-                  <select className='country_select' style={{ display: 'none' }}>
-                    <option value={1}>District</option>
-                    <option value={2}>District</option>
-                    <option value={4}>District</option>
+                <div className='col-md-4 form-group'>
+                  <select
+                    defaultValue={user.address.provine}
+                    name='address[provine]'
+                    onChange={handleProvineChange}
+                    className='country_select form-control'
+                  >
+                    <option value={''}>Chọn Quận/Huyện</option>
+                    {provines.map((provine) => (
+                      <option value={provine.id} key={provine.id}>
+                        {provine.name}
+                      </option>
+                    ))}
                   </select>
-                  <div className='nice-select country_select' tabIndex={0}>
-                    <span className='current'>District</span>
-                    <ul className='list'>
-                      <li data-value={1} className='option selected'>
-                        District
-                      </li>
-                      <li data-value={2} className='option'>
-                        District
-                      </li>
-                      <li data-value={4} className='option'>
-                        District
-                      </li>
-                    </ul>
-                  </div>
+                </div>
+                <div className='col-md-4 form-group'>
+                  <select
+                    defaultValue={user.address.district}
+                    name='address[district]'
+                    className='country_select form-control'
+                  >
+                    <option value={''}>Chọn Phường/Xã</option>
+                    {districts.map((district) => (
+                      <option value={district.id} key={district.id}>
+                        {district.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className='col-md-12 form-group'>
-                  <input type='text' className='form-control' id='zip' name='zip' placeholder='Postcode/ZIP' />
+                  <input
+                    name='address[address]'
+                    defaultValue={user.address.address}
+                    type='text'
+                    className='form-control'
+                  />
                 </div>
                 <div className='col-md-12 form-group'>
-                  <div className='creat_account'>
-                    <input type='checkbox' id='f-option2' name='selector' />
-                    <label htmlFor='f-option2'>Create an account?</label>
-                  </div>
+                  <input
+                    name='address[address2]'
+                    defaultValue={user.address.address2}
+                    type='text'
+                    className='form-control'
+                  />
                 </div>
                 <div className='col-md-12 form-group'>
-                  <div className='creat_account'>
-                    <h3>Shipping Details</h3>
-                    <input type='checkbox' id='f-option3' name='selector' />
-                    <label htmlFor='f-option3'>Ship to a different address?</label>
-                  </div>
                   <textarea
                     className='form-control'
-                    name='message'
-                    id='message'
+                    name='note'
                     rows={1}
                     placeholder='Order Notes'
-                    defaultValue={''}
                   />
                 </div>
               </form>
@@ -191,7 +174,7 @@ function Checkout() {
                   <li>
                     <a href='#'>
                       Tổng
-                      <span>{(totalCost + shippingFree).toLocaleString()}</span>
+                      <span className='h5'>{(totalCost + shippingFree).toLocaleString()}</span>
                     </a>
                   </li>
                 </ul>
@@ -222,9 +205,9 @@ function Checkout() {
                   <label htmlFor='f-option4'>I’ve read and accept the </label>
                   <a href='#'>terms &amp; conditions*</a>
                 </div>
-                <a className='btn_3' href='#'>
+                <button form='checkout_form' className='btn_3'>
                   Proceed to Paypal
-                </a>
+                </button>
               </div>
             </div>
           </div>

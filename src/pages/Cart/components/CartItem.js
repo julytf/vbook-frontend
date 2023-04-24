@@ -17,19 +17,20 @@ function CartItem({ cartItem }) {
     updateItem({ book: cartItem.book._id, quantity: e.target.value })
   }
   return (
-    <tr>
+    <tr className="cart_item">
       <td>
         <div className='media'>
           <div className='d-flex'>
             <img src='assets/img/arrivel/arrivel_1.png' alt='' />
           </div>
           <div className='media-body'>
+            <img src={cartItem.book.images[0].file}/>
             <p>{cartItem.book.name}</p>
           </div>
         </div>
       </td>
       <td>
-        <h5>{cartItem.book.price.toLocaleString()}</h5>
+        <h4>{cartItem.book.price.toLocaleString()}</h4>
       </td>
       <td>
         <div className='product_count'>
@@ -51,7 +52,7 @@ function CartItem({ cartItem }) {
         </div>
       </td>
       <td>
-        <h5>{(cartItem.book.price * +cartItem.quantity).toLocaleString()}</h5>
+        <h4>{(cartItem.book.price * +cartItem.quantity).toLocaleString()}</h4>
       </td>
     </tr>
   )

@@ -23,8 +23,8 @@ function BookEdit() {
   useEffect(() => {
     if (isEmptyObject(book)) return
 
-    axiosClient.get(`/authors/getAll`).then((rs) => setAuthors(rs.data.data.docs))
-    axiosClient.get(`/publishers/getAll`).then((rs) => setPublishers(rs.data.data.docs))
+    axiosClient.get(`/authors/get_all`).then((rs) => setAuthors(rs.data.data.docs))
+    axiosClient.get(`/publishers/get_all`).then((rs) => setPublishers(rs.data.data.docs))
   }, [book])
 
   function handleSubmit(e) {

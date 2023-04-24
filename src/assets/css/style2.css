@@ -1,4 +1,22 @@
 .billing_details .contact_form .form-group select {
-    border-radius: 3px;
-    color: #828bb2;
+  border-radius: 3px;
+  color: #828bb2;
+}
+
+.cart_area .cart_item img {
+  max-height: 100px;
+}
+
+.cart_area .cart_item p {
+  display: inline;
+}
+
+.btn_red {
+  color: #ff0000;
+  border-color: #ff0000;
+}
+
+.btn_3:hover {
+  background-color: #ff0000;
+  color: #fff;
 }

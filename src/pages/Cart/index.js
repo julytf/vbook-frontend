@@ -55,7 +55,7 @@ function Cart() {
                     <h5>Total</h5>
                   </td>
                   <td>
-                    <h5>{totalCost.toLocaleString()}</h5>
+                    <h2>{totalCost.toLocaleString()}</h2>
                   </td>
                 </tr>
                 {/* <tr className='shipping_area'>

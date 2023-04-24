@@ -14,6 +14,9 @@ function BookDetail() {
 
   const { addItem, sync } = useContext(CartContext)
 
+  useLayoutEffect(() => {
+    axiosClient.get(`/books/${bookId}`).then((rs) => setBook(rs.data.data.doc))
+  }, [])
   function handleQuantityChange(e) {
     setQuantity(e.target.value)
   }
@@ -23,37 +26,41 @@ function BookDetail() {
     await sync()
   }
 
-  useLayoutEffect(() => {
-    axiosClient.get(`/books/${bookId}`).then((rs) => setBook(rs.data.data.doc))
-  }, [])
+  function handleToggleSave() {}
 
   return (
     <div className='product_image_area'>
       <div className='container'>
         <div className='row justify-content-center'>
-          {/* <div className='col-5'>
-            <div className='product_img_slide owl-carousel owl-loaded owl-drag'>
-              <div className='owl-stage-outer'>
-                <div
-                  className='owl-stage'
-                  style={{
-                    transform: 'translate3d(-4560px, 0px, 0px)',
-                    transition: 'all 0.25s ease 0s',
-                    width: '7980px',
-                  }}
-                >
-                  {book.images?.map((image) => (
-                    <div className='owl-item' style={{ width: '1140px' }}>
-                      <div className='single_product_img'>
-                        <img src={image.file} alt='#' className='img-fluid' />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+          <div className='col-5'>
+            <div id='carouselExample' className='carousel slide'>
+              <div className='carousel-inner'>
+                {book.images?.map((image, i) => (
+                  <div className={`carousel-item${i == 0 ? ' active' : ''}`}>
+                    <img src={image.file} className='d-block w-100' alt='...' />
+                  </div>
+                ))}
               </div>
-              <div className='owl-dots disabled' />
+              <button
+                className='carousel-control-prev'
+                type='button'
+                data-bs-target='#carouselExample'
+                data-bs-slide='prev'
+              >
+                <span className='carousel-control-prev-icon' aria-hidden='true' />
+                <span className='visually-hidden'>Previous</span>
+              </button>
+              <button
+                className='carousel-control-next'
+                type='button'
+                data-bs-target='#carouselExample'
+                data-bs-slide='next'
+              >
+                <span className='carousel-control-next-icon' aria-hidden='true' />
+                <span className='visually-hidden'>Next</span>
+              </button>
             </div>
-          </div> */}
+          </div>
           <div className='col-7'>
             <div className='single_product_text text-center'>
               <h3>{book.name}</h3>
@@ -89,6 +96,10 @@ function BookDetail() {
                   <p>{book.price?.toLocaleString()}</p>
                 </div>
                 <div className='add_to_cart'>
+                  <button onClick={handleToggleSave} className='btn_3 btn_red me-3'>
+                    <i class='fa-regular fa-heart'></i>
+                    <span> save</span>
+                  </button>
                   <button onClick={handleAddItem} className='btn_3'>
                     add to cart
                   </button>
