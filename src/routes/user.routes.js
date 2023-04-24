@@ -1,3 +1,4 @@
+import Saves from 'pages/Saves'
 import { lazy, Suspense } from 'react'
 import { AuthContextProvider } from 'utils/AuthContext'
 import { CartContextProvider } from 'utils/CartContext'
@@ -61,6 +62,10 @@ const router = {
           <Account />
         </AuthMiddleware>
       ),
+    },
+    {
+      path: 'saves',
+      element: <Saves />,
     },
     {
       path: 'cart',

@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect, useState } from 'react'
+import { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
@@ -10,23 +10,35 @@ function BookDetail() {
 
   const [book, setBook] = useState({})
   const [quantity, setQuantity] = useState(1)
+  const [isSaved, setIsSaved] = useState(false)
   const maxQuantity = 100
 
   const { addItem, sync } = useContext(CartContext)
 
   useLayoutEffect(() => {
-    axiosClient.get(`/books/${bookId}`).then((rs) => setBook(rs.data.data.doc))
+    axiosClient.get(`/books/${bookId}`).then((rs) => {
+      setBook(rs.data.data.doc)
+      axiosClient.get(`/saves/${rs.data.data.doc._id}`).then((rs) => setIsSaved(rs.data.data.isSaved))
+    })
   }, [])
   function handleQuantityChange(e) {
     setQuantity(e.target.value)
   }
+
+  useEffect(() => {}, [])
 
   async function handleAddItem() {
     await addItem({ book, quantity })
     await sync()
   }
 
-  function handleToggleSave() {}
+  function handleToggleSave() {
+    if (isSaved) {
+      axiosClient.get(`/saves/${book._id}/unsave`).then(() => setIsSaved(false))
+    } else if (!isSaved) {
+      axiosClient.get(`/saves/${book._id}/save`).then(() => setIsSaved(true))
+    }
+  }
 
   return (
     <div className='product_image_area'>
@@ -97,7 +109,8 @@ function BookDetail() {
                 </div>
                 <div className='add_to_cart'>
                   <button onClick={handleToggleSave} className='btn_3 btn_red me-3'>
-                    <i class='fa-regular fa-heart'></i>
+                    {!isSaved && <i class='fa-regular fa-heart'></i>}
+                    {isSaved && <i class='fa-solid fa-heart'></i>}
                     <span> save</span>
                   </button>
                   <button onClick={handleAddItem} className='btn_3'>

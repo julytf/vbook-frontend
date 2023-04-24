@@ -69,12 +69,14 @@ function Header() {
                     {isLoggedIn && (
                       <>
                         <li className='d-none d-xl-block'>
-                          <div className='favorit-items'>
-                            <i className='far fa-heart' />
+                          <div data-quantity="5" className='favorit-items has-counter'>
+                            <Link to={'/saves'}>
+                              <i className='far fa-heart' />
+                            </Link>
                           </div>
                         </li>
                         <li>
-                          <div className='shopping-card'>
+                          <div data-quantity={totalQuantity} className='shopping-card has-counter'>
                             <Link to={'/cart'}>
                               <i className='fas fa-shopping-cart' />
                             </Link>
