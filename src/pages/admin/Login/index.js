@@ -1,4 +1,5 @@
 import { useContext, useRef } from 'react'
+import 'assets/css/adminlte.min.css'
 import './style.css'
 
 import logo from 'assets/img/logo.png'

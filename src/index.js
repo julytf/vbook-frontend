@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { AuthContextProvider } from 'utils/AuthContext'
-import { CartContextProvider } from 'utils/CartContext'
+import { CartContextProvider } from 'utils/GlobalContext'
 import router from './routes'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

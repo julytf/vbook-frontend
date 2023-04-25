@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import CartContext from 'utils/CartContext'
+import GlobalContext from 'utils/GlobalContext'
 import { truncate } from 'helper'
 import AuthContext from 'utils/AuthContext'
 
@@ -11,7 +11,7 @@ import axiosClient from 'utils/axiosClient'
 function Checkout() {
   const shippingFree = 20000
 
-  const { cart, totalCost } = useContext(CartContext)
+  const { cart, totalCost } = useContext(GlobalContext).cart
   const { user } = useContext(AuthContext)
 
   const [citys, setCitys] = useState(dvhcvn.data)

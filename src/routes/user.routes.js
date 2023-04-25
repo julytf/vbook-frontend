@@ -1,7 +1,7 @@
 import Saves from 'pages/Saves'
 import { lazy, Suspense } from 'react'
 import { AuthContextProvider } from 'utils/AuthContext'
-import { CartContextProvider } from 'utils/CartContext'
+import { GlobalContextProvider } from 'utils/GlobalContext'
 
 const MainLayout = lazy(() => import('layouts/Main'))
 const AuthMiddleware = lazy(() => import('middlewares/Auth'))
@@ -25,9 +25,9 @@ const router = {
   element: (
     <Suspense fallback={<FallbackLoading/>}>
       <AuthContextProvider>
-        <CartContextProvider>
+        <GlobalContextProvider>
           <MainLayout />
-        </CartContextProvider>
+        </GlobalContextProvider>
       </AuthContextProvider>
     </Suspense>
   ),

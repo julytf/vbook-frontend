@@ -1,16 +1,16 @@
 import { useContext, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
-import CartContext from 'utils/CartContext'
+import GlobalContext from 'utils/GlobalContext'
 
 import './style.css'
 import CartItem from './components/CartItem'
 
 function Cart() {
-  const { cart, totalCost, sync } = useContext(CartContext)
+  const { cart, totalCost, syncCart } = useContext(GlobalContext).cart
   console.log('Cart rerender')
 
   async function handleUpdate() {
-    await sync()
+    await syncCart()
     // TODO:
     console.log('update success')
   }
@@ -58,81 +58,7 @@ function Cart() {
                     <h2>{totalCost.toLocaleString()}</h2>
                   </td>
                 </tr>
-                {/* <tr className='shipping_area'>
-                  <td />
-                  <td />
-                  <td>
-                    <h5>Shipping</h5>
-                  </td>
-                  <td>
-                    <div className='shipping_box'>
-                      <ul className='list'>
-                        <li>
-                          Flat Rate: $5.00
-                          <input type='radio' aria-label='Radio button for following text input' />
-                        </li>
-                        <li>
-                          Free Shipping
-                          <input type='radio' aria-label='Radio button for following text input' />
-                        </li>
-                        <li>
-                          Flat Rate: $10.00
-                          <input type='radio' aria-label='Radio button for following text input' />
-                        </li>
-                        <li className='active'>
-                          Local Delivery: $2.00
-                          <input type='radio' aria-label='Radio button for following text input' />
-                        </li>
-                      </ul>
-                      <h6>
-                        Calculate Shipping
-                        <i className='fa fa-caret-down' aria-hidden='true' />
-                      </h6>
-                      <select className='shipping_select' style={{ display: 'none' }}>
-                        <option value={1}>Bangladesh</option>
-                        <option value={2}>India</option>
-                        <option value={4}>Pakistan</option>
-                      </select>
-                      <div className='nice-select shipping_select' tabIndex={0}>
-                        <span className='current'>Bangladesh</span>
-                        <ul className='list'>
-                          <li data-value={1} className='option selected'>
-                            Bangladesh
-                          </li>
-                          <li data-value={2} className='option'>
-                            India
-                          </li>
-                          <li data-value={4} className='option'>
-                            Pakistan
-                          </li>
-                        </ul>
-                      </div>
-                      <select className='shipping_select section_bg' style={{ display: 'none' }}>
-                        <option value={1}>Select a State</option>
-                        <option value={2}>Select a State</option>
-                        <option value={4}>Select a State</option>
-                      </select>
-                      <div className='nice-select shipping_select section_bg' tabIndex={0}>
-                        <span className='current'>Select a State</span>
-                        <ul className='list'>
-                          <li data-value={1} className='option selected'>
-                            Select a State
-                          </li>
-                          <li data-value={2} className='option'>
-                            Select a State
-                          </li>
-                          <li data-value={4} className='option'>
-                            Select a State
-                          </li>
-                        </ul>
-                      </div>
-                      <input className='post_code' type='text' placeholder='Postcode/Zipcode' />
-                      <a className='btn_1' href='#'>
-                        Update Details
-                      </a>
-                    </div>
-                  </td>
-                </tr> */}
+                
               </tbody>
             </table>
             <div className='checkout_btn_inner'>

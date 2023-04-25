@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { AuthAdminContextProvider } from 'utils/AuthAdminContext'
-import { CartContextProvider } from 'utils/CartContext'
+import { CartContextProvider } from 'utils/GlobalContext'
 import AuthAdminMiddleware from 'middlewares/AuthAdmin'
 
 const AdminLayout = lazy(() => import('layouts/Admin'))

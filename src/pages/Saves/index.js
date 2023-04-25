@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axiosClient from 'utils/axiosClient'
 
 import bannerImage from 'assets/img/banner.jpg'
@@ -6,39 +6,42 @@ import bannerImage from 'assets/img/banner.jpg'
 import './style.css'
 
 import BookItem from './components/BookItem'
+import GlobalContext from 'utils/GlobalContext'
 
 function Saves() {
-  const [books, setBooks] = useState([])
-  console.log(books)
-  const [page, setPage] = useState(1)
-  // console.log(page)
-  const [noPage, setNoPage] = useState(0)
 
-  const perPage = 24
+  const {saves} = useContext(GlobalContext).saves
+  // const [books, setBooks] = useState([])
+  // console.log(books)
+  // const [page, setPage] = useState(1)
+  // // console.log(page)
+  // const [noPage, setNoPage] = useState(0)
 
-  const mainContentRef = useRef()
+  // const perPage = 24
 
-  const firstRenderRef = useRef(true)
+  // const mainContentRef = useRef()
 
-  useEffect(() => {
-    if (firstRenderRef.current) return
-    mainContentRef.current.scrollIntoView()
-  }, [page])
+  // const firstRenderRef = useRef(true)
 
-  useLayoutEffect(() => {
-    axiosClient.get(`/saves?perPage=${perPage}`, { params: { page } }).then((rs) => {
-      // console.log(rs);
-      setBooks(rs.data.data.docs)
-      // setNoPage(rs.data.data.noPage)
-    })
-  }, [page])
+  // useEffect(() => {
+  //   if (firstRenderRef.current) return
+  //   mainContentRef.current.scrollIntoView()
+  // }, [page])
 
-  useEffect(() => {
-    firstRenderRef.current = false
-  }, [])
+  // useLayoutEffect(() => {
+  //   axiosClient.get(`/saves?perPage=${perPage}`, { params: { page } }).then((rs) => {
+  //     // console.log(rs);
+  //     setBooks(rs.data.data.docs)
+  //     // setNoPage(rs.data.data.noPage)
+  //   })
+  // }, [page])
+
+  // useEffect(() => {
+  //   firstRenderRef.current = false
+  // }, [])
 
   return (
-    <main ref={mainContentRef}>
+    <main>
       <section className='latest-product-area padding-bottom'>
         <div className='container'>
           <div className='row product-btn d-flex justify-content-end align-items-end'>
@@ -53,7 +56,7 @@ function Saves() {
           <div className='tab-content' id='nav-tabContent'>
             <div className='tab-pane fade show active' id='nav-home' role='tabpanel' aria-labelledby='nav-home-tab'>
               <div className='row'>
-                {books.map((book) => (
+                {saves.map((book) => (
                   <BookItem book={book} />
                 ))}
               </div>

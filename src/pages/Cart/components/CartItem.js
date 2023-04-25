@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import CartContext from "utils/CartContext"
+import GlobalContext from "utils/GlobalContext"
 
 function CartItem({ cartItem }) {
   // console.log("cartItem rerender")
-  const { updateItem } = useContext(CartContext)
+  const { updateItem } = useContext(GlobalContext).cart
 
   function handleIncrease() {
     console.log('increase');

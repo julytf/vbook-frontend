@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom'
 
 import logo from 'assets/img/logo.png'
 import { useContext, useState } from 'react'
-import CartContext from 'utils/CartContext'
+import GlobalContext from 'utils/GlobalContext'
 import AuthContext from 'utils/AuthContext'
 
 function Header() {
   const { isLoggedIn } = useContext(AuthContext)
 
-  let { totalQuantity } = useContext(CartContext)
+  let { totalQuantity } = useContext(GlobalContext).cart
+  let { saves } = useContext(GlobalContext).saves
+const quantity = saves.length
   console.log(totalQuantity)
   if (totalQuantity > 99) totalQuantity = '99+'
 
@@ -69,7 +71,7 @@ function Header() {
                     {isLoggedIn && (
                       <>
                         <li className='d-none d-xl-block'>
-                          <div data-quantity="5" className='favorit-items has-counter'>
+                          <div data-quantity={quantity} className='favorit-items has-counter'>
                             <Link to={'/saves'}>
                               <i className='far fa-heart' />
                             </Link>
