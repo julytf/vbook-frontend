@@ -4,6 +4,7 @@ import { AuthAdminContextProvider } from 'utils/AuthAdminContext'
 import { CartContextProvider } from 'utils/GlobalContext'
 import AuthAdminMiddleware from 'middlewares/AuthAdmin'
 import BookCreate from 'pages/admin/Books/Create'
+import UserCreate from 'pages/admin/Users/Create'
 
 const AdminLayout = lazy(() => import('layouts/Admin'))
 
@@ -81,6 +82,10 @@ const router = {
             {
               path: '',
               element: <Users />,
+            },
+            {
+              path: 'create',
+              element: <UserCreate />,
             },
             {
               path: ':id',

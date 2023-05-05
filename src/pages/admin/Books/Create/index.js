@@ -1,4 +1,4 @@
-import { languageEnum as bookLanguageEnum, formEnum as bookformEnum } from 'enums/Book'
+import { languageEnum as bookLanguageEnum, formEnum as bookformEnum, statusEnum as bookStatusEnum } from 'enums/Book'
 import { isEmptyObject } from 'helper'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -11,8 +11,8 @@ function BookCreate() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    axiosClient.get(`/authors/get_all`).then((rs) => setAuthors(rs.data.data.docs))
-    axiosClient.get(`/publishers/get_all`).then((rs) => setPublishers(rs.data.data.docs))
+    axiosClient.get(`/authors/get-all`).then((rs) => setAuthors(rs.data.data.docs))
+    axiosClient.get(`/publishers/get-all`).then((rs) => setPublishers(rs.data.data.docs))
   }, [])
 
   function handleSubmit(e) {
@@ -22,7 +22,7 @@ function BookCreate() {
     // console.log(formData.get('name'));
 
     axiosClient
-      .post(`/books/create`, formData, {
+      .post(`/books`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then((rs) => navigate(`/admin/books/${rs.data.data.doc._id}`))
@@ -31,12 +31,12 @@ function BookCreate() {
   return (
     <div className='card '>
       <div className='card-header'>
-        <h3 className='card-title'>Book detail</h3>
-        <Link to={`/admin/books`} className='btn btn-primary float-right'>
+        <h3 className='card-title'>Book Create</h3>
+        {/* <Link to={`/admin/books`} className='btn btn-primary float-right'>
           <i class='fa-solid fa-angle-left'></i> Back
-        </Link>
+        </Link> */}
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='m-0'>
         <div className='card-body'>
           {/* <div className='form-group'>
             <label htmlFor='exampleInputEmail1'>ID</label>
@@ -68,7 +68,11 @@ function BookCreate() {
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>status</label>
-              <input type='text' name='status' className='form-control' placeholder='' />
+              <select name='status' class='form-control'>
+                {Object.keys(bookStatusEnum).map((status) => (
+                  <option value={status}>{status}</option>
+                ))}
+              </select>
             </div>
           </div>
           <div className='row'>

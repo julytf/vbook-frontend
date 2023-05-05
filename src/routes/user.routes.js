@@ -1,17 +1,18 @@
-import ChangePassword from 'pages/ChangePassword'
-import OrderDetail from 'pages/OrderDetail'
-import Orders from 'pages/Orders'
-import Saves from 'pages/Saves'
+
 import { lazy, Suspense } from 'react'
 import { AuthContextProvider } from 'utils/AuthContext'
 import { GlobalContextProvider } from 'utils/GlobalContext'
 
+import ChangePassword from 'pages/ChangePassword'
+import OrderDetail from 'pages/Orders/Detail'
+import Orders from 'pages/Orders'
+import Saves from 'pages/Saves'
 const MainLayout = lazy(() => import('layouts/Main'))
 const AuthMiddleware = lazy(() => import('middlewares/Auth'))
 const Home = lazy(() => import('pages/Home'))
 const Books = lazy(() => import('pages/Books'))
 const Cart = lazy(() => import('pages/Cart'))
-const BookDetail = lazy(() => import('pages/BookDetail'))
+const BookDetail = lazy(() => import('pages/Books/Detail'))
 const Login = lazy(() => import('pages/Login'))
 const Register = lazy(() => import('pages/Register'))
 const Account = lazy(() => import('pages/Account'))

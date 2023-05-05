@@ -33,7 +33,7 @@ function Header() {
             <div className='container-fluid'>
               <div className='row align-items-center'>
                 <div className='col-2'>
-                  <div className='logo'>
+                  <div className='logo p-3'>
                     <Link to={'/'}>
                       <img className='w-100' src={logo} alt='' />
                     </Link>
@@ -43,7 +43,7 @@ function Header() {
                   <div className='main-menu f-right d-none d-lg-block'>
                     <nav>
                       <ul id='navigation'>
-                        <li>
+                        {/* <li>
                           <Link to={'/'}>Home</Link>
                         </li>
                         <li>
@@ -57,13 +57,15 @@ function Header() {
                         </li>
                         <li>
                           <Link to={'/account'}>Account</Link>
-                        </li>
+                        </li> */}
                         <li>
-                          <Link to={'/books'}>Books</Link>
+                          <Link to={'/books'}>Sách</Link>
                         </li>
-                        <li>
-                          <Link to={'/orders'}>Đơn hàng</Link>
-                        </li>
+                        {isLoggedIn && (
+                          <li>
+                            <Link to={'/orders'}>Đơn hàng</Link>
+                          </li>
+                        )}
                       </ul>
                     </nav>
                   </div>

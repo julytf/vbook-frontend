@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
 function BookDetail() {
@@ -8,6 +8,8 @@ function BookDetail() {
   const [book, setBook] = useState({})
   console.log(book)
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     axiosClient.get(`/books/${id}`).then((rs) => setBook(rs.data.data.doc))
   }, [])
@@ -15,7 +17,10 @@ function BookDetail() {
   return (
     <div className='card '>
       <div className='card-header'>
-        <h3 className='card-title'>Book detail</h3>
+        {/* <button onClick={() => navigate(-1)} className='btn btn-primary me-3'>
+          <i class='fa-solid fa-angle-left'></i> Back
+        </button> */}
+        <h3 className='card-title float-none d-inline'>Book detail</h3>
         <span className='ml-5'>ID: {id}</span>
         <Link to={`/admin/books/${id}/edit`} className='btn btn-primary float-right'>
           Edit

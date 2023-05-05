@@ -15,8 +15,21 @@ function Orders() {
   }, [])
 
   return (
-    <section className='cart_area orders_area section_padding'>
+    <section className='cart_area orders_area'>
       <div className='container'>
+      <div className='slider-area'>
+          <div className='single-slider slider-height2 d-flex align-items-center'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <div className='hero-cap text-center'>
+                    <h2>Đơn hàng</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         {orders.map((order) => (
           <div className='cart_inner' key={order._id}>
             <div className='head'>

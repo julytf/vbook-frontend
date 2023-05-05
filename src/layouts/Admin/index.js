@@ -17,7 +17,7 @@ function Admin() {
     <div className='wrapper d-flex flex-column'>
       {/* <Header /> */}
       <Sidebar />
-      <div className='content-wrapper'>
+      <div className='content-wrapper p-3'>
         <Outlet />
       </div>
       <Footer />

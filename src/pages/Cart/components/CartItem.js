@@ -1,3 +1,4 @@
+import { truncate } from "helper";
 import { useContext } from "react"
 import GlobalContext from "utils/GlobalContext"
 
@@ -25,7 +26,7 @@ function CartItem({ cartItem }) {
           </div>
           <div className='media-body'>
             <img src={cartItem.book.images[0].file}/>
-            <p>{cartItem.book.name}</p>
+            <p>{truncate(cartItem.book.name,70)}</p>
           </div>
         </div>
       </td>

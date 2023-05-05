@@ -16,27 +16,33 @@ function Paginate({ page, noPage, setPage, range }) {
       <div className='col-sm-12 col-md-7'>
         <div className='dataTables_paginate paging_simple_numbers' id='example2_paginate'>
           <ul className='pagination' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            {from > 1 && (
-              <li className='paginate_button page-item previous disabled' id='example2_previous'>
-                <a href='#' aria-controls='example2' data-dt-idx='0' tabindex='0' className='page-link'>
-                  ...
-                </a>
-              </li>
-            )}
+            <li className='paginate_button page-item previous ' id='example2_previous'>
+              <button onClick={() => setPage(1)} className='page-link'>
+                «
+              </button>
+            </li>
+            <li className='paginate_button page-item previous ' id='example2_previous'>
+              <button onClick={() => setPage(Math.max(page - 1, 1))} className='page-link'>
+                ‹
+              </button>
+            </li>
             {pages.map((e) => (
               <li className={'paginate_button page-item' + (e == page ? ' active' : '')}>
-                <button onClick={() => setPage(e)} aria-controls='example2' data-dt-idx='1' tabindex='0' className='page-link'>
+                <button onClick={() => setPage(e)} className='page-link'>
                   {e}
                 </button>
               </li>
             ))}
-            {to < noPage && (
-              <li className='paginate_button page-item next' id='example2_next'>
-                <a href='#' aria-controls='example2' data-dt-idx='0' tabindex='0' className='page-link'>
-                  ...
-                </a>
-              </li>
-            )}
+            <li className='paginate_button page-item previous ' id='example2_previous'>
+              <button onClick={() => setPage(Math.min(page + 1, noPage))} className='page-link'>
+                ›
+              </button>
+            </li>
+            <li className='paginate_button page-item previous ' id='example2_previous'>
+              <button onClick={() => setPage(noPage)} className='page-link'>
+                »
+              </button>
+            </li>
           </ul>
         </div>
       </div>

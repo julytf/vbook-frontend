@@ -1,4 +1,4 @@
-import { languageEnum as bookLanguageEnum, formEnum as bookformEnum } from 'enums/Book'
+import { languageEnum as bookLanguageEnum, formEnum as bookformEnum, statusEnum as bookStatusEnum } from 'enums/Book'
 import { isEmptyObject } from 'helper'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -23,8 +23,8 @@ function BookEdit() {
   useEffect(() => {
     if (isEmptyObject(book)) return
 
-    axiosClient.get(`/authors/get_all`).then((rs) => setAuthors(rs.data.data.docs))
-    axiosClient.get(`/publishers/get_all`).then((rs) => setPublishers(rs.data.data.docs))
+    axiosClient.get(`/authors/get-all`).then((rs) => setAuthors(rs.data.data.docs))
+    axiosClient.get(`/publishers/get-all`).then((rs) => setPublishers(rs.data.data.docs))
   }, [book])
 
   function handleSubmit(e) {
@@ -43,11 +43,14 @@ function BookEdit() {
   return (
     <div className='card '>
       <div className='card-header'>
-        <h3 className='card-title'>Book detail</h3>
-        <span className='ml-5'>ID: {id}</span>
-        <Link to={`/admin/books/${id}`} className='btn btn-primary float-right'>
+        {/* <button onClick={() => navigate(-1)} className='btn btn-primary me-3'>
           <i class='fa-solid fa-angle-left'></i> Back
-        </Link>
+        </button> */}
+        <h3 className='card-title float-none d-inline'>Book detail</h3>
+        <span className='ml-5'>ID: {id}</span>
+        {/* <Link to={`/admin/books/${id}`} className='btn btn-primary float-right'>
+          <i class='fa-solid fa-angle-left'></i> Back
+        </Link> */}
       </div>
       <form onSubmit={handleSubmit}>
         <div className='card-body'>
@@ -89,8 +92,11 @@ function BookEdit() {
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>status</label>
-              <input type='text' name='status' className='form-control' placeholder='' defaultValue={book.status} />
-            </div>
+              <select name='status' class='form-control'>
+                {Object.keys(bookStatusEnum).map((status) => (
+                  <option selected={status == book.status} value={status}>{status}</option>
+                ))}
+              </select></div>
           </div>
           <div className='row'>
             <div className='form-group col-6'>

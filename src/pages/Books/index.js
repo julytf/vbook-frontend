@@ -31,6 +31,9 @@ function Books() {
   const queryRef = useRef()
 
   useLayoutEffect(() => {
+    navigate({
+      search: `?q=${query}&page=${page}`,
+    })
     axiosClient.get('/books', { params: { page, q: query, perPage } }).then((rs) => {
       // console.log(rs);
       setBooks(rs.data.data.docs)
@@ -44,11 +47,7 @@ function Books() {
 
     const q = queryRef.current.value
 
-    navigate({
-      pathname: '/books',
-      search: `?q=${q}`,
-    })
-
+    setPage(1)
     setQuery(q)
   }
 
@@ -61,9 +60,7 @@ function Books() {
               <div className='row'>
                 <div className='col-xl-12'>
                   <div className='hero-cap text-center'>
-                    <h2>
-                      Tìm kiếm sách
-                    </h2>
+                    <h2>Tìm kiếm sách</h2>
                   </div>
                 </div>
               </div>

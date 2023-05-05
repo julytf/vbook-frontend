@@ -37,9 +37,11 @@ function UserDetail() {
               <input type='text' className='form-control' placeholder='' defaultValue={user.firstName} disabled />
             </div>
           </div>
-          <div className='form-group col-6'>
-            <label htmlFor='exampleInputPassword1'>Gender</label>
-            <input type='text' className='form-control' placeholder='' defaultValue={user.gender} disabled />
+          <div className='row'>
+            <div className='form-group col-6'>
+              <label htmlFor='exampleInputPassword1'>Gender</label>
+              <input type='text' className='form-control' placeholder='' defaultValue={user.gender} disabled />
+            </div>
           </div>
           <div className='row'>
             <div className='form-group col-6'>

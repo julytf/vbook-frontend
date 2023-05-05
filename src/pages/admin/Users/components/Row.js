@@ -25,7 +25,7 @@ function Row({ user, deleteUser }) {
       <td>{user.status}</td>
       <td>{user.role}</td>
       <td>
-        <button onClick={handleDelete}>
+        <button className='btn btn-outline-danger btn-sm' onClick={handleDelete}>
           <i className='fa-regular fa-x'></i>
         </button>
       </td>
