@@ -119,7 +119,7 @@ function BookEdit() {
               <label htmlFor='exampleInputPassword1'>author</label>
               <select name='author' class='form-control'>
                 {authors.map((author) => (
-                  <option selected={author._id == book.author._id} value={author._id}>
+                  <option selected={author._id == book.author?._id} value={author._id}>
                     {author.name}
                   </option>
                 ))}
@@ -129,7 +129,7 @@ function BookEdit() {
               <label htmlFor='exampleInputPassword1'>publisher</label>
               <select name='publisher' class='form-control'>
                 {publishers.map((publisher) => (
-                  <option selected={publisher._id == book.publisher._id} value={publisher._id}>
+                  <option selected={publisher._id == book.publisher?._id} value={publisher._id}>
                     {publisher.name}
                   </option>
                 ))}

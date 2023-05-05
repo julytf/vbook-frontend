@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
-function UserCreate() {
+function OrderCreate() {
   const navigate = useNavigate()
 
   function handleSubmit(e) {
@@ -92,4 +92,4 @@ function UserCreate() {
   )
 }
 
-export default UserCreate
+export default OrderCreate

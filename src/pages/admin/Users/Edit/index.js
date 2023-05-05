@@ -33,9 +33,9 @@ function UserEdit() {
       <div className='card-header'>
         <h3 className='card-title'>User detail</h3>
         <span className='ml-5'>ID: {id}</span>
-        <Link to={`/admin/users/${id}`} className='btn btn-primary float-right'>
+        {/* <Link to={`/admin/users/${id}`} className='btn btn-primary float-right'>
           <i class='fa-solid fa-angle-left'></i> Back
-        </Link>
+        </Link> */}
       </div>
       <form onSubmit={handleSubmit}>
         <div className='card-body'>

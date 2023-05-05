@@ -5,6 +5,10 @@ import { CartContextProvider } from 'utils/GlobalContext'
 import AuthAdminMiddleware from 'middlewares/AuthAdmin'
 import BookCreate from 'pages/admin/Books/Create'
 import UserCreate from 'pages/admin/Users/Create'
+import AuthorCreate from 'pages/admin/Authors/Create'
+import Orders from 'pages/admin/Orders'
+import OrderDetail from 'pages/admin/Orders/Detail'
+import OrderEdit from 'pages/admin/Orders/Edit'
 
 const AdminLayout = lazy(() => import('layouts/Admin'))
 
@@ -110,6 +114,10 @@ const router = {
               element: <Authors/>,
             },
             {
+              path: 'create',
+              element: <AuthorCreate/>,
+            },
+            {
               path: ':id',
               children: [
                 {
@@ -141,6 +149,28 @@ const router = {
                 {
                   path: 'edit',
                   element: <PublisherEdit />,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          path: 'orders',
+          children: [
+            {
+              path: '',
+              element: <Orders/>,
+            },
+            {
+              path: ':id',
+              children: [
+                {
+                  path: '',
+                  element: <OrderDetail />,
+                },
+                {
+                  path: 'edit',
+                  element: <OrderEdit />,
                 },
               ],
             },

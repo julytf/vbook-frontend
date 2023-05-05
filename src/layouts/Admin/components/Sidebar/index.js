@@ -104,6 +104,11 @@ function Sidebar() {
                 <p>Publishers</p>
               </Link>
             </li>
+            <li className='nav-item'>
+              <Link to={'/admin/orders'} className='nav-link'>
+                <p>Orders</p>
+              </Link>
+            </li>
 
             {/* <li className='nav-item'>
             <a href='#' className='nav-link'>

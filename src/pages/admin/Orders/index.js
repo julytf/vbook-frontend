@@ -5,14 +5,12 @@ import Row from './components/Row'
 import Paginate from '../components/Paginate'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
-function Books() {
+function Orders() {
   const [searchParams, setSearchParams] = useSearchParams()
-
-  const [books, setBooks] = useState([])
+  const [orders, setOrders] = useState([])
   const [page, setPage] = useState(searchParams.get('page') || 1)
-  console.log(page)
   const [noPage, setNoPage] = useState(0)
-  console.log(books)
+  console.log(orders)
   const perPage = 10
   const [query, setQuery] = useState(searchParams.get('q') || '')
 
@@ -20,21 +18,26 @@ function Books() {
 
   const navigate = useNavigate()
 
-  function deleteBook(bookId) {
-    axiosClient.delete(`/books/${bookId}`).then((rs) => loadBooks())
+  useLayoutEffect(() => {
+    loadOrders()
+  }, [page])
+
+  function deleteOrder(orderId) {
+    axiosClient.delete(`/orders/${orderId}`).then((rs) => loadOrders())
   }
 
-  function loadBooks() {
-    axiosClient.get(`/books`, { params: { q: query, page, perPage } }).then((rs) => {
-      setBooks(rs.data.data.docs)
+  function loadOrders() {
+    axiosClient.get(`/orders`, { params: { q: query, page, perPage } }).then((rs) => {
+      setOrders(rs.data.data.docs)
       setNoPage(rs.data.data.noPage)
     })
   }
+
   useLayoutEffect(() => {
     navigate({
       search: `?q=${query}&page=${page}`,
     })
-    loadBooks()
+    loadOrders()
     console.log(page, query)
   }, [page, query])
 
@@ -46,14 +49,13 @@ function Books() {
     setPage(1)
     setQuery(q)
   }
-
   return (
     <>
       <div className='card'>
         <div className='card-header'>
           <h3 className='card-title'>Responsive Hover Table</h3>
           <div className='card-tools d-flex align-items-center'>
-            <Link to={'/admin/books/create'} className='btn btn-primary btn-sm me-3'>
+            <Link to={'/admin/orders/create'} className='btn btn-primary btn-sm me-3'>
               Create
             </Link>
             <form onSubmit={handleSearch} className='m-0'>
@@ -79,18 +81,17 @@ function Books() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Language</th>
-                <th>Description</th>
-                <th>Quantity</th>
+                <th>User</th>
                 <th>Status</th>
-                <th>Price</th>
+                <th>Address</th>
+                <th>Details</th>
+                <th>Note</th>
                 <th>Edit</th>
               </tr>
             </thead>
             <tbody>
-              {books.map((book) => (
-                <Row book={book} deleteBook={() => deleteBook(book._id)} />
+              {orders.map((order) => (
+                <Row order={order} deleteOrder={() => deleteOrder(order._id)} />
               ))}
             </tbody>
           </table>
@@ -101,4 +102,4 @@ function Books() {
   )
 }
 
-export default Books
+export default Orders

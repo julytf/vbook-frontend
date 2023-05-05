@@ -3,16 +3,8 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
-function AuthorEdit() {
-  const { id } = useParams()
-
-  const [author, setAuthor] = useState({})
-
+function AuthorCreate() {
   const navigate = useNavigate()
-
-  useEffect(() => {
-    axiosClient.get(`/authors/${id}`).then((rs) => setAuthor(rs.data.data.doc))
-  }, [])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -21,22 +13,21 @@ function AuthorEdit() {
     // console.log(formData.get('name'));
 
     axiosClient
-      .patch(`/authors/${id}`, formData, {
+      .post(`/authors/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      .then(navigate(`/admin/authors/${id}`))
+      .then((rs) => navigate(`/admin/authors/${rs.data.data.doc._id}`))
   }
 
   return (
     <div className='card'>
       <div className='card-header'>
-        <h3 className='card-title'>Author detail</h3>
-        <span className='ml-5'>ID: {id}</span>
+        <h3 className='card-title'>Author Create</h3>
         {/* <Link to={`/admin/authors/${id}`} className='btn btn-primary float-right'>
           <i class='fa-solid fa-angle-left'></i> Back
         </Link> */}
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='m-0'>
         <div className='card-body'>
           {/* <div className='form-group'>
             <label htmlFor='exampleInputEmail1'>ID</label>
@@ -44,11 +35,11 @@ function AuthorEdit() {
           </div> */}
           <div className='form-group'>
             <label htmlFor='exampleInputPassword1'>Name</label>
-            <input type='text' name='name' className='form-control' placeholder='' defaultValue={author.name} />
+            <input type='text' name='name' className='form-control' placeholder=''  />
           </div>
           <div className='form-group'>
             <label htmlFor='exampleInputPassword1'>Description</label>
-            <input type='text' name='description' className='form-control' placeholder='' defaultValue={author.description} />
+            <input type='text' name='description' className='form-control' placeholder=''  />
           </div>
         </div>
         <div className='card-footer'>
@@ -61,4 +52,4 @@ function AuthorEdit() {
   )
 }
 
-export default AuthorEdit
+export default AuthorCreate

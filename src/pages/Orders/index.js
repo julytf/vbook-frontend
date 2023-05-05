@@ -11,7 +11,7 @@ function Orders() {
   console.log(orders)
 
   useEffect(() => {
-    axiosClient.get('/orders').then((rs) => setOrders(rs.data.data.docs))
+    axiosClient.get('/orders/my-orders').then((rs) => setOrders(rs.data.data.docs))
   }, [])
 
   return (

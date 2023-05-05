@@ -3,8 +3,17 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
-function UserCreate() {
+function OrderEdit() {
+  const { id } = useParams()
+
+  const [user, setUser] = useState({})
+  console.log(user)
+
   const navigate = useNavigate()
+
+  useEffect(() => {
+    axiosClient.get(`/users/${id}`).then((rs) => setUser(rs.data.data.doc))
+  }, [])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -13,17 +22,18 @@ function UserCreate() {
     const formData = new FormData(e.target)
 
     axiosClient
-      .post(`/users`, formData, {
+      .patch(`/users/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      .then((rs) => navigate(`/admin/users/${rs.data.data._id}`))
+      .then(navigate(`/admin/users/${id}`))
   }
 
   return (
     <div className='card'>
       <div className='card-header'>
         <h3 className='card-title'>User detail</h3>
-        {/* <Link to={`/admin/users`} className='btn btn-primary float-right'>
+        <span className='ml-5'>ID: {id}</span>
+        {/* <Link to={`/admin/users/${id}`} className='btn btn-primary float-right'>
           <i class='fa-solid fa-angle-left'></i> Back
         </Link> */}
       </div>
@@ -36,11 +46,11 @@ function UserCreate() {
           <div className='row'>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>LastName</label>
-              <input type='text' name='lastName' className='form-control' placeholder='' />
+              <input type='text' name='lastName' className='form-control' placeholder='' defaultValue={user.lastName} />
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>FirstName</label>
-              <input type='text' name='firstName' className='form-control' />
+              <input type='text' name='firstName' className='form-control' defaultValue={user.firstName} />
             </div>
           </div>
           <div className='row'>
@@ -48,7 +58,9 @@ function UserCreate() {
               <label htmlFor='exampleInputPassword1'>Gender</label>
               <select name='gender' class='form-control'>
                 {Object.keys(userGenderEnum).map((gender) => (
-                  <option value={gender}>{gender}</option>
+                  <option selected={gender == user.gender} value={gender}>
+                    {gender}
+                  </option>
                 ))}
               </select>
             </div>
@@ -56,11 +68,17 @@ function UserCreate() {
           <div className='row'>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>Phone Number</label>
-              <input type='text' name='phoneNumber' className='form-control' placeholder='' />
+              <input
+                type='text'
+                name='phoneNumber'
+                className='form-control'
+                placeholder=''
+                defaultValue={user.phoneNumber}
+              />
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>Email</label>
-              <input type='text' name='email' className='form-control' placeholder='' />
+              <input type='text' name='email' className='form-control' placeholder='' defaultValue={user.email} />
             </div>
           </div>
           <div className='row'>
@@ -68,7 +86,9 @@ function UserCreate() {
               <label htmlFor='exampleInputPassword1'>Status</label>
               <select name='status' class='form-control'>
                 {Object.keys(userStatusEnum).map((status) => (
-                  <option value={status}>{status}</option>
+                  <option selected={status == user.status} value={status}>
+                    {status}
+                  </option>
                 ))}
               </select>
             </div>
@@ -76,7 +96,9 @@ function UserCreate() {
               <label htmlFor='exampleInputPassword1'>Role</label>
               <select name='role' class='form-control'>
                 {Object.keys(userRoleEnum).map((role) => (
-                  <option value={role}>{role}</option>
+                  <option selected={role == user.role} value={role}>
+                    {role}
+                  </option>
                 ))}
               </select>
             </div>
@@ -92,4 +114,4 @@ function UserCreate() {
   )
 }
 
-export default UserCreate
+export default OrderEdit

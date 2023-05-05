@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
-function AuthorEdit() {
+function PublisherCreate() {
   const { id } = useParams()
 
-  const [author, setAuthor] = useState({})
+  const [publisher, setPublisher] = useState({})
 
   const navigate = useNavigate()
 
   useEffect(() => {
-    axiosClient.get(`/authors/${id}`).then((rs) => setAuthor(rs.data.data.doc))
+    axiosClient.get(`/publishers/${id}`).then((rs) => setPublisher(rs.data.data.doc))
   }, [])
 
   function handleSubmit(e) {
@@ -21,20 +21,19 @@ function AuthorEdit() {
     // console.log(formData.get('name'));
 
     axiosClient
-      .patch(`/authors/${id}`, formData, {
+      .post(`/publishers`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
-      .then(navigate(`/admin/authors/${id}`))
+      .then((rs) => navigate(`/admin/publishers/${rs.data.data.doc._id}`))
   }
 
   return (
     <div className='card'>
       <div className='card-header'>
-        <h3 className='card-title'>Author detail</h3>
-        <span className='ml-5'>ID: {id}</span>
-        {/* <Link to={`/admin/authors/${id}`} className='btn btn-primary float-right'>
+        <h3 className='card-title'>Publisher detail</h3>
+        <Link to={`/admin/publishers`} className='btn btn-primary float-right'>
           <i class='fa-solid fa-angle-left'></i> Back
-        </Link> */}
+        </Link>
       </div>
       <form onSubmit={handleSubmit}>
         <div className='card-body'>
@@ -44,11 +43,11 @@ function AuthorEdit() {
           </div> */}
           <div className='form-group'>
             <label htmlFor='exampleInputPassword1'>Name</label>
-            <input type='text' name='name' className='form-control' placeholder='' defaultValue={author.name} />
+            <input type='text' name='name' className='form-control' placeholder='' />
           </div>
           <div className='form-group'>
             <label htmlFor='exampleInputPassword1'>Description</label>
-            <input type='text' name='description' className='form-control' placeholder='' defaultValue={author.description} />
+            <input type='text' name='description' className='form-control' placeholder='' />
           </div>
         </div>
         <div className='card-footer'>
@@ -61,4 +60,4 @@ function AuthorEdit() {
   )
 }
 
-export default AuthorEdit
+export default PublisherCreate
