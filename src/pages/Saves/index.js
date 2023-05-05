@@ -9,8 +9,7 @@ import BookItem from './components/BookItem'
 import GlobalContext from 'utils/GlobalContext'
 
 function Saves() {
-
-  const {saves} = useContext(GlobalContext).saves
+  const { saves } = useContext(GlobalContext).saves
   // const [books, setBooks] = useState([])
   // console.log(books)
   // const [page, setPage] = useState(1)
@@ -44,12 +43,18 @@ function Saves() {
     <main>
       <section className='latest-product-area padding-bottom'>
         <div className='container'>
-          <div className='row product-btn d-flex justify-content-end align-items-end'>
-            <div className='col'>
-              <div className='section-tittle mb-30'>
-                <h2>
-                  <i class='fa-regular fa-heart'></i> Saved Products
-                </h2>
+          <div className='slider-area'>
+            <div className='single-slider slider-height2 d-flex align-items-center'>
+              <div className='container'>
+                <div className='row'>
+                  <div className='col-xl-12'>
+                    <div className='hero-cap text-center'>
+                      <h2>
+                        <i class='fa-regular fa-heart'></i> Sách đã lưu
+                      </h2>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

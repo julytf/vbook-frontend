@@ -7,8 +7,11 @@ import dvhcvn from 'assets/json/dvhcvn.json'
 
 import './style.css'
 import axiosClient from 'utils/axiosClient'
+import { useNavigate } from 'react-router-dom'
 
 function Checkout() {
+  const navigate = useNavigate()
+
   const shippingFree = 20000
 
   const { cart, totalCost } = useContext(GlobalContext).cart
@@ -25,9 +28,13 @@ function Checkout() {
 
     const formData = new FormData(e.target)
 
-    axiosClient.post(`/orders/buy_from_cart`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
+    axiosClient
+      .post(`/orders/buy-from-cart`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })  
+      .then((rs) => {
+        navigate(`/orders/${rs.data.data.doc._id}`)
+      })
   }
 
   function handleCityChange(e) {
@@ -54,7 +61,7 @@ function Checkout() {
                   <input
                     type='text'
                     name='address[fullName]'
-                    defaultValue={user.address.fullName}
+                    defaultValue={user.address?.fullName}
                     className='form-control'
                     placeholder='Họ và Tên'
                   />
@@ -63,14 +70,14 @@ function Checkout() {
                   <input
                     type='text'
                     name='address[phoneNumber]'
-                    defaultValue={user.address.phoneNumber}
+                    defaultValue={user.address?.phoneNumber}
                     className='form-control'
                     placeholder='Số Điện thoại'
                   />
                 </div>
                 <div className='col-md-4 form-group'>
                   <select
-                    defaultValue={user.address.city}
+                    defaultValue={user.address?.city}
                     name='address[city]'
                     onChange={handleCityChange}
                     className='country_select form-control'
@@ -85,7 +92,7 @@ function Checkout() {
                 </div>
                 <div className='col-md-4 form-group'>
                   <select
-                    defaultValue={user.address.provine}
+                    defaultValue={user.address?.provine}
                     name='address[provine]'
                     onChange={handleProvineChange}
                     className='country_select form-control'
@@ -100,7 +107,7 @@ function Checkout() {
                 </div>
                 <div className='col-md-4 form-group'>
                   <select
-                    defaultValue={user.address.district}
+                    defaultValue={user.address?.district}
                     name='address[district]'
                     className='country_select form-control'
                   >
@@ -115,7 +122,7 @@ function Checkout() {
                 <div className='col-md-12 form-group'>
                   <input
                     name='address[address]'
-                    defaultValue={user.address.address}
+                    defaultValue={user.address?.address}
                     type='text'
                     className='form-control'
                   />
@@ -123,18 +130,13 @@ function Checkout() {
                 <div className='col-md-12 form-group'>
                   <input
                     name='address[address2]'
-                    defaultValue={user.address.address2}
+                    defaultValue={user.address?.address2}
                     type='text'
                     className='form-control'
                   />
                 </div>
                 <div className='col-md-12 form-group'>
-                  <textarea
-                    className='form-control'
-                    name='note'
-                    rows={1}
-                    placeholder='Order Notes'
-                  />
+                  <textarea className='form-control' name='note' rows={1} placeholder='Order Notes' />
                 </div>
               </form>
             </div>

@@ -1,8 +1,22 @@
 .content-wrapper {
-    margin-top: 57px;
+    /* margin-top: 57px; */
 }
 
 td {
     padding-top: 0.35rem !important;
     padding-bottom: 0.35rem !important;
+}
+
+/* .card-header {
+    width: 100%;
+    position: fixed;
+    z-index: 50;
+} */
+
+.card-body {
+    /* margin-top: 63px; */
+}
+
+.main-footer {
+    margin-top: auto;
 }

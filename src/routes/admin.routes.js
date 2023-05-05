@@ -3,6 +3,7 @@ import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { AuthAdminContextProvider } from 'utils/AuthAdminContext'
 import { CartContextProvider } from 'utils/GlobalContext'
 import AuthAdminMiddleware from 'middlewares/AuthAdmin'
+import BookCreate from 'pages/admin/Books/Create'
 
 const AdminLayout = lazy(() => import('layouts/Admin'))
 
@@ -54,6 +55,10 @@ const router = {
             {
               path: '',
               element: <Books />,
+            },
+            {
+              path: 'create',
+              element: <BookCreate />,
             },
             {
               path: ':id',

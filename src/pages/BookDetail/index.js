@@ -14,7 +14,7 @@ function BookDetail() {
   // const [isSaved, setIsSaved] = useState(false)
   const maxQuantity = 100
 
-  const { addItem, sync } = useContext(GlobalContext).cart
+  const { addItem, syncCart } = useContext(GlobalContext).cart
   const { isSaved, toggleSave } = useContext(GlobalContext).saves
 
   useLayoutEffect(() => {
@@ -31,7 +31,7 @@ function BookDetail() {
 
   async function handleAddItem() {
     await addItem({ book, quantity })
-    await sync()
+    await syncCart()
   }
 
   function handleToggleSave() {
@@ -57,7 +57,7 @@ function BookDetail() {
                 data-bs-target='#carouselExample'
                 data-bs-slide='prev'
               >
-                <span className='carousel-control-prev-icon' aria-hidden='true' />
+                <i class='fa-solid fa-angle-left fa-2xl' style={{ color: '#50a060' }}></i>
                 <span className='visually-hidden'>Previous</span>
               </button>
               <button

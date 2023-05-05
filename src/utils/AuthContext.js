@@ -9,7 +9,7 @@ export function AuthContextProvider({ children }) {
   const [token, setToken] = useState(null)
   const [user, setUser] = useState({})
 
-  console.log('user', user)
+  // console.log('user', user)
 
   useLayoutEffect(() => {
     ;(async () => {
@@ -57,6 +57,17 @@ export function AuthContextProvider({ children }) {
     setApiToken('')
     localStorage.removeItem('jwt')
   }
+  async function changePassword(password, newPassword) {
+    await axiosClient.post(
+      '/auth/me/change-password',
+      { password, newPassword },
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+  }
 
   const contextValue = {
     token,
@@ -66,6 +77,7 @@ export function AuthContextProvider({ children }) {
     register,
     login,
     logout,
+    changePassword,
   }
 
   if (isLoading) return <p>Loading...</p>

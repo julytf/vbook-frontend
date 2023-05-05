@@ -33,12 +33,21 @@
 }
 
 .product-img {
-  width: 268px;
-  height: 268px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .product-img img {
-  width: initial !important;
+  width: auto;
+  height: auto;
   max-width: 100%;
   max-height: 100%;
+  object-fit: contain;
+}
+.paginate li button.active {
+  color: white;
+}
+
+.paginate li button {
+  color: black;
 }

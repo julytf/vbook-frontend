@@ -1,21 +1,28 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import logo from 'assets/img/logo.png'
-import { useContext, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import GlobalContext from 'utils/GlobalContext'
 import AuthContext from 'utils/AuthContext'
 
 function Header() {
+  const navigate = useNavigate()
+
   const { isLoggedIn } = useContext(AuthContext)
 
   let { totalQuantity } = useContext(GlobalContext).cart
   let { saves } = useContext(GlobalContext).saves
-const quantity = saves.length
-  console.log(totalQuantity)
+  const quantity = saves.length
+  // console.log(totalQuantity)
   if (totalQuantity > 99) totalQuantity = '99+'
 
-  function handleSearch() {
-    // TODO:
+  const queryRef = useRef()
+
+  function handleSearch(e) {
+    e.preventDefault()
+    // console.log(queryRef.current);
+    // console.log(queryRef.current.value);
+    navigate(`/books?q=${queryRef.current.value}`)
   }
 
   return (
@@ -25,14 +32,14 @@ const quantity = saves.length
           <div className='header-bottom header-sticky'>
             <div className='container-fluid'>
               <div className='row align-items-center'>
-                <div className='col-xl-1 col-lg-1 col-md-1 col-sm-3'>
+                <div className='col-2'>
                   <div className='logo'>
                     <Link to={'/'}>
                       <img className='w-100' src={logo} alt='' />
                     </Link>
                   </div>
                 </div>
-                <div className='col-xl-6 col-lg-8 col-md-7 col-sm-5'>
+                <div className='col-5'>
                   <div className='main-menu f-right d-none d-lg-block'>
                     <nav>
                       <ul id='navigation'>
@@ -54,18 +61,21 @@ const quantity = saves.length
                         <li>
                           <Link to={'/books'}>Books</Link>
                         </li>
+                        <li>
+                          <Link to={'/orders'}>Đơn hàng</Link>
+                        </li>
                       </ul>
                     </nav>
                   </div>
                 </div>
-                <div className='col-xl-5 col-lg-3 col-md-3 col-sm-3 fix-card'>
+                <div className='col-5'>
                   <ul className='header-right f-right d-none d-lg-block d-flex justify-content-between'>
                     <li className='d-none d-xl-block'>
                       <form onSubmit={handleSearch} className='form-box f-right'>
-                        <input type='text' name='q' placeholder='Search products' />
-                        <button type='submit' className='search-icon '>
+                        <input type='text' ref={queryRef} placeholder='Search products' />
+                        <div className='search-icon '>
                           <i className='fas fa-search special-tag' />
-                        </button>
+                        </div>
                       </form>
                     </li>
                     {isLoggedIn && (
@@ -87,18 +97,25 @@ const quantity = saves.length
                         <li>
                           <div className='shopping-card'>
                             <Link to={'/account'}>
-                              <i class='fa-regular fa-user'></i>
+                              <i className='fa-regular fa-user'></i>
                             </Link>
                           </div>
                         </li>
                       </>
                     )}
                     {!isLoggedIn && (
-                      <li className='d-none d-lg-block'>
-                        <Link to={'/login'} className='btn header-btn'>
-                          Sign in
-                        </Link>
-                      </li>
+                      <>
+                        <li className='d-none d-lg-block'>
+                          <Link to={'/register'} className='btn header-btn'>
+                            Register
+                          </Link>
+                        </li>
+                        <li className='d-none d-lg-block'>
+                          <Link to={'/login'} className='btn header-btn'>
+                            Log in
+                          </Link>
+                        </li>
+                      </>
                     )}
                   </ul>
                 </div>

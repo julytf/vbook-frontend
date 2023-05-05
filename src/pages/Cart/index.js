@@ -16,8 +16,21 @@ function Cart() {
   }
 
   return (
-    <section className='cart_area section_padding'>
+    <section className='cart_area '>
       <div className='container'>
+        <div className='slider-area'>
+          <div className='single-slider slider-height2 d-flex align-items-center'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <div className='hero-cap text-center'>
+                    <h2>Giỏ hàng</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='cart_inner'>
           <div className='table-responsive'>
             <table className='table'>
@@ -30,7 +43,9 @@ function Cart() {
                 </tr>
               </thead>
               <tbody>
-                {cart.map(item => <CartItem cartItem={item}/>)}
+                {cart.map((item) => (
+                  <CartItem key={item.book._id} cartItem={item} />
+                ))}
                 <tr className='bottom_button'>
                   <td>
                     <button onClick={handleUpdate} className='btn_1'>
@@ -58,7 +73,6 @@ function Cart() {
                     <h2>{totalCost.toLocaleString()}</h2>
                   </td>
                 </tr>
-                
               </tbody>
             </table>
             <div className='checkout_btn_inner'>

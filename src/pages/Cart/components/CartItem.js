@@ -34,18 +34,18 @@ function CartItem({ cartItem }) {
       </td>
       <td>
         <div className='product_count'>
-          <div class='input-group input-group-sm mb-3'>
-            <button class='input-group-text' onClick={handleDecrease}>
+          <div className='input-group input-group-sm mb-3'>
+            <button className='input-group-text' onClick={handleDecrease}>
               -
             </button>
             <input
               type='text'
-              class='form-control p-0 text-center'
+              className='form-control p-0 text-center'
               value={cartItem.quantity}
               onChange={handleChange}
               style={{ width: '50px' }}
             />
-            <button class='input-group-text' onClick={handleIncrease}>
+            <button className='input-group-text' onClick={handleIncrease}>
               +
             </button>
           </div>

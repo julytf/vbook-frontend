@@ -13,7 +13,7 @@ function BookDetail() {
   }, [])
 
   return (
-    <div className='card card-success'>
+    <div className='card '>
       <div className='card-header'>
         <h3 className='card-title'>Book detail</h3>
         <span className='ml-5'>ID: {id}</span>

@@ -10,7 +10,7 @@ function Login() {
   const passwordRef = useRef()
 
   function handleLogin(e) {
-    console.log(e);
+    // console.log(e)
     e.preventDefault()
     login(usernameRef.current.value, passwordRef.current.value)
   }
@@ -18,10 +18,10 @@ function Login() {
   if (isLoggedIn) return <Navigate to={'/'} />
 
   return (
-    <section className='login_part section_padding '>
+    <section className='login_part'>
       <div className='container'>
-        <div className='row align-items-center'>
-          <div className='col-lg-6 col-md-6'>
+        <div className='row d-flex justify-content-center'>
+          {/* <div className='col-lg-6 col-md-6'>
             <div className='login_part_text text-center'>
               <div className='login_part_text_iner'>
                 <h2>New to our Shop?</h2>
@@ -33,38 +33,28 @@ function Login() {
                 </a>
               </div>
             </div>
-          </div>
-          <div className='col-lg-6 col-md-6'>
+          </div> */}
+          <div className='col-6 d-flex justify-content-center'>
             <div className='login_part_form'>
               <div className='login_part_form_iner'>
                 <h3>
-                  Welcome Back ! <br />
-                  Please Sign in now
+                  Chào mừng trở lại! <br />
+                  Đăng nhập
                 </h3>
-                <form onSubmit={handleLogin} className='row contact_form'  noValidate='novalidate'>
+                <form onSubmit={handleLogin} className='row contact_form' noValidate='novalidate'>
                   <div className='col-md-12 form-group p_star'>
-                    <input
-                      type='text'
-                      className='form-control'
-                      placeholder='Username'
-                      ref={usernameRef}
-                    />
+                    <input type='text' className='form-control' placeholder='Username' ref={usernameRef} />
                   </div>
                   <div className='col-md-12 form-group p_star'>
-                    <input
-                      type='password'
-                      className='form-control'
-                      placeholder='Password'
-                      ref={passwordRef}
-                    />
+                    <input type='password' className='form-control' placeholder='Password' ref={passwordRef} />
                   </div>
                   <div className='col-md-12 form-group'>
-                    <div className='creat_account d-flex align-items-center'>
+                    {/* <div className='creat_account d-flex align-items-center'>
                       <input type='checkbox' id='f-option' name='selector' />
                       <label htmlFor='f-option'>Remember me</label>
-                    </div>
+                    </div> */}
                     <button type='submit' value='submit' className='btn_3'>
-                      log in
+                      đăng nhập
                     </button>
                     {/* <a className='lost_pass' href='#'>
                       forget password?

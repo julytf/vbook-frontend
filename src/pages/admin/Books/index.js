@@ -3,6 +3,7 @@ import axiosClient from 'utils/axiosClient'
 
 import Row from './components/Row'
 import Paginate from '../components/Paginate'
+import { Link } from 'react-router-dom'
 
 function Books() {
   const [books, setBooks] = useState([])
@@ -32,8 +33,9 @@ function Books() {
       <div className='card'>
         <div className='card-header'>
           <h3 className='card-title'>Responsive Hover Table</h3>
-          <div className='card-tools'>
-            <div className='input-group input-group-sm' style={{ width: '150px' }}>
+          <div className='card-tools d-flex align-items-center'>
+            <Link to={'/admin/books/create'} className='btn btn-primary btn-sm me-3'> Create</Link>
+            <div className='input-group input-group-sm'>
               <input type='text' name='table_search' className='form-control float-right' placeholder='Search' />
               <div className='input-group-append'>
                 <button type='submit' className='btn btn-default'>

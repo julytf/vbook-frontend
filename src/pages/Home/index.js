@@ -2,10 +2,12 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axiosClient from 'utils/axiosClient'
 
 import bannerImage from 'assets/img/banner.jpg'
+import homeBanner from 'assets/img/banner2.jpg'
 
 import './style.css'
 
 import BookItem from './components/BookItem'
+import { Link } from 'react-router-dom'
 
 function Home() {
   const [books, setBooks] = useState([])
@@ -40,11 +42,33 @@ function Home() {
   return (
     <main ref={mainContentRef}>
       <section className='latest-product-area padding-bottom'>
+        <div className='slider-area mb-5'>
+          <div
+            className='single-slider slider-height2 d-flex align-items-center'
+            style={{
+              backgroundImage: `
+              linear-gradient(
+                rgba(255, 255, 255, 0.45), 
+                rgba(255, 255, 255, 0.45)
+              ), url(${homeBanner})`,
+                      }}
+          >
+            <div className='container'>
+              <div className='row'>
+                <div className='col-xl-12'>
+                  <div className='hero-cap text-center'>
+                    <h2>"Để cho con một hòm vàng không bằng dạy cho con một quyển sách hay"</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='container'>
           <div className='row product-btn d-flex justify-content-end align-items-end'>
             <div className='col-xl-4 col-lg-5 col-md-5'>
               <div className='section-tittle mb-30'>
-                <h2>Latest Products</h2>
+                <h2>Sách mới nhất</h2>
               </div>
             </div>
             <div className='col-xl-8 col-lg-7 col-md-7'>
@@ -108,6 +132,11 @@ function Home() {
                 ))}
               </div>
             </div>
+          </div>
+          <div className='row'>
+            <Link to={'/books'} className='btn_3 text-center'>
+              Xem Thêm
+            </Link>
           </div>
         </div>
       </section>

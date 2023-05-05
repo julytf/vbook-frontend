@@ -21,7 +21,7 @@ export function GlobalContextProvider({ children }) {
   async function addItem(cartItem) {
     const bookId = cartItem.book._id || cartItem.book
     const index = cart.findIndex((item) => item.book._id === bookId)
-    console.log(cartItem, index)
+    // console.log(cartItem, index)
 
     if (index != -1) {
       // TODO:

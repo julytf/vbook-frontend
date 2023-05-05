@@ -1,3 +1,6 @@
+import ChangePassword from 'pages/ChangePassword'
+import OrderDetail from 'pages/OrderDetail'
+import Orders from 'pages/Orders'
 import Saves from 'pages/Saves'
 import { lazy, Suspense } from 'react'
 import { AuthContextProvider } from 'utils/AuthContext'
@@ -15,15 +18,13 @@ const Account = lazy(() => import('pages/Account'))
 const Checkout = lazy(() => import('pages/Checkout'))
 
 function FallbackLoading() {
-  return (
-    <p>Loading...</p>
-  )
+  return <p>Loading...</p>
 }
 
 const router = {
   path: '',
   element: (
-    <Suspense fallback={<FallbackLoading/>}>
+    <Suspense fallback={<FallbackLoading />}>
       <AuthContextProvider>
         <GlobalContextProvider>
           <MainLayout />
@@ -56,32 +57,38 @@ const router = {
       element: <Register />,
     },
     {
-      path: 'account',
-      element: (
-        <AuthMiddleware>
-          <Account />
-        </AuthMiddleware>
-      ),
-    },
-    {
-      path: 'saves',
-      element: <Saves />,
-    },
-    {
-      path: 'cart',
-      element: (
-        <AuthMiddleware>
-          <Cart />
-        </AuthMiddleware>
-      ),
-    },
-    {
-      path: 'checkout',
-      element: (
-        <AuthMiddleware>
-          <Checkout />
-        </AuthMiddleware>
-      ),
+      path: '',
+      element: <AuthMiddleware />,
+      children: [
+        {
+          path: 'account',
+          element: <Account />,
+        },
+        {
+          path: 'change-password',
+          element: <ChangePassword />,
+        },
+        {
+          path: 'saves',
+          element: <Saves />,
+        },
+        {
+          path: 'cart',
+          element: <Cart />,
+        },
+        {
+          path: 'checkout',
+          element: <Checkout />,
+        },
+        {
+          path: 'orders',
+          element: <Orders />,
+        },
+        {
+          path: 'orders/:orderId',
+          element: <OrderDetail />,
+        },
+      ],
     },
   ],
 }

@@ -20,7 +20,7 @@ function Row({ author, deleteAuthor }) {
       <td>{author.name}</td>
       <td>{author.description}</td>
       <td>
-        <button onClick={handleDelete}>
+        <button className='btn btn-danger btn-sm' onClick={handleDelete}>
           <i className='fa-regular fa-x'></i>
         </button>
       </td>

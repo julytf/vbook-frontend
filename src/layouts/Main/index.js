@@ -3,7 +3,7 @@ import Footer from './components/Footer'
 import { Outlet } from 'react-router-dom'
 
 import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // import 'assets/css/bootstrap.min.css'
 // import "assets/css/animate.min.css"
@@ -29,10 +29,10 @@ function Main() {
           </div>
         </div>
       </div>
-      
-      <Header/>
-      <Outlet/>
-      <Footer/>
+
+      <Header />
+      <Outlet />
+      <Footer />
     </>
   )
 }

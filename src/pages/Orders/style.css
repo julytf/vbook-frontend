@@ -1,0 +1,28 @@
+.orders_area .cart_inner {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px;
+    margin-bottom: 20px;
+}
+
+.orders_area .cart_inner .head {
+    border-bottom: 1px solid grey;
+    /* padding: 20px; */
+    /* margin: 20px; */
+    height: 50px;
+}
+
+.orders_area .cart_inner .head > * {
+    padding: 0.5rem;
+}
+
+.orders_area .cart_item img {
+    height: 50px;
+}
+
+.orders_area .cart_item td {
+    padding: 10px !important;
+}
+.orders_area .table tbody tr td h5 {
+    font-size: inherit !important;
+}

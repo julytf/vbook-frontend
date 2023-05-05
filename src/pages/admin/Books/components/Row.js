@@ -24,7 +24,7 @@ function Row({ book, deleteBook }) {
       <td>{book.status}</td>
       <td>{book.price.toLocaleString()}</td>
       <td>
-        <button onClick={handleDelete}>
+        <button className='btn btn-danger btn-sm' onClick={handleDelete}>
           <i className='fa-regular fa-x'></i>
         </button>
       </td>
