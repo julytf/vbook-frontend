@@ -158,7 +158,7 @@ function Account() {
                     onChange={handleCityChange}
                     className='country_select form-control'
                   >
-                    <option value={''}>Chọn Thành phố</option>
+                    <option >Chọn Thành phố</option>
                     {citys.map((city) => (
                       <option value={city.id} key={city.id}>
                         {city.name}
@@ -173,7 +173,7 @@ function Account() {
                     onChange={handleProvineChange}
                     className='country_select form-control'
                   >
-                    <option value={''}>Chọn Quận/Huyện</option>
+                    <option >Chọn Quận/Huyện</option>
                     {provines.map((provine) => (
                       <option value={provine.id} key={provine.id}>
                         {provine.name}
@@ -187,7 +187,7 @@ function Account() {
                     name='address[district]'
                     className='country_select form-control'
                   >
-                    <option value={''}>Chọn Phường/Xã</option>
+                    <option >Chọn Phường/Xã</option>
                     {districts.map((district) => (
                       <option value={district.id} key={district.id}>
                         {district.name}

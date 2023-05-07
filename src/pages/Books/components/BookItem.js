@@ -8,7 +8,7 @@ function BookItem({ book }) {
       <div className='single-product mb-60'>
         <div className='product-img'>
           <Link to={`/books/${book._id}`}>
-            <img src={book.images[0].file} alt='' />
+            <img src={book.images[0]?.file} alt='' />
           </Link>
         </div>
         <div className='product-caption'>

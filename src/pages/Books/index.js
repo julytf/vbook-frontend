@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axiosClient from 'utils/axiosClient'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import './style.css'
 import { truncate } from 'helper'
@@ -8,7 +8,7 @@ import BookItem from './components/BookItem'
 import Pagination from './components/Pagination'
 
 function Books() {
-  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
@@ -16,19 +16,16 @@ function Books() {
   // console.log(params.q);
 
   const [books, setBooks] = useState([])
-  const [page, setPage] = useState(1)
-  const [noPage, setNoPage] = useState(0)
+  const [page, setPage] = useState(searchParams.get('page') || 1)
+  const [noPage, setNoPage] = useState(1)
   const [perPage, setPetPage] = useState(30)
-  const [query, setQuery] = useState(() => {
-    const params = new Proxy(new URLSearchParams(window.location.search), {
-      get: (searchParams, prop) => searchParams.get(prop),
-    })
-    return params.q
-  })
+  const [query, setQuery] = useState(searchParams.get('q') || '')
   console.log(books)
   // console.log(page)
 
   const queryRef = useRef()
+
+  const navigate = useNavigate()
 
   useLayoutEffect(() => {
     navigate({

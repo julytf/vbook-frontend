@@ -23,18 +23,27 @@ function Checkout() {
     provines.find((provine) => provine.id === user.address?.provine)?.sub || []
   )
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     const formData = new FormData(e.target)
+    // return console.log(formData.get('paymentMethod'))
 
-    axiosClient
-      .post(`/orders/buy-from-cart`, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      })  
-      .then((rs) => {
-        navigate(`/orders/${rs.data.data.doc._id}`)
-      })
+    let rs = await axiosClient.post(`/orders/buy-from-cart`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+
+    const order = rs.data.data.doc
+
+    rs = await axiosClient.get(`/orders/${order._id}/checkout-session`)
+
+    // console.log(rs)
+
+    const paymentUrl = rs.data.paymentUrl
+
+    window.open(paymentUrl, '_blank', 'noopener,noreferrer')
+
+    navigate(`/orders/${order._id}`)
   }
 
   function handleCityChange(e) {
@@ -182,33 +191,32 @@ function Checkout() {
                 </ul>
                 <div className='payment_item'>
                   <div className='radion_btn'>
-                    <input type='radio' id='f-option5' name='selector' />
-                    <label htmlFor='f-option5'>Check payments</label>
+                    <input type='radio' id='f-option5' name='paymentMethod' value='COD' checked form='checkout_form' />
+                    <label htmlFor='f-option5'>Thanh toán khi nhận hàng</label>
                     <div className='check' />
                   </div>
-                  <p>
-                    {/* TODO: */}
+                  {/* <p>
                     Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
-                  </p>
+                  </p> */}
                 </div>
                 <div className='payment_item active'>
                   <div className='radion_btn'>
-                    <input type='radio' id='f-option6' name='selector' />
-                    <label htmlFor='f-option6'>Paypal </label>
+                    <input type='radio' id='f-option6' name='paymentMethod' value='CARD' form='checkout_form' />
+                    <label htmlFor='f-option6'>Thành toán bằng thẻ Credit</label>
                     <img src='img/product/single-product/card.jpg' alt='' />
                     <div className='check' />
                   </div>
-                  <p>
+                  {/* <p>
                     Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.
-                  </p>
+                  </p> */}
                 </div>
-                <div className='creat_account'>
+                {/* <div className='creat_account'>
                   <input type='checkbox' id='f-option4' name='selector' />
                   <label htmlFor='f-option4'>I’ve read and accept the </label>
                   <a href='#'>terms &amp; conditions*</a>
-                </div>
+                </div> */}
                 <button form='checkout_form' className='btn_3'>
-                  Proceed to Paypal
+                  Đặt hàng
                 </button>
               </div>
             </div>

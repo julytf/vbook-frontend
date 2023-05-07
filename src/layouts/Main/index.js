@@ -15,6 +15,7 @@ import 'assets/css/style.css'
 import 'assets/css/style2.css'
 
 import './style.css'
+import FacebookChatPlugin from './components/FacebookChatPlugin'
 
 function Main() {
   return (
@@ -33,6 +34,7 @@ function Main() {
       <Header />
       <Outlet />
       <Footer />
+      <FacebookChatPlugin/>
     </>
   )
 }
