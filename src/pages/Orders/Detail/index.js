@@ -25,7 +25,7 @@ function OrderDetail() {
   function handleCancelOrder() {
     axiosClient.get(`/orders/${orderId}/cancel-order`).then(() => {
       order.status = orderStatusEnum.CANCELED
-      setOrder({...order})
+      setOrder({ ...order })
     })
   }
 
@@ -35,13 +35,21 @@ function OrderDetail() {
         <h3>Thông tin giao hàng</h3>
         <h3 className='col form-group float-end top-0'>
           <div>{order.status}</div>
-          {order.status == orderStatusEnum.PENDING && <button onClick={handleCancelOrder} className='btn_3 btn_red mt-3'>Hủy đơn hàng</button>}
+          {order.status == orderStatusEnum.PENDING && (
+            <button onClick={handleCancelOrder} className='btn_3 btn_red mt-3'>
+              Hủy đơn hàng
+            </button>
+          )}
         </h3>
         <div className='col form-group'>{order.address?.fullName}</div>
         <div className='col form-group'>{order.address?.phoneNumber}</div>
         <div className='col form-group'>{`${city?.name}, ${provine?.name}, ${district?.name}`}</div>
         <div className='col form-group'>{order.address?.address}</div>
         <div className='col form-group'>{order.address?.address2}</div>
+        <div className='col form-group mt-5 h5'>Hình thức thanh toán: {order.paymentMethod == 'COD' ? 'Khi nhận hàng' : 'Thẻ'}</div>
+        {order.paymentMethod == 'CARD' && (
+          <div className='col form-group h5'>Trạng thái thanh toán: {order.paymentMethod == 'COD' ? 'Khi nhận hàng' : order.payment.paid ? 'Đã thanh toán' : 'Chưa thành toán'}</div>
+        )}
 
         <h3 className='mt-5'>Sản phẩm</h3>
         <div className='cart_inner'>
@@ -66,9 +74,7 @@ function OrderDetail() {
                     <h5>Total</h5>
                   </td>
                   <td>
-                    <h2>
-                      {order.details?.reduce((prev, cur) => prev + cur.book.price * cur.quantity, 0).toLocaleString()}
-                    </h2>
+                    <h2>{order.details?.reduce((prev, cur) => prev + cur.book.price * cur.quantity, 0).toLocaleString()}</h2>
                   </td>
                 </tr>
               </tbody>

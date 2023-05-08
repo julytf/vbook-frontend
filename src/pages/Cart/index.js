@@ -47,7 +47,7 @@ function Cart() {
                   {cart.map((item) => (
                     <CartItem key={item.book._id} cartItem={item} />
                   ))}
-                  <tr className='bottom_button'>
+                  {/* <tr className='bottom_button'>
                     <td>
                       <button onClick={handleUpdate} className='btn_1'>
                         Update Cart
@@ -55,7 +55,7 @@ function Cart() {
                     </td>
                     <td />
                     <td />
-                    <td />
+                    <td /> */}
                     {/* <td>
                     <div className='cupon_text float-right'>
                       <a className='btn_1' href='#'>
@@ -63,7 +63,7 @@ function Cart() {
                       </a>
                     </div>
                   </td> */}
-                  </tr>
+                  {/* </tr> */}
                   <tr>
                     <td />
                     <td />

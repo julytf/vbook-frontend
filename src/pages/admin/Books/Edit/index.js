@@ -42,7 +42,7 @@ function BookEdit() {
 
   return (
     <div className='card '>
-      <div className='card-header'>
+      <div className='card-header bg-dark'>
         {/* <button onClick={() => navigate(-1)} className='btn btn-primary me-3'>
           <i class='fa-solid fa-angle-left'></i> Back
         </button> */}
@@ -77,13 +77,7 @@ function BookEdit() {
 
           <div className='form-group'>
             <label htmlFor='exampleInputPassword1'>description</label>
-            <textarea
-              type='text'
-              name='description'
-              className='form-control'
-              placeholder=''
-              defaultValue={book.description}
-            />
+            <textarea type='text' name='description' className='form-control' placeholder='' defaultValue={book.description} />
           </div>
           <div className='row'>
             <div className='form-group col-6'>
@@ -94,9 +88,12 @@ function BookEdit() {
               <label htmlFor='exampleInputPassword1'>status</label>
               <select name='status' class='form-control'>
                 {Object.keys(bookStatusEnum).map((status) => (
-                  <option selected={status == book.status} value={status}>{status}</option>
+                  <option selected={status == book.status} value={status}>
+                    {status}
+                  </option>
                 ))}
-              </select></div>
+              </select>
+            </div>
           </div>
           <div className='row'>
             <div className='form-group col-6'>
@@ -105,13 +102,7 @@ function BookEdit() {
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>discountPercent</label>
-              <input
-                type='text'
-                name='discountPercent'
-                className='form-control'
-                placeholder=''
-                defaultValue={book.discountPercent}
-              />
+              <input type='text' name='discountPercent' className='form-control' placeholder='' defaultValue={book.discountPercent} />
             </div>
           </div>
           <div className='row'>
@@ -137,13 +128,7 @@ function BookEdit() {
             </div>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>translator</label>
-              <input
-                type='text'
-                name='translator'
-                className='form-control'
-                placeholder=''
-                defaultValue={book.translator}
-              />
+              <input type='text' name='translator' className='form-control' placeholder='' defaultValue={book.translator} />
             </div>
           </div>
           <div className='row'>
@@ -200,10 +185,24 @@ function BookEdit() {
               </select>
             </div>
           </div>
-          <div className='row'>
+          {/* <div className='row'>
             <div className='form-group col-1'>
               <label htmlFor='exampleInputPassword1'>rate</label>
               <input type='text' className='form-control' placeholder='' defaultValue={book.rate} disabled />
+            </div>
+          </div> */}
+          <div className='row'>
+            <label htmlFor='exampleInputPassword1'>Ảnh</label>
+            <div class='input-group col-6'>
+              <input type='file' class='form-control' id='inputGroupFile04' aria-describedby='inputGroupFileAddon04' aria-label='Upload' multiple />
+              <button class='btn btn-outline-secondary' type='button' id='inputGroupFileAddon04'>
+                Button
+              </button>
+            </div>
+            <div class='input-group col-12 mt-2'>
+              {book.images.map((image) => (
+                <img src={image.file}  style={{height: '50px'}}/>
+              ))}
             </div>
           </div>
         </div>

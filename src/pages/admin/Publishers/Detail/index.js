@@ -14,7 +14,7 @@ function PublisherDetail() {
 
   return (
     <div className='card'>
-      <div className='card-header'>
+      <div className='card-header bg-dark'>
         <h3 className='card-title'>Publisher detail</h3>
         <span className='ml-5'>ID: {id}</span>
         <Link to={`/admin/publishers/${id}/edit`} className='btn btn-primary float-right'>

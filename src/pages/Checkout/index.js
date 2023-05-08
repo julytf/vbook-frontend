@@ -19,9 +19,7 @@ function Checkout() {
 
   const [citys, setCitys] = useState(dvhcvn.data)
   const [provines, setProvines] = useState(citys.find((city) => city.id === user.address?.city)?.sub || [])
-  const [districts, setDistricts] = useState(
-    provines.find((provine) => provine.id === user.address?.provine)?.sub || []
-  )
+  const [districts, setDistricts] = useState(provines.find((provine) => provine.id === user.address?.provine)?.sub || [])
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -35,13 +33,15 @@ function Checkout() {
 
     const order = rs.data.data.doc
 
-    rs = await axiosClient.get(`/orders/${order._id}/checkout-session`)
+    if (order.paymentMethod == 'CARD') {
+      rs = await axiosClient.get(`/orders/${order._id}/checkout-session`)
 
-    // console.log(rs)
+      // console.log(rs)
 
-    const paymentUrl = rs.data.paymentUrl
+      const paymentUrl = rs.data.paymentUrl
 
-    window.open(paymentUrl, '_blank', 'noopener,noreferrer')
+      window.open(paymentUrl, '_blank', 'noopener,noreferrer')
+    }
 
     navigate(`/orders/${order._id}`)
   }
@@ -67,30 +67,13 @@ function Checkout() {
               <h3>Thông tin giao hàng</h3>
               <form className='row contact_form' id='checkout_form' onSubmit={handleSubmit} noValidate='novalidate'>
                 <div className='col-md-6 form-group'>
-                  <input
-                    type='text'
-                    name='address[fullName]'
-                    defaultValue={user.address?.fullName}
-                    className='form-control'
-                    placeholder='Họ và Tên'
-                  />
+                  <input type='text' name='address[fullName]' defaultValue={user.address?.fullName} className='form-control' placeholder='Họ và Tên' />
                 </div>
                 <div className='col-md-6 form-group'>
-                  <input
-                    type='text'
-                    name='address[phoneNumber]'
-                    defaultValue={user.address?.phoneNumber}
-                    className='form-control'
-                    placeholder='Số Điện thoại'
-                  />
+                  <input type='text' name='address[phoneNumber]' defaultValue={user.address?.phoneNumber} className='form-control' placeholder='Số Điện thoại' />
                 </div>
                 <div className='col-md-4 form-group'>
-                  <select
-                    defaultValue={user.address?.city}
-                    name='address[city]'
-                    onChange={handleCityChange}
-                    className='country_select form-control'
-                  >
+                  <select defaultValue={user.address?.city} name='address[city]' onChange={handleCityChange} className='country_select form-control'>
                     <option value={''}>Chọn Thành phố</option>
                     {citys.map((city) => (
                       <option value={city.id} key={city.id}>
@@ -100,12 +83,7 @@ function Checkout() {
                   </select>
                 </div>
                 <div className='col-md-4 form-group'>
-                  <select
-                    defaultValue={user.address?.provine}
-                    name='address[provine]'
-                    onChange={handleProvineChange}
-                    className='country_select form-control'
-                  >
+                  <select defaultValue={user.address?.provine} name='address[provine]' onChange={handleProvineChange} className='country_select form-control'>
                     <option value={''}>Chọn Quận/Huyện</option>
                     {provines.map((provine) => (
                       <option value={provine.id} key={provine.id}>
@@ -115,11 +93,7 @@ function Checkout() {
                   </select>
                 </div>
                 <div className='col-md-4 form-group'>
-                  <select
-                    defaultValue={user.address?.district}
-                    name='address[district]'
-                    className='country_select form-control'
-                  >
+                  <select defaultValue={user.address?.district} name='address[district]' className='country_select form-control'>
                     <option value={''}>Chọn Phường/Xã</option>
                     {districts.map((district) => (
                       <option value={district.id} key={district.id}>
@@ -129,20 +103,10 @@ function Checkout() {
                   </select>
                 </div>
                 <div className='col-md-12 form-group'>
-                  <input
-                    name='address[address]'
-                    defaultValue={user.address?.address}
-                    type='text'
-                    className='form-control'
-                  />
+                  <input name='address[address]' defaultValue={user.address?.address} type='text' className='form-control' />
                 </div>
                 <div className='col-md-12 form-group'>
-                  <input
-                    name='address[address2]'
-                    defaultValue={user.address?.address2}
-                    type='text'
-                    className='form-control'
-                  />
+                  <input name='address[address2]' defaultValue={user.address?.address2} type='text' className='form-control' />
                 </div>
                 <div className='col-md-12 form-group'>
                   <textarea className='form-control' name='note' rows={1} placeholder='Order Notes' />

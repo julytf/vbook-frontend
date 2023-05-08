@@ -16,7 +16,7 @@ function BookDetail() {
 
   return (
     <div className='card '>
-      <div className='card-header'>
+      <div className='card-header bg-dark'>
         {/* <button onClick={() => navigate(-1)} className='btn btn-primary me-3'>
           <i class='fa-solid fa-angle-left'></i> Back
         </button> */}

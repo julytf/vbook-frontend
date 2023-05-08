@@ -50,7 +50,7 @@ function Books() {
   return (
     <>
       <div className='card'>
-        <div className='card-header'>
+        <div className='card-header bg-dark'>
           <h3 className='card-title'>Responsive Hover Table</h3>
           <div className='card-tools d-flex align-items-center'>
             <Link to={'/admin/books/create'} className='btn btn-primary btn-sm me-3'>

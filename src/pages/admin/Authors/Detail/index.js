@@ -14,7 +14,7 @@ function AuthorDetail() {
 
   return (
     <div className='card'>
-      <div className='card-header'>
+      <div className='card-header bg-dark'>
         <h3 className='card-title'>Author detail</h3>
         <span className='ml-5'>ID: {id}</span>
         <Link to={`/admin/authors/${id}/edit`} className='btn btn-primary float-right'>

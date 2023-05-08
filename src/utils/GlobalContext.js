@@ -9,7 +9,7 @@ export function GlobalContextProvider({ children }) {
   const { user } = useContext(AuthContext)
 
   const [cart, setCart] = useState([])
-  console.log('cart', cart);
+  console.log('cart', cart)
 
   useEffect(() => {
     axiosClient.get('/cart').then((rs) => setCart(rs.data.data.cart))
@@ -45,6 +45,9 @@ export function GlobalContextProvider({ children }) {
       return
     }
     cart[index].quantity = cartItem.quantity
+
+    if (cartItem.quantity == 0) cart.splice(index, 1)
+
     setCart([...cart])
   }
 
@@ -99,7 +102,10 @@ export function GlobalContextProvider({ children }) {
   }
   async function unsave(book) {
     axiosClient.get(`/saves/${book._id}/unsave`).then(() => {
-      saves.splice(saves.findIndex((save) => save._id == book._id),1)
+      saves.splice(
+        saves.findIndex((save) => save._id == book._id),
+        1
+      )
       setSaves([...saves])
     })
   }

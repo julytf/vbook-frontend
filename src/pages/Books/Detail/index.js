@@ -34,13 +34,13 @@ function BookDetail() {
   useEffect(() => {}, [])
 
   async function handleAddItem() {
-    if(!isLoggedIn) return toast.warn('Bạn cần phải đăng nhập để sử dụng chức năng này!')
+    if (!isLoggedIn) return toast.warn('Bạn cần phải đăng nhập để sử dụng chức năng này!')
     await addItem({ book, quantity })
     await syncCart()
   }
 
   function handleToggleSave() {
-    if(!isLoggedIn) return toast.warn('Bạn cần phải đăng nhập để sử dụng chức năng này!')
+    if (!isLoggedIn) return toast.warn('Bạn cần phải đăng nhập để sử dụng chức năng này!')
     toggleSave(book)
   }
 
@@ -53,25 +53,15 @@ function BookDetail() {
               <div className='carousel-inner'>
                 {book.images?.map((image, i) => (
                   <div className={`carousel-item${i == 0 ? ' active' : ''}`}>
-                    <img src={image.file} className='d-block w-100' style={{height: '600px', width: 'auto'}} />
+                    <img src={image.file} className='d-block w-100' style={{ height: '600px', width: 'auto' }} />
                   </div>
                 ))}
               </div>
-              <button
-                className='carousel-control-prev'
-                type='button'
-                data-bs-target='#carouselExample'
-                data-bs-slide='prev'
-              >
+              <button className='carousel-control-prev' type='button' data-bs-target='#carouselExample' data-bs-slide='prev'>
                 <i class='fa-solid fa-angle-left fa-2xl' style={{ color: '#50a060' }}></i>
                 <span className='visually-hidden'>Previous</span>
               </button>
-              <button
-                className='carousel-control-next'
-                type='button'
-                data-bs-target='#carouselExample'
-                data-bs-slide='next'
-              >
+              <button className='carousel-control-next' type='button' data-bs-target='#carouselExample' data-bs-slide='next'>
                 <i class='fa-solid fa-angle-right fa-2xl' style={{ color: '#50a060' }}></i>
                 <span className='visually-hidden'>Next</span>
               </button>
@@ -95,16 +85,11 @@ function BookDetail() {
                     </span>
                   </div> */}
                   <div class='input-group mx-3 mb-3 w-25'>
-                    <button onClick={() => setQuantity((cur) => cur - 1)} class='input-group-text'>
+                    <button onClick={() => setQuantity((cur) => Math.max(cur - 1, 1))} class='input-group-text'>
                       -
                     </button>
-                    <input
-                      type='text'
-                      class='form-control text-center'
-                      value={quantity}
-                      onChange={handleQuantityChange}
-                    />
-                    <button onClick={() => setQuantity((cur) => cur + 1)} class='input-group-text'>
+                    <input type='text' class='form-control text-center' value={quantity} onChange={handleQuantityChange} />
+                    <button onClick={() => setQuantity((cur) => Math.min(cur + 1, 100))} class='input-group-text'>
                       +
                     </button>
                   </div>

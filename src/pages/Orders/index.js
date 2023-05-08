@@ -56,6 +56,7 @@ function Orders() {
             </div>
           </div>
         ))}
+        {orders.length == 0 && <p>Bạn chưa có đơn hàng nào!</p>}
       </div>
     </section>
   )

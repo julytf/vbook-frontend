@@ -51,7 +51,7 @@ function OrderEdit() {
 
   return (
     <div className='card'>
-      <div className='card-header'>
+      <div className='card-header bg-dark'>
         <h3 className='card-title'>Order detail</h3>
         <span className='ml-5'>ID: {id}</span>
         
@@ -101,6 +101,16 @@ function OrderEdit() {
                   </option>
                 ))}
               </select>
+            </div>
+          </div>
+          <div className='row'>
+            <div className='form-group col-6'>
+              <label htmlFor='exampleInputPassword1'>Hình thức thanh toán</label>
+              <input type='text' name='lastName' className='form-control' placeholder='' defaultValue={order.paymentMethod == 'COD' ? 'Khi nhận hàng' : 'Thẻ'} disabled />
+            </div>
+            <div className='form-group col-6'>
+              <label htmlFor='exampleInputPassword1'>Trạng thái thanh toán</label>
+              <input type='text' name='lastName' className='form-control' placeholder='' defaultValue={order.paymentMethod == 'COD' ? 'Khi nhận hàng' : order.payment?.paid ? 'Đã thanh toán' : 'Chưa thành toán'} disabled />
             </div>
           </div>
           <h4>Địa chỉ giao hàng</h4>
@@ -194,7 +204,7 @@ function OrderEdit() {
           <div className='row'>
             <div className='form-group col-12'>
               <div className='card'>
-                <div className='card-header'>
+                <div className='card-header bg-dark'>
                   <h3 className='card-title'>Condensed Full Width Table</h3>
                 </div>
                 <div className='card-body p-0'>

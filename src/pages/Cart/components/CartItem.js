@@ -1,32 +1,34 @@
-import { truncate } from "helper";
-import { useContext } from "react"
-import GlobalContext from "utils/GlobalContext"
+import { truncate } from 'helper'
+import { useContext } from 'react'
+import GlobalContext from 'utils/GlobalContext'
 
 function CartItem({ cartItem }) {
   // console.log("cartItem rerender")
-  const { updateItem } = useContext(GlobalContext).cart
+  const { updateItem, syncCart } = useContext(GlobalContext).cart
 
   function handleIncrease() {
-    console.log('increase');
-    updateItem({ book: cartItem.book._id, quantity: cartItem.quantity + 1 })
+    console.log('increase')
+    updateItem({ book: cartItem.book._id, quantity: Math.min(cartItem.quantity + 1,100) })
+    syncCart()
   }
   function handleDecrease() {
     // console.log('decrease');
-    updateItem({ book: cartItem.book._id, quantity: cartItem.quantity - 1 })
+    updateItem({ book: cartItem.book._id, quantity: Math.max(cartItem.quantity - 1, 0) })
+    syncCart()
   }
   function handleChange(e) {
     updateItem({ book: cartItem.book._id, quantity: e.target.value })
   }
   return (
-    <tr className="cart_item">
+    <tr className='cart_item'>
       <td>
         <div className='media'>
           <div className='d-flex'>
             <img src='assets/img/arrivel/arrivel_1.png' alt='' />
           </div>
           <div className='media-body'>
-            <img src={cartItem.book.images[0].file}/>
-            <p>{truncate(cartItem.book.name,70)}</p>
+            <img src={cartItem.book.images[0].file} />
+            <p>{truncate(cartItem.book.name, 70)}</p>
           </div>
         </div>
       </td>
@@ -39,13 +41,7 @@ function CartItem({ cartItem }) {
             <button className='input-group-text' onClick={handleDecrease}>
               -
             </button>
-            <input
-              type='text'
-              className='form-control p-0 text-center'
-              value={cartItem.quantity}
-              onChange={handleChange}
-              style={{ width: '50px' }}
-            />
+            <input type='text' className='form-control p-0 text-center' value={cartItem.quantity} onChange={handleChange} style={{ width: '50px' }} />
             <button className='input-group-text' onClick={handleIncrease}>
               +
             </button>

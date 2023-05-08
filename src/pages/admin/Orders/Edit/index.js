@@ -4,7 +4,6 @@ import axiosClient from 'utils/axiosClient'
 import dvhcvn from 'assets/json/dvhcvn.json'
 import { statusEnum as orderStatusEnum } from 'enums/Order'
 
-
 function OrderEdit() {
   const { id } = useParams()
 
@@ -13,9 +12,7 @@ function OrderEdit() {
 
   const [citys, setCitys] = useState(dvhcvn.data)
   const [provines, setProvines] = useState(citys.find((city) => city.id === order?.user?.address?.city)?.sub || [])
-  const [districts, setDistricts] = useState(
-    provines.find((provine) => provine.id === order?.user?.address?.provine)?.sub || []
-  )
+  const [districts, setDistricts] = useState(provines.find((provine) => provine.id === order?.user?.address?.provine)?.sub || [])
 
   const navigate = useNavigate()
 
@@ -51,7 +48,7 @@ function OrderEdit() {
 
   return (
     <div className='card'>
-      <div className='card-header'>
+      <div className='card-header bg-dark'>
         <h3 className='card-title'>Order detail</h3>
         <span className='ml-5'>ID: {id}</span>
         {/* <Link to={`/admin/orders/${id}`} className='btn btn-primary float-right'>
@@ -68,24 +65,11 @@ function OrderEdit() {
           <div className='row'>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>ID</label>
-              <input
-                type='text'
-                name='lastName'
-                className='form-control'
-                placeholder=''
-                defaultValue={order.user?._id}
-                disabled
-              />
+              <input type='text' name='lastName' className='form-control' placeholder='' defaultValue={order.user?._id} disabled />
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>Họ Tên</label>
-              <input
-                type='text'
-                name='firstName'
-                className='form-control'
-                value={`${order.user?.lastName || ''} ${order.user?.firstName || ''}`}
-                disabled
-              />
+              <input type='text' name='firstName' className='form-control' value={`${order.user?.lastName || ''} ${order.user?.firstName || ''}`} disabled />
             </div>
           </div>
           <h4>Đơn hàng</h4>
@@ -101,27 +85,25 @@ function OrderEdit() {
               </select>
             </div>
           </div>
+          <div className='row'>
+            <div className='form-group col-6'>
+              <label htmlFor='exampleInputPassword1'>Hình thức thanh toán</label>
+              <input type='text' name='lastName' className='form-control' placeholder='' defaultValue={order.paymentMethod == 'COD' ? 'Khi nhận hàng' : 'Thẻ'} disabled />
+            </div>
+            <div className='form-group col-6'>
+              <label htmlFor='exampleInputPassword1'>Trạng thái thanh toán</label>
+              <input type='text' name='lastName' className='form-control' placeholder='' defaultValue={order.paymentMethod == 'COD' ? 'Khi nhận hàng' : order.payment?.paid ? 'Đã thanh toán' : 'Chưa thành toán'} disabled />
+            </div>
+          </div>
           <h4>Địa chỉ giao hàng</h4>
           <div className='row'>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>Họ tên</label>
-              <input
-                type='text'
-                name='phoneNumber'
-                className='form-control'
-                placeholder=''
-                defaultValue={order.address?.fullName}
-              />
+              <input type='text' name='phoneNumber' className='form-control' placeholder='' defaultValue={order.address?.fullName} />
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>Số điện thoại</label>
-              <input
-                type='text'
-                name='email'
-                className='form-control'
-                placeholder=''
-                defaultValue={order.address?.phoneNumber}
-              />
+              <input type='text' name='email' className='form-control' placeholder='' defaultValue={order.address?.phoneNumber} />
             </div>
           </div>
           <div className='row'>
@@ -131,7 +113,7 @@ function OrderEdit() {
                 <option value={''}>Chọn Thành phố</option>
                 {citys.map((city) => (
                   <option value={city.id} key={city.id}>
-                    {city.name}
+                    {city?.name}
                   </option>
                 ))}
               </select>
@@ -142,7 +124,7 @@ function OrderEdit() {
                 <option value={''}>Chọn Quận/Huyện</option>
                 {provines.map((provine) => (
                   <option value={provine.id} key={provine.id}>
-                    {provine.name}
+                    {provine?.name}
                   </option>
                 ))}
               </select>
@@ -153,7 +135,7 @@ function OrderEdit() {
                 <option value={''}>Chọn Phường/Xã</option>
                 {districts.map((district) => (
                   <option value={district.id} key={district.id}>
-                    {district.name}
+                    {district?.name}
                   </option>
                 ))}
               </select>
@@ -162,30 +144,18 @@ function OrderEdit() {
           <div className='row'>
             <div className='form-group col-12'>
               <label htmlFor='exampleInputPassword1'>Địa chỉ</label>
-              <input
-                type='text'
-                name='address.address'
-                className='form-control'
-                placeholder=''
-                defaultValue={order.address?.address}
-              />
+              <input type='text' name='address.address' className='form-control' placeholder='' defaultValue={order.address?.address} />
             </div>
             <div className='form-group col-12'>
               <label htmlFor='exampleInputPassword1'>Số tầng / Số phòng</label>
-              <input
-                type='text'
-                name='address.address2'
-                className='form-control'
-                placeholder=''
-                defaultValue={order.address?.address2}
-              />
+              <input type='text' name='address.address2' className='form-control' placeholder='' defaultValue={order.address?.address2} />
             </div>
           </div>
           <h4>Đơn hàng</h4>
           <div className='row'>
             <div className='form-group col-12'>
               <div className='card'>
-                <div className='card-header'>
+                <div className='card-header bg-dark'>
                   <h3 className='card-title'>Condensed Full Width Table</h3>
                 </div>
                 <div className='card-body p-0'>
@@ -200,14 +170,14 @@ function OrderEdit() {
                     </thead>
                     <tbody>
                       {order.details?.map((item) => (
-                        <tr key={item.book._id}>
+                        <tr key={item.book?._id}>
                           <td>
-                            <img src={item.book?.images?.[0]?.file} style={{height: '50px'}}/>
-                            {item.book.name}
+                            <img src={item.book?.images?.[0]?.file} style={{ height: '50px' }} />
+                            {item.book?.name}
                           </td>
-                          <td>{item.book.price.toLocaleString()}</td>
+                          <td>{item.book?.price.toLocaleString()}</td>
                           <td>{item.quantity}</td>
-                          <td>{(item.book.price * item.quantity).toLocaleString()}</td>
+                          <td>{(item.book?.price * item.quantity).toLocaleString()}</td>
                         </tr>
                       ))}
                     </tbody>

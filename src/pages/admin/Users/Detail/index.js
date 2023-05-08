@@ -14,7 +14,7 @@ function UserDetail() {
 
   return (
     <div className='card'>
-      <div className='card-header'>
+      <div className='card-header bg-dark'>
         <h3 className='card-title'>User detail</h3>
         <span className='ml-5'>ID: {id}</span>
         <Link to={`/admin/users/${id}/edit`} className='btn btn-primary float-right'>

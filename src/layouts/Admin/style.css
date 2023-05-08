@@ -20,3 +20,7 @@ td {
 .main-footer {
     margin-top: auto;
 }
+
+.btn-default {
+    background-color: #f8f9fa !important;
+}

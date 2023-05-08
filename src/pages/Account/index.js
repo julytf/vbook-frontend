@@ -5,6 +5,7 @@ import axiosClient from 'utils/axiosClient'
 
 import dvhcvn from 'assets/json/dvhcvn.json'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Account() {
   const { user, logout } = useContext(AuthContext)
@@ -33,7 +34,7 @@ function Account() {
     logout()
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
 
     const formData = new FormData(e.target)
@@ -41,9 +42,11 @@ function Account() {
 
     if (!validate(formData, validateRules)) return
 
-    axiosClient.patch(`/auth/me`, formData, {
+    await axiosClient.patch(`/auth/me`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
+
+    toast.success('Cật nhật thành công!')
   }
 
   function handleLogout() {
