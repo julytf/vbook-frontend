@@ -136,7 +136,7 @@ function OrderEdit() {
                 <option value={''}>Chọn Thành phố</option>
                 {citys.map((city) => (
                   <option value={city.id} key={city.id}>
-                    {city.name}
+                    {city?.name}
                   </option>
                 ))}
               </select>
@@ -148,7 +148,7 @@ function OrderEdit() {
                 <option value={''}>Chọn Quận/Huyện</option>
                 {provines.map((provine) => (
                   <option value={provine.id} key={provine.id}>
-                    {provine.name}
+                    {provine?.name}
                   </option>
                 ))}
               </select>
@@ -160,7 +160,7 @@ function OrderEdit() {
                 <option value={''}>Chọn Phường/Xã</option>
                 {districts.map((district) => (
                   <option value={district.id} key={district.id}>
-                    {district.name}
+                    {district?.name}
                   </option>
                 ))}
               </select>
@@ -209,14 +209,14 @@ function OrderEdit() {
                     </thead>
                     <tbody>
                       {order.details?.map((item) => (
-                        <tr key={item.book._id}>
+                        <tr key={item.book?._id}>
                           <td>
                             <img src={item.book?.images?.[0]?.file} style={{height: '50px'}}/>
-                            {item.book.name}
+                            {item.book?.name}
                           </td>
-                          <td>{item.book.price.toLocaleString()}</td>
+                          <td>{item.book?.price.toLocaleString()}</td>
                           <td>{item.quantity}</td>
-                          <td>{(item.book.price * item.quantity).toLocaleString()}</td>
+                          <td>{(item.book?.price * item.quantity).toLocaleString()}</td>
                         </tr>
                       ))}
                     </tbody>

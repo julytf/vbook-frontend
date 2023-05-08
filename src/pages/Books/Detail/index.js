@@ -47,7 +47,7 @@ function BookDetail() {
               <div className='carousel-inner'>
                 {book.images?.map((image, i) => (
                   <div className={`carousel-item${i == 0 ? ' active' : ''}`}>
-                    <img src={image.file} className='d-block w-100' alt='...' />
+                    <img src={image.file} className='d-block w-100' style={{height: '600px', width: 'auto'}} />
                   </div>
                 ))}
               </div>
@@ -66,7 +66,7 @@ function BookDetail() {
                 data-bs-target='#carouselExample'
                 data-bs-slide='next'
               >
-                <span className='carousel-control-next-icon' aria-hidden='true' />
+                <i class='fa-solid fa-angle-right fa-2xl' style={{ color: '#50a060' }}></i>
                 <span className='visually-hidden'>Next</span>
               </button>
             </div>
@@ -74,7 +74,6 @@ function BookDetail() {
           <div className='col-7'>
             <div className='single_product_text text-center'>
               <h3>{book.name}</h3>
-              <p>{book.description}</p>
               <div className='card_area'>
                 <div className='product_count_area'>
                   <p>Quantity</p>
@@ -119,6 +118,7 @@ function BookDetail() {
             </div>
           </div>
         </div>
+        <p className='p-5'>{book.description}</p>
       </div>
     </div>
   )
