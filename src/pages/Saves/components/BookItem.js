@@ -1,3 +1,4 @@
+import Image from 'pages/components/Image'
 import { Link } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
@@ -15,7 +16,7 @@ function BookItem({ book }) {
             {/* <i class='fa-solid fa-heart'></i> */}
           </button>
           <Link to={`/books/${book._id}`}>
-            <img src={book.images?.[0].file} alt='' />
+            <Image src={book.images?.[0].file} alt='' />
           </Link>
         </div>
         <div className='product-caption'>

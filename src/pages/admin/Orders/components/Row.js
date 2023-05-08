@@ -21,7 +21,7 @@ function Row({ order, deleteOrder }) {
   }
   return (
     <tr onClick={handleNavigate}>
-      <th>ID</th>
+      <td>{order._id}</td>
       {/* <th>Order</th>
                 <th>Status</th>
                 <th>Address</th>

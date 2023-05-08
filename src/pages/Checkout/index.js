@@ -109,18 +109,18 @@ function Checkout() {
                   <input name='address[address2]' defaultValue={user.address?.address2} type='text' className='form-control' />
                 </div>
                 <div className='col-md-12 form-group'>
-                  <textarea className='form-control' name='note' rows={1} placeholder='Order Notes' />
+                  <textarea className='form-control' name='note' rows={1} placeholder='Ghi chú' />
                 </div>
               </form>
             </div>
             <div className='col-lg-4'>
               <div className='order_box'>
-                <h2>Your Order</h2>
+                <h2>Danh sách</h2>
                 <ul className='list'>
                   <li>
                     <a href='#'>
-                      Product
-                      <span>Total</span>
+                      Sách
+                      <span>Tổng</span>
                     </a>
                   </li>
                   {cart.map((item) => (

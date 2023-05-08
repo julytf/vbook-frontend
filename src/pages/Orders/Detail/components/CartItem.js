@@ -1,3 +1,4 @@
+import Image from "pages/components/Image"
 import { useContext } from "react"
 import GlobalContext from "utils/GlobalContext"
 
@@ -10,7 +11,7 @@ function CartItem({ cartItem }) {
             <img src='assets/img/arrivel/arrivel_1.png' alt='' />
           </div>
           <div className='media-body'>
-            <img src={cartItem.book?.images?.[0].file}/>
+            <Image src={cartItem.book?.images?.[0].file}/>
             <p>{cartItem.book.name}</p>
           </div>
         </div>

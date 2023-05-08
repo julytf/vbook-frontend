@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 import dvhcvn from 'assets/json/dvhcvn.json'
 import { statusEnum as orderStatusEnum } from 'enums/Order'
+import Image from 'pages/components/Image'
 
 
 function OrderEdit() {
@@ -221,7 +222,7 @@ function OrderEdit() {
                       {order.details?.map((item) => (
                         <tr key={item.book?._id}>
                           <td>
-                            <img src={item.book?.images?.[0]?.file} style={{height: '50px'}}/>
+                            <Image src={item.book?.images?.[0]?.file} style={{height: '50px'}}/>
                             {item.book?.name}
                           </td>
                           <td>{item.book?.price.toLocaleString()}</td>

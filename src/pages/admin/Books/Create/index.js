@@ -1,12 +1,14 @@
 import { languageEnum as bookLanguageEnum, formEnum as bookformEnum, statusEnum as bookStatusEnum } from 'enums/Book'
 import { isEmptyObject } from 'helper'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
 
 function BookCreate() {
   const [authors, setAuthors] = useState([])
   const [publishers, setPublishers] = useState([])
+
+  const imagesRef = useRef()
 
   const navigate = useNavigate()
 
@@ -20,6 +22,8 @@ function BookCreate() {
 
     const formData = new FormData(e.target)
     // console.log(formData.get('name'));
+    
+    Object.values(imagesRef.current.files).forEach((file) => formData.append('images', file))
 
     axiosClient
       .post(`/books`, formData, {
@@ -159,10 +163,16 @@ function BookCreate() {
               </select>
             </div>
           </div>
-          <div className='row'>
+          {/* <div className='row'>
             <div className='form-group col-1'>
               <label htmlFor='exampleInputPassword1'>rate</label>
               <input type='text' className='form-control' placeholder='' disabled />
+            </div>
+          </div> */}
+          <div className='row'>
+            <label htmlFor='exampleInputPassword1'>Ảnh</label>
+            <div className='input-group col-6'>
+              <input type='file' className='form-control' id='inputGroupFile04' aria-describedby='inputGroupFileAddon04' aria-label='Upload' multiple ref={imagesRef} />
             </div>
           </div>
         </div>

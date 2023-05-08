@@ -1,10 +1,12 @@
+import Image from "pages/components/Image"
+
 function OrderItem({ item }) {
   return (
     <tr key={item.book._id} className='cart_item'>
       <td>
         <div className='media'>
           <div className='media-body'>
-            <img src={item.book?.images?.[0].file} />
+            <Image src={item.book?.images?.[0].file} />
             <p>{item.book.name}</p>
           </div>
         </div>

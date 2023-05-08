@@ -1,3 +1,4 @@
+import Image from "pages/components/Image"
 import { Link } from "react-router-dom"
 
 function BookItem({book}) {
@@ -7,7 +8,7 @@ function BookItem({book}) {
           <Link to={`/books/${book._id}`}>
       <div className='single-product mb-60'>
         <div className='product-img'>
-          <img src={book.images[0].file} alt='' />
+          <Image src={book.images[0].file} alt='' />
         </div>
         <div className='product-caption'>
           {/* <div className='product-ratting'>

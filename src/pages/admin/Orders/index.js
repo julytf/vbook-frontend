@@ -53,12 +53,12 @@ function Orders() {
     <>
       <div className='card'>
         <div className='card-header bg-dark'>
-          <h3 className='card-title'>Responsive Hover Table</h3>
+          <h3 className='card-title'>Orders</h3>
           <div className='card-tools d-flex align-items-center'>
             {/* <Link to={'/admin/orders/create'} className='btn btn-primary btn-sm me-3'>
               Create
             </Link> */}
-            <form onSubmit={handleSearch} className='m-0'>
+            <form onSubmit={handleSearch} className='m-1'>
               <div className='input-group input-group-sm'>
                 <input
                   type='text'

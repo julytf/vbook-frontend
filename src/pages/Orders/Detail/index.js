@@ -57,10 +57,10 @@ function OrderDetail() {
             <table className='table'>
               <thead>
                 <tr>
-                  <th scope='col'>Product</th>
-                  <th scope='col'>Price</th>
-                  <th scope='col'>Quantity</th>
-                  <th scope='col'>Total</th>
+                  <th scope='col'>Sách</th>
+                  <th scope='col'>Giá</th>
+                  <th scope='col'>Số lượng</th>
+                  <th scope='col'>Tổng</th>
                 </tr>
               </thead>
               <tbody>

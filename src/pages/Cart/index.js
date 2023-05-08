@@ -37,10 +37,10 @@ function Cart() {
               <table className='table'>
                 <thead>
                   <tr>
-                    <th scope='col'>Product</th>
-                    <th scope='col'>Price</th>
-                    <th scope='col'>Quantity</th>
-                    <th scope='col'>Total</th>
+                    <th scope='col'>Sách</th>
+                    <th scope='col'>Giá</th>
+                    <th scope='col'>Số lượng</th>
+                    <th scope='col'>Tổng</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -68,7 +68,7 @@ function Cart() {
                     <td />
                     <td />
                     <td>
-                      <h5>Total</h5>
+                      <h5>Tổng tiền</h5>
                     </td>
                     <td>
                       <h2>{totalCost.toLocaleString()}</h2>
@@ -81,7 +81,7 @@ function Cart() {
                 Continue Shopping
               </a> */}
                 <Link to={'/checkout'} className='btn_1 checkout_btn_1 float-end'>
-                  Proceed to checkout
+                  Tiếp Tục
                 </Link>
               </div>
             </div>

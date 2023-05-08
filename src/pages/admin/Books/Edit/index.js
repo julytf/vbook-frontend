@@ -1,8 +1,9 @@
 import { languageEnum as bookLanguageEnum, formEnum as bookformEnum, statusEnum as bookStatusEnum } from 'enums/Book'
 import { isEmptyObject } from 'helper'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
+import Image from 'pages/components/Image'
 
 function BookEdit() {
   const { id } = useParams()
@@ -13,6 +14,8 @@ function BookEdit() {
   // console.log(authors)
   const [publishers, setPublishers] = useState([])
   // console.log(publishers)
+
+  const imagesRef = useRef()
 
   const navigate = useNavigate()
 
@@ -32,24 +35,26 @@ function BookEdit() {
 
     const formData = new FormData(e.target)
     // console.log(formData.get('name'));
+    Object.values(imagesRef.current.files).forEach((file) => formData.append('images', file))
 
     axiosClient
       .patch(`/books/${id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then(() => navigate(`/admin/books/${id}`))
+      .catch((err) => console.log(err))
   }
 
   return (
     <div className='card '>
       <div className='card-header bg-dark'>
         {/* <button onClick={() => navigate(-1)} className='btn btn-primary me-3'>
-          <i class='fa-solid fa-angle-left'></i> Back
+          <i className='fa-solid fa-angle-left'></i> Back
         </button> */}
         <h3 className='card-title float-none d-inline'>Book detail</h3>
         <span className='ml-5'>ID: {id}</span>
         {/* <Link to={`/admin/books/${id}`} className='btn btn-primary float-right'>
-          <i class='fa-solid fa-angle-left'></i> Back
+          <i className='fa-solid fa-angle-left'></i> Back
         </Link> */}
       </div>
       <form onSubmit={handleSubmit}>
@@ -65,9 +70,9 @@ function BookEdit() {
             </div>
             <div className='form-group col-2'>
               <label htmlFor='exampleInputPassword1'>language</label>
-              <select name='language' class='form-control'>
+              <select name='language' className='form-control'>
                 {Object.keys(bookLanguageEnum).map((language) => (
-                  <option selected={language == book.language} value={language}>
+                  <option key={language} selected={language == book.language} value={language}>
                     {language}
                   </option>
                 ))}
@@ -86,9 +91,9 @@ function BookEdit() {
             </div>
             <div className='form-group col-6'>
               <label htmlFor='exampleInputPassword1'>status</label>
-              <select name='status' class='form-control'>
+              <select name='status' className='form-control'>
                 {Object.keys(bookStatusEnum).map((status) => (
-                  <option selected={status == book.status} value={status}>
+                  <option key={status} selected={status == book.status} value={status}>
                     {status}
                   </option>
                 ))}
@@ -108,9 +113,9 @@ function BookEdit() {
           <div className='row'>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>author</label>
-              <select name='author' class='form-control'>
-                {authors.map((author) => (
-                  <option selected={author._id == book.author?._id} value={author._id}>
+              <select name='author' className='form-control'>
+                {authors?.map((author) => (
+                  <option key={author._id} selected={author._id == book.author?._id} value={author._id}>
                     {author.name}
                   </option>
                 ))}
@@ -118,9 +123,9 @@ function BookEdit() {
             </div>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>publisher</label>
-              <select name='publisher' class='form-control'>
-                {publishers.map((publisher) => (
-                  <option selected={publisher._id == book.publisher?._id} value={publisher._id}>
+              <select name='publisher' className='form-control'>
+                {publishers?.map((publisher) => (
+                  <option key={publisher._id} selected={publisher._id == book.publisher?._id} value={publisher._id}>
                     {publisher.name}
                   </option>
                 ))}
@@ -136,8 +141,8 @@ function BookEdit() {
               <label htmlFor='exampleInputPassword1'>width</label>
               <div className='input-group'>
                 <input type='text' name='width' className='form-control' placeholder='' defaultValue={book.width} />
-                <div class='input-group-append'>
-                  <span class='input-group-text'>CM</span>
+                <div className='input-group-append'>
+                  <span className='input-group-text'>CM</span>
                 </div>
               </div>
             </div>
@@ -145,8 +150,8 @@ function BookEdit() {
               <label htmlFor='exampleInputPassword1'>height</label>
               <div className='input-group'>
                 <input type='text' name='height' className='form-control' placeholder='' defaultValue={book.height} />
-                <div class='input-group-append'>
-                  <span class='input-group-text'>CM</span>
+                <div className='input-group-append'>
+                  <span className='input-group-text'>CM</span>
                 </div>
               </div>
             </div>
@@ -154,8 +159,8 @@ function BookEdit() {
               <label htmlFor='exampleInputPassword1'>depth</label>
               <div className='input-group'>
                 <input type='text' name='depth' className='form-control' placeholder='' defaultValue={book.depth} />
-                <div class='input-group-append'>
-                  <span class='input-group-text'>CM</span>
+                <div className='input-group-append'>
+                  <span className='input-group-text'>CM</span>
                 </div>
               </div>
             </div>
@@ -165,8 +170,8 @@ function BookEdit() {
               <label htmlFor='exampleInputPassword1'>weight</label>
               <div className='input-group'>
                 <input type='text' name='weight' className='form-control' placeholder='' defaultValue={book.weight} />
-                <div class='input-group-append'>
-                  <span class='input-group-text'>gram</span>
+                <div className='input-group-append'>
+                  <span className='input-group-text'>gram</span>
                 </div>
               </div>
             </div>
@@ -176,9 +181,9 @@ function BookEdit() {
             </div>
             <div className='form-group col-4'>
               <label htmlFor='exampleInputPassword1'>form</label>
-              <select name='form' class='form-control'>
+              <select name='form' className='form-control'>
                 {Object.keys(bookformEnum).map((form) => (
-                  <option selected={form == book.form} value={form}>
+                  <option key={form} selected={form == book.form} value={form}>
                     {form}
                   </option>
                 ))}
@@ -193,15 +198,12 @@ function BookEdit() {
           </div> */}
           <div className='row'>
             <label htmlFor='exampleInputPassword1'>Ảnh</label>
-            <div class='input-group col-6'>
-              <input type='file' class='form-control' id='inputGroupFile04' aria-describedby='inputGroupFileAddon04' aria-label='Upload' multiple />
-              <button class='btn btn-outline-secondary' type='button' id='inputGroupFileAddon04'>
-                Button
-              </button>
+            <div className='input-group col-6'>
+              <input type='file' className='form-control' id='inputGroupFile04' aria-describedby='inputGroupFileAddon04' aria-label='Upload' multiple ref={imagesRef} />
             </div>
-            <div class='input-group col-12 mt-2'>
-              {book.images.map((image) => (
-                <img src={image.file}  style={{height: '50px'}}/>
+            <div className='input-group col-12 mt-2'>
+              {book.images?.map((image, i) => (
+                <Image key={i} src={image.file} style={{ height: '50px' }} />
               ))}
             </div>
           </div>

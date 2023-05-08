@@ -1,3 +1,4 @@
+import Image from 'pages/components/Image'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axiosClient from 'utils/axiosClient'
@@ -109,9 +110,20 @@ function BookDetail() {
               <input type='text' className='form-control' placeholder='' defaultValue={book.form} disabled />
             </div>
           </div>
-          <div className='form-group'>
+          {/* <div className='form-group'>
             <label htmlFor='exampleInputPassword1'>rate</label>
             <input type='text' className='form-control' placeholder='' defaultValue={book.rate} disabled />
+          </div> */}
+          <div className='row'>
+            <label htmlFor='exampleInputPassword1'>Ảnh</label>
+            <div className='input-group col-6'>
+              <input type='file' className='form-control' id='inputGroupFile04' aria-describedby='inputGroupFileAddon04' aria-label='Upload' multiple />
+            </div>
+            <div className='input-group col-12 mt-2'>
+              {book.images?.map((image, i) => (
+                <Image key={i} src={image.file} style={{ height: '50px' }} />
+              ))}
+            </div>
           </div>
         </div>
         {/* <div className='card-footer'>

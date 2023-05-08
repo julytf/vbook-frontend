@@ -6,6 +6,7 @@ import './style.css'
 import GlobalContext from 'utils/GlobalContext'
 import AuthContext from 'utils/AuthContext'
 import { toast } from 'react-toastify'
+import Image from 'pages/components/Image'
 
 function BookDetail() {
   console.log('detail rerender')
@@ -53,7 +54,7 @@ function BookDetail() {
               <div className='carousel-inner'>
                 {book.images?.map((image, i) => (
                   <div className={`carousel-item${i == 0 ? ' active' : ''}`}>
-                    <img src={image.file} className='d-block w-100' style={{ height: '600px', width: 'auto' }} />
+                    <Image src={image.file} className='d-block w-100' style={{ height: '600px', width: 'auto' }} />
                   </div>
                 ))}
               </div>
