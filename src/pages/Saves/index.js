@@ -64,6 +64,7 @@ function Saves() {
                 {saves.map((book) => (
                   <BookItem book={book} />
                 ))}
+                {saves.length == 0 && <p>Bạn chưa lưu bất kì sách nào!</p>}
               </div>
             </div>
           </div>

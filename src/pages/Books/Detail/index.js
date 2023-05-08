@@ -4,6 +4,8 @@ import axiosClient from 'utils/axiosClient'
 
 import './style.css'
 import GlobalContext from 'utils/GlobalContext'
+import AuthContext from 'utils/AuthContext'
+import { toast } from 'react-toastify'
 
 function BookDetail() {
   console.log('detail rerender')
@@ -16,6 +18,8 @@ function BookDetail() {
 
   const { addItem, syncCart } = useContext(GlobalContext).cart
   const { isSaved, toggleSave } = useContext(GlobalContext).saves
+
+  const { isLoggedIn } = useContext(AuthContext)
 
   useLayoutEffect(() => {
     axiosClient.get(`/books/${bookId}`).then((rs) => {
@@ -30,11 +34,13 @@ function BookDetail() {
   useEffect(() => {}, [])
 
   async function handleAddItem() {
+    if(!isLoggedIn) return toast.warn('Bạn cần phải đăng nhập để sử dụng chức năng này!')
     await addItem({ book, quantity })
     await syncCart()
   }
 
   function handleToggleSave() {
+    if(!isLoggedIn) return toast.warn('Bạn cần phải đăng nhập để sử dụng chức năng này!')
     toggleSave(book)
   }
 

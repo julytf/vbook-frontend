@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import axiosClient from 'utils/axiosClient'
 
 import bannerImage from 'assets/img/banner.jpg'
@@ -8,6 +8,7 @@ import './style.css'
 
 import BookItem from './components/BookItem'
 import { Link } from 'react-router-dom'
+import AuthContext from 'utils/AuthContext'
 
 function Home() {
   const [books, setBooks] = useState([])
@@ -51,7 +52,7 @@ function Home() {
                 rgba(255, 255, 255, 0.45), 
                 rgba(255, 255, 255, 0.45)
               ), url(${homeBanner})`,
-                      }}
+            }}
           >
             <div className='container'>
               <div className='row'>

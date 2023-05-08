@@ -1,18 +1,64 @@
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import AuthContext from 'utils/AuthContext'
 import './style.css'
+import { toast } from 'react-toastify'
 
 function Login() {
+  const [errors, setErrors] = useState({})
+
   const { isLoggedIn, login } = useContext(AuthContext)
 
   const usernameRef = useRef()
   const passwordRef = useRef()
 
+  const validateRules = {
+    username: { required: true, minLength: 6, maxLength: 50 },
+    password: { required: true, minLength: 8, maxLength: 255 },
+  }
   function handleLogin(e) {
     // console.log(e)
     e.preventDefault()
+    const formData = new FormData(e.target)
+
+    if (!validate(formData, validateRules)) return
+
     login(usernameRef.current.value, passwordRef.current.value)
+      .then(() => toast.success('Đăng nhập thành công!'))
+      .catch(() => toast.warn('tài khoản hoặc mật khẩu không hợp lệ!'))
+  }
+
+  function validate(formData, validateRules) {
+    let hasError = false
+
+    for (const [name, rules] of Object.entries(validateRules)) {
+      const value = formData.get(name)
+      if (rules.hasOwnProperty('required') && !value) {
+        errors[name] = 'Không được để trống!'
+        hasError = true
+        continue
+      }
+      if (rules.hasOwnProperty('minLength') && value.length < rules.minLength) {
+        errors[name] = `Không được ngắn hơn ${rules.minLength}!`
+        hasError = true
+        continue
+      }
+      if (rules.hasOwnProperty('maxLength') && value.length > rules.maxLength) {
+        errors[name] = `Không được dài hơn ${rules.maxLength}!`
+        hasError = true
+        continue
+      }
+      if (rules.hasOwnProperty('equal') && value != formData.get(rules.equal)) {
+        errors[name] = `Không được khác với ${rules.equal}!`
+        hasError = true
+        continue
+      }
+      errors[name] = ''
+    }
+
+    setErrors({ ...errors })
+    console.log(errors)
+    return !hasError
   }
 
   if (isLoggedIn) return <Navigate to={'/'} />
@@ -43,10 +89,24 @@ function Login() {
                 </h3>
                 <form onSubmit={handleLogin} className='row contact_form' noValidate='novalidate'>
                   <div className='col-md-12 form-group p_star'>
-                    <input type='text' className='form-control' placeholder='Username' ref={usernameRef} />
+                    <small className='text-danger'>{errors.username}</small>
+                    <input
+                      type='text'
+                      className='form-control'
+                      placeholder='Username'
+                      ref={usernameRef}
+                      name='username'
+                    />
                   </div>
                   <div className='col-md-12 form-group p_star'>
-                    <input type='password' className='form-control' placeholder='Password' ref={passwordRef} />
+                    <small className='text-danger'>{errors.password}</small>
+                    <input
+                      type='password'
+                      className='form-control'
+                      placeholder='Password'
+                      ref={passwordRef}
+                      name='password'
+                    />
                   </div>
                   <div className='col-md-12 form-group'>
                     {/* <div className='creat_account d-flex align-items-center'>

@@ -34,7 +34,7 @@ function Main() {
       <Header />
       <Outlet />
       <Footer />
-      <FacebookChatPlugin/>
+      {/* <FacebookChatPlugin/> */}
     </>
   )
 }

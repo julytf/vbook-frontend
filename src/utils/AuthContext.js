@@ -39,7 +39,7 @@ export function AuthContextProvider({ children }) {
 
   async function register() {}
   async function login(username, password) {
-    await axiosClient
+    return axiosClient
       .post('/auth/login', {
         username,
         password,
