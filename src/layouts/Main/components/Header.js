@@ -39,7 +39,7 @@ function Header() {
                     </Link>
                   </div>
                 </div>
-                <div className='col-5'>
+                <div className='col-4'>
                   <div className='main-menu f-right d-none d-lg-block'>
                     <nav>
                       <ul id='navigation'>
@@ -70,7 +70,7 @@ function Header() {
                     </nav>
                   </div>
                 </div>
-                <div className='col-5'>
+                <div className='col-6'>
                   <ul className='header-right f-right d-none d-lg-block d-flex justify-content-between'>
                     <li className='d-none d-xl-block'>
                       <form onSubmit={handleSearch} className='form-box f-right'>
@@ -109,12 +109,12 @@ function Header() {
                       <>
                         <li className='d-none d-lg-block'>
                           <Link to={'/register'} className='btn header-btn'>
-                            Register
+                            <span>Đăng ký</span>
                           </Link>
                         </li>
                         <li className='d-none d-lg-block'>
                           <Link to={'/login'} className='btn header-btn'>
-                            Log in
+                            Đăng nhập
                           </Link>
                         </li>
                       </>
